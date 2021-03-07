@@ -1,0 +1,169 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.business.tools</groupId>
+	<artifactId>calc-table-data-provider</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>core</module>
+	</modules>
+
+	<developers>
+		<developer>
+			<id>aka</id>
+			<name>Artem Kaftanenko</name>
+			<email>java.developer@gmx.com</email>
+			<organization>Home Office Ltd.</organization>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/kaftanenko/calc-table-based-data-provider.git</connection>
+		<developerConnection>scm:git:https://github.com/kaftanenko/calc-table-based-data-provider.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
+	</scm>
+
+	<properties>
+
+		<!-- Environment -->
+		<java.version>1.8</java.version>
+		<env.jdk.version>1.8</env.jdk.version>
+
+		<default.encoding>UTF-8</default.encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Library Versions -->
+		<lib.apache.commons-beanutils.version>1.9.4</lib.apache.commons-beanutils.version>
+		<lib.apache.commons-lang3.version>3.12.0</lib.apache.commons-lang3.version>
+		<lib.apache.commons-text.version>1.9</lib.apache.commons-text.version>
+
+		<lib.apache.poi.version>3.17</lib.apache.poi.version>
+		
+		<lib.test.assertj.version>3.19.0</lib.test.assertj.version>
+		<lib.test.testng.version>7.4.0</lib.test.testng.version>
+
+		<!-- Plug-In Versions -->
+		<plugin.maven.assembly.version>3.3.0</plugin.maven.assembly.version>
+		<plugin.maven.compiler.version>3.8.1</plugin.maven.compiler.version>
+		<plugin.maven.resources.version>3.2.0</plugin.maven.resources.version>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Internal -->
+			<dependency>
+				<groupId>org.business.tools</groupId>
+				<artifactId>calc-table-data-provider-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<!-- Apache Commons -->
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${lib.apache.commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${lib.apache.commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>${lib.apache.commons-text.version}</version>
+			</dependency>
+
+			<!-- Apache POI -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${lib.apache.poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${lib.apache.poi.version}</version>
+			</dependency>
+
+			<!-- AssertJ -->
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<version>${lib.test.assertj.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Test NG -->
+			<dependency>
+				<groupId>org.testng</groupId>
+				<artifactId>testng</artifactId>
+				<version>${lib.test.testng.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${plugin.maven.assembly.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${plugin.maven.compiler.version}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+					</configuration>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-compiler-plugin</artifactId>
+										<versionRange>${plugin.maven.compiler.version}</versionRange>
+										<goals>
+											<goal>compile</goal>
+											<goal>testCompile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

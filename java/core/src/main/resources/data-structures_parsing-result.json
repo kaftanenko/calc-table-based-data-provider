@@ -1,0 +1,30 @@
+{
+	"data_source": {
+		"name": "",
+		"version": "",
+		"creation_time": "",
+		"last_modification_time": ""
+	},
+	"structure": {
+		"rootNode": {
+			"label": "",
+			"meta_info": {
+				"cell_dimension": {
+					row: 1,
+					column: 2,
+					rowSpan: 3,
+					columnSpan: 4
+				},
+				"cardinality": "",
+				"type": {
+					"base_type": "",
+					"restrictions": ""
+				}
+			},
+			"children": []
+		}
+	},
+	"data": {
+	
+	}
+}
