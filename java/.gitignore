@@ -1,0 +1,11 @@
+.*
+
+*~
+~*
+*.bak
+
+*.iml
+
+bin
+target
+test-output
