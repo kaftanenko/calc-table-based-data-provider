@@ -15,6 +15,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>dict</module>
 		<module>test-data</module>
 		<module>test-scenarios</module>
 	</modules>
