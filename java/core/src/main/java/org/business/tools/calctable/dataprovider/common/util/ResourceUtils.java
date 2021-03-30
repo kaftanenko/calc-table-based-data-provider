@@ -23,7 +23,7 @@ public class ResourceUtils {
 				ResourceUtils.class.getResource(
 					"/"
 				).toURI()
-			);
+			).resolve(resourcePath);
 		} catch (final URISyntaxException ex) {
 			throw new RuntimeException(ex);
 		}
