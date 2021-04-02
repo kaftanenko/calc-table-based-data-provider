@@ -5,14 +5,14 @@ import org.business.tools.calctable.dataprovider.parser.common.CalcTablePrimitiv
 import org.business.tools.calctable.dataprovider.parser.common.CalcTableStructureNamesStandardResolver;
 import org.business.tools.calctable.dataprovider.reader.CalcTableDataReaderConfig;
 
-public class CalcTablePortraitStandardDataReader
+public class CalcTableSheetPortraitStandardDataReader
 		extends
-		CalcTablePortraitDataReader
+		CalcTableSheetPortraitDataReader
 {
 
 	// ... constructors
 
-	public CalcTablePortraitStandardDataReader() {
+	public CalcTableSheetPortraitStandardDataReader() {
 
 		super(
 			new CalcTableDataReaderConfig(

@@ -23,7 +23,7 @@ class CalcTablePortraitStructureParser_UnitTest
 
 	// ... dependencies
 
-	private final CalcTablePortraitStructureParser serviceUnderTest = new CalcTablePortraitStructureParser();
+	private final CalcTableSheetPortraitStructureParser serviceUnderTest = new CalcTableSheetPortraitStructureParser();
 
 	// ... test methods
 

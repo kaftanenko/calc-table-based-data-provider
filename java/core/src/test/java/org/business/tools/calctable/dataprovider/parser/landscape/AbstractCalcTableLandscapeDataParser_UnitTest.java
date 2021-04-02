@@ -24,7 +24,7 @@ abstract class AbstractCalcTableLandscapeDataParser_UnitTest
 
 	// ... dependencies
 
-	private final CalcTableLandscapeDataParser serviceUnderTest = new CalcTableLandscapeDataParser(
+	private final CalcTableSheetLandscapeDataParser serviceUnderTest = new CalcTableSheetLandscapeDataParser(
 		DATA_PARSER_STANDARD_CONFIG
 	);
 
@@ -58,7 +58,7 @@ abstract class AbstractCalcTableLandscapeDataParser_UnitTest
 			);
 
 			final List<
-					CalcTableStructureNode> structureDescription = new CalcTableLandscapeStructureParser().parseStructureArea(
+					CalcTableStructureNode> structureDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
 						sheet,
 						structureAreaDimension
 					);

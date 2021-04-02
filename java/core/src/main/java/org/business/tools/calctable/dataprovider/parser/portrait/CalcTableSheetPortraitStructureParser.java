@@ -8,11 +8,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.business.tools.calctable.dataprovider.common.error.CalcTableException;
-import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
+import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
+import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 
-public class CalcTablePortraitStructureParser {
+public class CalcTableSheetPortraitStructureParser {
 
 	// ... business methods
 
@@ -50,7 +51,7 @@ public class CalcTablePortraitStructureParser {
 			return Arrays.asList();
 		}
 
-		final String currentStructureCellText = currentStructureCell.getStringCellValue();
+		final String currentStructureCellText = CalcTablePoiDataUtils.getCellValueAsString(currentStructureCell);
 		final boolean currentStructureCellEmpty = StringUtils.isBlank(
 			currentStructureCellText
 		);

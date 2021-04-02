@@ -22,7 +22,7 @@ abstract class AbstractCalcTablePortraitDataParser_UnitTest
 
 	// ... dependencies
 
-	private final CalcTablePortraitDataParser serviceUnderTest = new CalcTablePortraitDataParser(
+	private final CalcTableSheetPortraitDataParser serviceUnderTest = new CalcTableSheetPortraitDataParser(
 		DATA_PARSER_STANDARD_CONFIG
 	);
 
@@ -58,7 +58,7 @@ abstract class AbstractCalcTablePortraitDataParser_UnitTest
 			);
 
 			final List<
-					CalcTableStructureNode> structureDescription = new CalcTablePortraitStructureParser().parseStructureArea(
+					CalcTableStructureNode> structureDescription = new CalcTableSheetPortraitStructureParser().parseStructureArea(
 						sheet,
 						structureAreaDimension
 					);

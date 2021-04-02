@@ -16,9 +16,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 import org.business.tools.calctable.dataprovider.examples.testdatasets.external.model.Person;
-import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableDataReader;
-import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableLandscapeStandardDataReader;
-import org.business.tools.calctable.dataprovider.reader.portrait.CalcTablePortraitStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.CalcTableSheetDataReader;
+import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.portrait.CalcTableSheetPortraitStandardDataReader;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -28,7 +28,7 @@ public class Example_TestDataSets_UnitTest {
 
 	@Test(dataProvider = "dataProvider")
 	public void test(
-			final AbstractCalcTableDataReader reader,
+			final CalcTableSheetDataReader reader,
 			final String workbookFilePath,
 			final String sheetName,
 			final List<Person> expectedResult
@@ -81,13 +81,13 @@ public class Example_TestDataSets_UnitTest {
 		return new Object[][] {
 
 				{
-						new CalcTableLandscapeStandardDataReader(),
+						new CalcTableSheetLandscapeStandardDataReader(),
 						EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_LANDSCAPE_FORMAT,
 						EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA,
 						EXPECTED__TEST_DATA_SETS__PERSON_DATA
 				},
 				{
-						new CalcTablePortraitStandardDataReader(),
+						new CalcTableSheetPortraitStandardDataReader(),
 						EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_PORTRAIT_FORMAT,
 						EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA,
 						EXPECTED__TEST_DATA_SETS__PERSON_DATA

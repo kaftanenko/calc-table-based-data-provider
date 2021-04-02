@@ -8,40 +8,40 @@ import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureN
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
 import org.business.tools.calctable.dataprovider.parser.common.CalcTableHeaderCellStandardPredicate;
-import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableLandscapeStructureParser;
-import org.business.tools.calctable.dataprovider.parser.portrait.CalcTablePortraitDataParser;
-import org.business.tools.calctable.dataprovider.parser.portrait.CalcTablePortraitStructureParser;
+import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableSheetLandscapeStructureParser;
+import org.business.tools.calctable.dataprovider.parser.portrait.CalcTableSheetPortraitDataParser;
+import org.business.tools.calctable.dataprovider.parser.portrait.CalcTableSheetPortraitStructureParser;
 import org.business.tools.calctable.dataprovider.reader.CalcTableDataReaderConfig;
-import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableDataReader;
+import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableSheetDataReader;
 
-public class CalcTablePortraitDataReader
+public class CalcTableSheetPortraitDataReader
 		extends
-		AbstractCalcTableDataReader
+		AbstractCalcTableSheetDataReader
 {
 
 	// ... properties
 
-	private final CalcTablePortraitStructureParser structureParser;
+	private final CalcTableSheetPortraitStructureParser structureParser;
 
-	private final CalcTablePortraitDataParser dataParser;
+	private final CalcTableSheetPortraitDataParser dataParser;
 
 	// ... constructors
 
-	public CalcTablePortraitDataReader(
+	public CalcTableSheetPortraitDataReader(
 			final CalcTableDataReaderConfig config
 	)
 	{
 
 		super(config);
 
-		this.structureParser = new CalcTablePortraitStructureParser();
+		this.structureParser = new CalcTableSheetPortraitStructureParser();
 
 		final CalcTableDataParserConfig dataParserConfig = //
 				new CalcTableDataParserConfig(
 					config.getPrimitiveValueParser(),
 					config.getStructureNamesResolver()
 				);
-		this.dataParser = new CalcTablePortraitDataParser(dataParserConfig);
+		this.dataParser = new CalcTableSheetPortraitDataParser(dataParserConfig);
 	}
 
 	// ... business methods
@@ -49,7 +49,7 @@ public class CalcTablePortraitDataReader
 	@Override
 	public <DATA_TYPE> List<DATA_TYPE> readData(
 			final Sheet sheet,
-			final Class<DATA_TYPE> dataItemType,
+			final Class<DATA_TYPE> dataRecordType,
 			final List<RuntimeException> messageContainer
 	)
 	{
@@ -58,7 +58,7 @@ public class CalcTablePortraitDataReader
 			sheet,
 			CalcTableHeaderCellStandardPredicate.INSTANCE__NON_TRANSPARENT_BACKGROUND
 		);
-		final List<CalcTableStructureNode> headerDescription = new CalcTableLandscapeStructureParser().parseStructureArea(
+		final List<CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
 			sheet,
 			headerDimension
 		);
@@ -79,7 +79,7 @@ public class CalcTablePortraitDataReader
 
 		final List<DATA_TYPE> result = dataParser.parseDataArea(
 			sheet,
-			dataItemType,
+			dataRecordType,
 			dataAreaDimension,
 			structureDescription,
 			messageContainer
@@ -97,7 +97,7 @@ public class CalcTablePortraitDataReader
 			sheet,
 			config.getHeaderCellPredicate()
 		);
-		final List<CalcTableStructureNode> headerDescription = new CalcTableLandscapeStructureParser().parseStructureArea(
+		final List<CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
 			sheet,
 			headerDimension
 		);
