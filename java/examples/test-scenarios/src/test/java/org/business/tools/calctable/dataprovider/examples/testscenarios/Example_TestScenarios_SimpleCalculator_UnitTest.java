@@ -6,15 +6,11 @@ import static org.business.tools.calctable.dataprovider.examples.testscenarios.E
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
-import org.business.tools.calctable.dataprovider.reader.portrait.CalcTablePortraitStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.CalcTableSheetDataReader;
+import org.business.tools.calctable.dataprovider.reader.CalcTableWorkbookDataReader;
+import org.business.tools.calctable.dataprovider.reader.portrait.CalcTableSheetPortraitStandardDataReader;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -61,28 +57,21 @@ public class Example_TestScenarios_SimpleCalculator_UnitTest {
 			throws Exception
 	{
 
-		final List<RuntimeException> messageContainer = new ArrayList<>();
-
-		// ...
-
-		try (final InputStream is = new FileInputStream(
+		try (final InputStream workbookInputStream = new FileInputStream(
 			EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT
-		);
-				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
+		))
 		{
-			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES
-			);
+			final CalcTableWorkbookDataReader workbookReader = new CalcTableWorkbookDataReader();
 
-			final CalcTablePortraitStandardDataReader reader = new CalcTablePortraitStandardDataReader();
+			final String sheetName = EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
+			final Class<?> dataRecordType = Example_TestScenarios_SimpleCalculator_Record.class;
+			final CalcTableSheetDataReader sheetDataReader = new CalcTableSheetPortraitStandardDataReader();
 
-			return reader.readData(
-				sheet,
-				Example_TestScenarios_SimpleCalculator_Record.class,
-				messageContainer
+			return workbookReader.readData(
+				workbookInputStream,
+				sheetName,
+				dataRecordType,
+				sheetDataReader
 			).stream().map(e -> new Object[]
 			{
 					e

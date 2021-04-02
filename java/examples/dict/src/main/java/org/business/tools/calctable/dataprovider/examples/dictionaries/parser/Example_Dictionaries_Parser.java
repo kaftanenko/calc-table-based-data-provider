@@ -13,8 +13,8 @@ import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigat
 import org.business.tools.calctable.dataprovider.examples.dictionaries.model.AbstractDomainObject;
 import org.business.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;
 import org.business.tools.calctable.dataprovider.examples.dictionaries.model.DictionaryEntry;
-import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableLandscapeDataReader;
-import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableLandscapeStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeDataReader;
+import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeStandardDataReader;
 
 public class Example_Dictionaries_Parser {
 
@@ -24,7 +24,7 @@ public class Example_Dictionaries_Parser {
 
 	// ... dependencies
 
-	final CalcTableLandscapeDataReader reader = new CalcTableLandscapeStandardDataReader();
+	final CalcTableSheetLandscapeDataReader reader = new CalcTableSheetLandscapeStandardDataReader();
 
 	// ... business methods
 

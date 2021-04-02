@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.business.tools.calctable.dataprovider.common.error.CalcTableException;
 import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
 import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.util.CalcTableErrorHelper;
@@ -16,7 +17,7 @@ import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigat
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
 import org.business.tools.calctable.dataprovider.parser.common.AbstractCalcTableDataParser;
 
-public class CalcTablePortraitDataParser
+public class CalcTableSheetPortraitDataParser
 		extends
 		AbstractCalcTableDataParser
 {
@@ -27,7 +28,7 @@ public class CalcTablePortraitDataParser
 
 	// ... constructors
 
-	public CalcTablePortraitDataParser(
+	public CalcTableSheetPortraitDataParser(
 			final CalcTableDataParserConfig parserConfig
 	)
 	{
@@ -40,7 +41,7 @@ public class CalcTablePortraitDataParser
 
 	public <DATA_TYPE> List<DATA_TYPE> parseDataArea(
 			final Sheet sheet,
-			final Class<DATA_TYPE> dataItemType,
+			final Class<DATA_TYPE> dataRecordType,
 			final CalcTableCellsDimension dataAreaDimension,
 			final List<CalcTableStructureNode> structureDescription,
 			final List<RuntimeException> messageContainer
@@ -57,7 +58,7 @@ public class CalcTablePortraitDataParser
 			columnNum -> parseRootDataBean(
 				sheet,
 				structureDescription,
-				dataItemType,
+				dataRecordType,
 				columnNum,
 				messageContainer
 			)
@@ -198,19 +199,24 @@ public class CalcTablePortraitDataParser
 	)
 	{
 
-		final int rowNum = structureNode.getInnerDimension().getRow();
-		final Cell cell = CalcTablePoiNavigationUtils.getCell(
-			sheet,
-			rowNum,
-			columnNum
-		);
+		try {
 
-		final Optional<?> propertyValueOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
-			cell,
-			propertyType,
-			messageContainer
-		);
-		return propertyValueOptional;
+			final int rowNum = structureNode.getInnerDimension().getRow();
+			final Cell cell = CalcTablePoiNavigationUtils.getCell(
+				sheet,
+				rowNum,
+				columnNum
+			);
+
+			final Optional<?> propertyValueOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
+				cell,
+				propertyType,
+				messageContainer
+			);
+			return propertyValueOptional;
+		} catch (final CalcTableException ex) {
+			return Optional.empty();
+		}
 	}
 
 	private <DATA_TYPE> void parseDataBeanProperty(
@@ -222,7 +228,7 @@ public class CalcTablePortraitDataParser
 	)
 	{
 
-		if (isFictivStructureNode(structureNode)) {
+		if (isCommentNode(structureNode)) {
 			return; // skip structure node handling
 		}
 
@@ -335,26 +341,39 @@ public class CalcTablePortraitDataParser
 			throw CalcTableErrorHelper.handleFatalException("Collections of collections are not supported.");
 		} else {
 
-			final Optional<?> propertyDataBeanOptional = instantiateBean(
-				propertyItemType,
-				messageContainer
-			);
+			final CalcTableStructureNode firstChildStructureNode = structureNode.getChildStructureNodes().get(0);
+			final int firstChildRowNum = firstChildStructureNode.getInnerDimension().getRow();
 
-			propertyDataBeanOptional.ifPresent(propertyDataBean -> {
+			if (isCellEmpty(
+				sheet,
+				firstChildRowNum,
+				columnNum
+			))
+			{
+				propertyItemValueOptional = Optional.empty();
+			} else {
 
-				structureNode.getChildStructureNodes().forEach(
-					childStructureNode -> parseStructureNode(
-						sheet,
-						childStructureNode,
-						propertyDataBean,
-						columnNum,
-						messageContainer
-					)
+				final Optional<?> propertyDataBeanOptional = instantiateBean(
+					propertyItemType,
+					messageContainer
 				);
-			});
-			// TODO evtl. warning if no value
 
-			propertyItemValueOptional = propertyDataBeanOptional;
+				propertyDataBeanOptional.ifPresent(propertyDataBean -> {
+
+					structureNode.getChildStructureNodes().forEach(
+						childStructureNode -> parseStructureNode(
+							sheet,
+							childStructureNode,
+							propertyDataBean,
+							columnNum,
+							messageContainer
+						)
+					);
+				});
+				// TODO evtl. warning if no value
+
+				propertyItemValueOptional = propertyDataBeanOptional;
+			}
 		}
 
 		propertyItemValueOptional.ifPresent(propertyItemValue -> {

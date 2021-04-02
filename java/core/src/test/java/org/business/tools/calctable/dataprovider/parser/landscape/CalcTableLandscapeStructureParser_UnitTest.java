@@ -54,7 +54,7 @@ class CalcTableLandscapeStructureParser_UnitTest
 			);
 
 			final List<
-					CalcTableStructureNode> resultStructureNodes = new CalcTableLandscapeStructureParser().parseStructureArea(
+					CalcTableStructureNode> resultStructureNodes = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
 						sheet,
 						structureAreaDimension
 					);

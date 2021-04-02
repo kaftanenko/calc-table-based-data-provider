@@ -3,30 +3,28 @@ package org.business.tools.calctable.dataprovider.parser.landscape;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.business.tools.calctable.dataprovider.common.error.CalcTableException;
-import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
+import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.util.CalcTableErrorHelper;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
 import org.business.tools.calctable.dataprovider.parser.common.AbstractCalcTableDataParser;
 
-public class CalcTableLandscapeDataParser
+public class CalcTableSheetLandscapeDataParser
 		extends
 		AbstractCalcTableDataParser
 {
 
 	// ... constructors
 
-	public CalcTableLandscapeDataParser(
+	public CalcTableSheetLandscapeDataParser(
 			final CalcTableDataParserConfig parserConfig
 	)
 	{
@@ -38,7 +36,7 @@ public class CalcTableLandscapeDataParser
 
 	public <DATA_TYPE> List<DATA_TYPE> parseDataArea(
 			final Sheet sheet,
-			final Class<DATA_TYPE> dataItemType,
+			final Class<DATA_TYPE> dataRecordType,
 			final List<CalcTableStructureNode> structureDescription,
 			final List<RuntimeException> messageContainer
 	)
@@ -66,7 +64,7 @@ public class CalcTableLandscapeDataParser
 		return parseCollectionPropertyOfItemType(
 			sheet,
 			rootStructureDescription,
-			dataItemType,
+			dataRecordType,
 			startRowNum,
 			finishRowNum,
 			messageContainer
@@ -179,19 +177,24 @@ public class CalcTableLandscapeDataParser
 	)
 	{
 
-		final int columnNum = structureNode.getInnerDimension().getColumn();
-		final Cell cell = CalcTablePoiNavigationUtils.getCell(
-			sheet,
-			rowNum,
-			columnNum
-		);
+		try {
 
-		final Optional<?> propertyValueOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
-			cell,
-			propertyType,
-			messageContainer
-		);
-		return propertyValueOptional;
+			final int columnNum = structureNode.getInnerDimension().getColumn();
+			final Cell cell = CalcTablePoiNavigationUtils.getCell(
+				sheet,
+				rowNum,
+				columnNum
+			);
+
+			final Optional<?> propertyValueOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
+				cell,
+				propertyType,
+				messageContainer
+			);
+			return propertyValueOptional;
+		} catch (final CalcTableException ex) {
+			return Optional.empty();
+		}
 	}
 
 	private <DATA_TYPE> void parseDataBeanProperty(
@@ -204,7 +207,7 @@ public class CalcTableLandscapeDataParser
 	)
 	{
 
-		if (isFictivStructureNode(structureNode)) {
+		if (isCommentNode(structureNode)) {
 			return; // skip structure node handling
 		}
 
@@ -494,36 +497,13 @@ public class CalcTableLandscapeDataParser
 		return IntStream.rangeClosed(
 			startRowNum,
 			finishRowNum
-		).mapToObj(
-			rowNum ->
-			{
-				try {
-					final Cell cell = CalcTablePoiNavigationUtils.getCell(
-						sheet,
-						rowNum,
-						columnNum
-					);
-					final Optional<String> cellValueAsStringOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
-						cell,
-						String.class,
-						new ArrayList<>()
-					);
-					if (cellValueAsStringOptional.isPresent()) {
-
-						final String cellValueAsString = cellValueAsStringOptional.get();
-						if (StringUtils.isNoneBlank(cellValueAsString)) {
-							return Integer.valueOf(cell.getRowIndex());
-						} else {
-							return null;
-						}
-					} else {
-						return null;
-					}
-				} catch (final CalcTableException ex) {
-					return null;
-				}
-			}
-		).filter(Objects::nonNull).collect(Collectors.toList());
+		).filter(
+			rowNum -> isCellNoneEmpty(
+				sheet,
+				rowNum,
+				columnNum
+			)
+		).mapToObj(Integer::valueOf).collect(Collectors.toList());
 	}
 
 }

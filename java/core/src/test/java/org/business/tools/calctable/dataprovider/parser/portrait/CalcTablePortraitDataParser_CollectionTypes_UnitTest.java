@@ -35,7 +35,20 @@ class CalcTablePortraitDataParser_CollectionTypes_UnitTest
 											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
 										)
 									)
-								)
+								),
+								SupportingCollectionTypes.of(
+									null,
+									Arrays.asList(
+										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
+										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
+									),
+									new HashSet(
+										Arrays.asList(
+											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
+											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
+										)
+									)
+								),
 						}
 				},
 		};

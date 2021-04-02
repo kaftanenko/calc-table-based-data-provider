@@ -8,6 +8,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.IntStream;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.business.tools.calctable.dataprovider.common.error.CalcTableException;
 import org.business.tools.calctable.dataprovider.common.error.bean.CalcTableBeanInstantiationException;
 import org.business.tools.calctable.dataprovider.common.error.bean.CalcTableBeanPropertyMissingException;
 import org.business.tools.calctable.dataprovider.common.error.bean.CalcTableBeanPropertyUnsettableException;
@@ -15,6 +19,7 @@ import org.business.tools.calctable.dataprovider.common.error.bean.CalcTableColl
 import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.util.CalcTableBeanUtils;
 import org.business.tools.calctable.dataprovider.common.util.CalcTableErrorHelper;
+import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
 
 public abstract class AbstractCalcTableDataParser {
@@ -42,11 +47,11 @@ public abstract class AbstractCalcTableDataParser {
 	)
 	{
 
-		final String structureNodeText = structureNode.getText();
-
-		if (this.parserConfig.getStructureNamesResolver().isComment(structureNodeText)) {
+		if (isCommentNode(structureNode)) {
 			return Optional.empty();
 		}
+
+		final String structureNodeText = structureNode.getText();
 
 		final String propertyName = this.parserConfig.getStructureNamesResolver().resolvePropertyName(
 			structureNodeText
@@ -139,6 +144,45 @@ public abstract class AbstractCalcTableDataParser {
 		);
 	}
 
+	protected boolean isCellEmpty(
+			final Sheet sheet,
+			final int rowNum,
+			final int columnNum
+	)
+	{
+
+		try {
+			final Cell cell = CalcTablePoiNavigationUtils.getCell(
+				sheet,
+				rowNum,
+				columnNum
+			);
+			final Optional<String> cellValueAsStringOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
+				cell,
+				String.class,
+				new ArrayList<>()
+			);
+			return !cellValueAsStringOptional.isPresent()
+					|| StringUtils.isBlank(cellValueAsStringOptional.get());
+		} catch (final CalcTableException ex) {
+			return true;
+		}
+	}
+
+	protected boolean isCellNoneEmpty(
+			final Sheet sheet,
+			final int rowNum,
+			final int columnNum
+	)
+	{
+
+		return !isCellEmpty(
+			sheet,
+			rowNum,
+			columnNum
+		);
+	}
+
 	protected <DATA_TYPE> Optional<DATA_TYPE> instantiateBean(
 			final Class<DATA_TYPE> dataBeanType,
 			final List<RuntimeException> messageContainer
@@ -175,12 +219,12 @@ public abstract class AbstractCalcTableDataParser {
 		);
 	}
 
-	protected boolean isFictivStructureNode(
+	protected boolean isCommentNode(
 			final CalcTableStructureNode structureNode
 	)
 	{
 
-		return structureNode.getText().startsWith("#");
+		return parserConfig.getStructureNamesResolver().isComment(structureNode.getText());
 	}
 
 	protected boolean isPrimitiveType(

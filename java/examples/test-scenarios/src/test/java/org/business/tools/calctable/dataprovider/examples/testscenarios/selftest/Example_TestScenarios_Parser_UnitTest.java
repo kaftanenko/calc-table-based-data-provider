@@ -7,17 +7,13 @@ import static org.business.tools.calctable.dataprovider.examples.testscenarios.E
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 import org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Record;
-import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableDataReader;
-import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableLandscapeStandardDataReader;
-import org.business.tools.calctable.dataprovider.reader.portrait.CalcTablePortraitStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.CalcTableSheetDataReader;
+import org.business.tools.calctable.dataprovider.reader.CalcTableWorkbookDataReader;
+import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.portrait.CalcTableSheetPortraitStandardDataReader;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -27,7 +23,7 @@ public class Example_TestScenarios_Parser_UnitTest {
 
 	@Test(dataProvider = "dataProvider")
 	public void test(
-			final AbstractCalcTableDataReader reader,
+			final CalcTableSheetDataReader sheetDataReader,
 			final String workbookFilePath,
 			final String sheetName,
 			final List<Example_TestScenarios_SimpleCalculator_Record> expectedResult
@@ -35,32 +31,23 @@ public class Example_TestScenarios_Parser_UnitTest {
 			throws Exception
 	{
 
-		// ... prepare test data
-
-		try (final InputStream is = new FileInputStream(
+		try (final InputStream workbookInputStream = new FileInputStream(
 			workbookFilePath
-		);
-				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
+		))
 		{
-			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				sheetName
-			);
-
-			final List<RuntimeException> messageContainer = new ArrayList<>();
 
 			// ... call service under test
-			final List<Example_TestScenarios_SimpleCalculator_Record> result = reader.readData(
-				sheet,
+			final CalcTableWorkbookDataReader workbookDataReader = new CalcTableWorkbookDataReader();
+
+			final List<Example_TestScenarios_SimpleCalculator_Record> result = workbookDataReader.readData(
+				workbookInputStream,
+				sheetName,
 				Example_TestScenarios_SimpleCalculator_Record.class,
-				messageContainer
+				sheetDataReader
 			);
 
 			// ... verify post-conditions
 			assertThat(result).containsExactlyElementsOf(expectedResult);
-			assertThat(messageContainer).isEmpty();
 		}
 	}
 
@@ -71,13 +58,13 @@ public class Example_TestScenarios_Parser_UnitTest {
 
 		return new Object[][] {
 				{
-						new CalcTableLandscapeStandardDataReader(),
+						new CalcTableSheetLandscapeStandardDataReader(),
 						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_LANDSCAPE_FORMAT,
 						EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES,
 						_TestDataFactory.EXPECTED__EXAMPLE_TEST_SCENARIOS__DATA
 				},
 				{
-						new CalcTablePortraitStandardDataReader(),
+						new CalcTableSheetPortraitStandardDataReader(),
 						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT,
 						EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES,
 						_TestDataFactory.EXPECTED__EXAMPLE_TEST_SCENARIOS__DATA

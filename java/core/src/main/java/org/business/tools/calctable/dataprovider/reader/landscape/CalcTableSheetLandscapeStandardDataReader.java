@@ -5,14 +5,14 @@ import org.business.tools.calctable.dataprovider.parser.common.CalcTablePrimitiv
 import org.business.tools.calctable.dataprovider.parser.common.CalcTableStructureNamesStandardResolver;
 import org.business.tools.calctable.dataprovider.reader.CalcTableDataReaderConfig;
 
-public class CalcTableLandscapeStandardDataReader
+public class CalcTableSheetLandscapeStandardDataReader
 		extends
-		CalcTableLandscapeDataReader
+		CalcTableSheetLandscapeDataReader
 {
 
 	// ... constructors
 
-	public CalcTableLandscapeStandardDataReader() {
+	public CalcTableSheetLandscapeStandardDataReader() {
 
 		super(
 			new CalcTableDataReaderConfig(

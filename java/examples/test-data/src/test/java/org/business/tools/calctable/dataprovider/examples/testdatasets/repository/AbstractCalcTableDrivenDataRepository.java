@@ -1,18 +1,12 @@
 package org.business.tools.calctable.dataprovider.examples.testdatasets.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
-import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableLandscapeDataReader;
-import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableLandscapeStandardDataReader;
+import org.business.tools.calctable.dataprovider.reader.CalcTableWorkbookDataReader;
+import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeDataReader;
+import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeStandardDataReader;
 
 public abstract class AbstractCalcTableDrivenDataRepository<DATA_ITEM_TYPE> {
 
@@ -26,7 +20,7 @@ public abstract class AbstractCalcTableDrivenDataRepository<DATA_ITEM_TYPE> {
 
 	protected abstract String getDataSourceSheetName();
 
-	protected abstract Class<DATA_ITEM_TYPE> getDataItemType();
+	protected abstract Class<DATA_ITEM_TYPE> getDataRecordType();
 
 	// ... business methods
 
@@ -34,32 +28,25 @@ public abstract class AbstractCalcTableDrivenDataRepository<DATA_ITEM_TYPE> {
 
 		if (cachedDataItems == null) {
 
-			final List<RuntimeException> errorMessageContainer = new ArrayList<>();
-
-			try (final InputStream is = new FileInputStream(
+			try (final InputStream workbookInputStream = new FileInputStream(
 				getDataSourceFilePath()
-			);
-					final Workbook workbook = new XSSFWorkbook(
-						is
-					))
+			))
 			{
-				final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-					workbook,
-					getDataSourceSheetName()
-				);
+				final String sheetName = getDataSourceSheetName();
+				final Class<DATA_ITEM_TYPE> dataRecordType = getDataRecordType();
+				final CalcTableSheetLandscapeDataReader sheetDataReader = new CalcTableSheetLandscapeStandardDataReader();
 
-				final CalcTableLandscapeDataReader reader = new CalcTableLandscapeStandardDataReader();
+				final CalcTableWorkbookDataReader workbookReader = new CalcTableWorkbookDataReader();
 
-				cachedDataItems = reader.readData(
-					sheet,
-					getDataItemType(),
-					errorMessageContainer
+				cachedDataItems = workbookReader.readData(
+					workbookInputStream,
+					sheetName,
+					dataRecordType,
+					sheetDataReader
 				);
 			} catch (final Exception ex) {
 				throw new RuntimeException(ex);
 			}
-
-			assertThat(errorMessageContainer).isEmpty();
 		}
 
 		return cachedDataItems;

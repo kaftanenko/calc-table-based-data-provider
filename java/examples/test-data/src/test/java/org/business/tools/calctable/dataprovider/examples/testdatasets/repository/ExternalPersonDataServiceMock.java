@@ -47,7 +47,7 @@ public class ExternalPersonDataServiceMock
 	}
 
 	@Override
-	protected Class<Person> getDataItemType() {
+	protected Class<Person> getDataRecordType() {
 
 		return Person.class;
 	}

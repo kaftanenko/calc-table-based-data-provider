@@ -7,39 +7,39 @@ import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimen
 import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
-import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableLandscapeDataParser;
-import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableLandscapeStructureParser;
+import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableSheetLandscapeDataParser;
+import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableSheetLandscapeStructureParser;
 import org.business.tools.calctable.dataprovider.reader.CalcTableDataReaderConfig;
-import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableDataReader;
+import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableSheetDataReader;
 
-public class CalcTableLandscapeDataReader
+public class CalcTableSheetLandscapeDataReader
 		extends
-		AbstractCalcTableDataReader
+		AbstractCalcTableSheetDataReader
 {
 
 	// ... properties
 
-	private final CalcTableLandscapeStructureParser structureParser;
+	private final CalcTableSheetLandscapeStructureParser structureParser;
 
-	private final CalcTableLandscapeDataParser dataParser;
+	private final CalcTableSheetLandscapeDataParser dataParser;
 
 	// ... constructors
 
-	public CalcTableLandscapeDataReader(
+	public CalcTableSheetLandscapeDataReader(
 			final CalcTableDataReaderConfig config
 	)
 	{
 
 		super(config);
 
-		this.structureParser = new CalcTableLandscapeStructureParser();
+		this.structureParser = new CalcTableSheetLandscapeStructureParser();
 
 		final CalcTableDataParserConfig dataParserConfig = //
 				new CalcTableDataParserConfig(
 					config.getPrimitiveValueParser(),
 					config.getStructureNamesResolver()
 				);
-		this.dataParser = new CalcTableLandscapeDataParser(dataParserConfig);
+		this.dataParser = new CalcTableSheetLandscapeDataParser(dataParserConfig);
 	}
 
 	// ... business methods
@@ -47,7 +47,7 @@ public class CalcTableLandscapeDataReader
 	@Override
 	public <DATA_TYPE> List<DATA_TYPE> readData(
 			final Sheet sheet,
-			final Class<DATA_TYPE> dataItemType,
+			final Class<DATA_TYPE> dataRecordType,
 			final List<RuntimeException> messageContainer
 	)
 	{
@@ -56,7 +56,7 @@ public class CalcTableLandscapeDataReader
 
 		final List<DATA_TYPE> result = dataParser.parseDataArea(
 			sheet,
-			dataItemType,
+			dataRecordType,
 			structureDescription,
 			messageContainer
 		);
