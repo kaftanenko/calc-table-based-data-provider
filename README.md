@@ -1,4 +1,3 @@
-
 # Calc Table (based) Data Provider
 
 **Content**
@@ -6,8 +5,8 @@
 * [Introduction](#introduction)
 * [Examples](#examples)
     * [Sample Data](#sample-data)
-    * [Portrait format representation](#portrait-format-representation)
     * [Landscape format representation](#landscape-format-representation)
+    * [Portrait format representation](#portrait-format-representation)
 * [Application fields](#application-fields)
     * [Dictionaries](#dictionaries)
     * [Test data sets](#test-data-sets)
@@ -16,24 +15,22 @@
 
 ## Introduction
 
-The Calc Table (based) Data Provider is an open source framework for developing of parsers for reading complex data sets from calc table documents and provide it for further use within a concrete applications.
+The Calc Table (based) Data Provider is an open source framework for developing parsers which read complex data sets from Calc table documents and provide a native representation for further use within an application.
 
-Actually supported is the only Java language, but support for further languages is possible and can be implemented on demand. At least support for the Python language is in plan.
+Currently supported is only the Java language, though support for Python is planned. Support for further languages is possible and may be implemented on demand.
 
-One of the ground framework features is its high customization possibility. Such customization comprise actually:
-* integration of the target project specific:
+One feature of the ground framework is its high customisability. Possible customisations comprise:
+* integration of a target project's specific
     * value types
     * value notation formats (planned)
-* translation rules for attribute description titles into the target attribute names
-* customizable data areas mark rules, such as structure description and content area
+* translation rules from attribute description titles into target attribute names
+* customisable data area definition rules, such as structure description and content area
 
-... and so on.
+The framework supports two base data representation formats within the Calc tables:
+* [Landscape](#landscape-format-representation)
+* [Portrait](#portrait-format-representation)
 
-The Framework supports two base data representation formats within the calc tables: 
-* landscape
-* portrait
-
-The ground framework features can be best demonstrated based on the Examples sub-project.
+The ground framework's features can be best demonstrated based on the Examples sub-project.
 
 ## Examples
 
@@ -41,7 +38,7 @@ Note: here will be given only an overview of the Examples sub-project, for furth
 
 ### Sample Data
 
-Further examples demonstrate source calc table data represantation of personal data consisting of two data records and will be read through the framework as the following data sets (here representing in the JSON-Notation): 
+Further examples demonstrate source Calc table data representation of personal data consisting of two data records and will be read through the framework as the following data sets (here represented in the JSON-Notation):
 
 ```json
 [
@@ -160,93 +157,90 @@ Further examples demonstrate source calc table data represantation of personal d
 
 ### Landscape format representation
 
-The calc table leaf in the landscape format consist of the two following areas:
-* header area describing data sets structure
-* content area with data sets values
+The Calc table sheet in Landscape format consists of the two following areas:
+* header area describing data set structure
+* content area with data set values
 
-The header area mark sign is (in this case) its consistent not-transparent and none-white background:
+The header area is defined (in this case) through its consistent non-transparent and non-white background:
 
 ![Example: person data in landscape format](./doc/assets/images/example__person-data_in_landscape-format.png)
 
-The original Excel file could be found under: [java/examples/test-data/src/test/resources/test-data-sources/Example_TestDataSets_PersonData_in_LandscapeFormat.xlsx](./java/examples/test-data/src/test/resources/test-data-sources/)
+The original Excel file can be found under: [java/examples/test-data/src/test/resources/test-data-sources/Example_TestDataSets_PersonData_in_LandscapeFormat.xlsx](./java/examples/test-data/src/test/resources/test-data-sources/)
 
 ### Portrait format representation
 
-The calc table leaf in the portrait format consist of the three following areas:
-* header area with the free choosable cell textes
-* data set structure description area, bounded through the columns span of the first header cell
-* data content area bounded through the rest header cells (from the second upto the last one)
+The Calc table sheet in Portrait format consists of the three following areas:
+* header area with freely choosable description texts, delimiting the data columns below
+* data structure definition area, consisting of the columns spanned by the first header cell
+* data content area consisting of columns spanned by header cells after the first, each header cell delimiting a single data entry
 
-The header area mark sign is (in this case) also its consistent not-transparent and none-white background:
+The header area is defined (in this case) through its consistent non-transparent and non-white background as well:
 
 ![Example: person data in portrait format](./doc/assets/images/example__person-data_in_portrait-format.png)
 
-The original Excel file could be found under: [java/examples/test-data/src/test/resources/test-data-sources/Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./java/examples/test-data/src/test/resources/test-data-sources/)
+The original Excel file can be found under: [java/examples/test-data/src/test/resources/test-data-sources/Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./java/examples/test-data/src/test/resources/test-data-sources/)
 
-## Application fields
+## Fields of Application
 
-The calc tables are still a favorite tool for very many technicians just like for not so-technical stamped professionals. It is a very appropriate form for data representation of any kind. 
+The Calc table is still a favourite tool for many technicians and even more so for non-technical professionals. It is a very appropriate form for data representation of any kind and Calc-like programs provide many commonly used data aggregation facilities as built-in features.
 
-In many cases it could be very benefiting to enabling automatically consuming of the calc table data avoiding its manually translating into the other programmmatically processable forms, such as data base records, SQL scripts, source code and so on.
+In many cases it could be very beneficial to enable automatic processing of the Calc table data, avoiding its manual translation into another programmmatically processable form, such as database records, SQL scripts, source code, etc.
 
-The most benefits of such one approach are:
-* the responsibility for the data content specification and (!) realization shifts to the domain area professionals
-* error correction during the development time simplifies up to:
-    * domain specialist corrects specification documents
-    * developer generates corrected artefacts corresponding 1:1 to the domain specialist expectation
-* minimization of the error risk by translating of the data specification into its technical representation form
+The greatest benefits of such an approach are:
+* the responsibility for the data content specification and (!) realisation shifts to the domain area professionals
+* error correction during the development time is simplified to:
+    1. domain specialist corrects specification documents
+    2. developer generates corrected artefacts corresponding 1:1 to the domain specialist's expectation
+* elimination of error risk from manual translation of the data specification into its technical target representation
 
-Especially unbeatable is the approach regarding project consistency if the same information peaces from the specification documents results in many different artefacts.
+These benefits are even more pronounced where the same piece of information from specification documents is to result in multiple different artefacts.
 
 ### Dictionaries
 
-One of the application fields for the framework could be consuming of the in the calc table form defined dictionary data.
+One of the fields of application for the framework could be application of dictionary data defined in a Calc table.
 
-The read data could be further used for updating of the corresponding data bases either directly or for generating update-scripts for the later applying at deployment time.
+So-read data might then be further used for updating a corresponding data base either directly or by generating migration scripts for a later deployment.
 
-An representative application example can be found under [java/examples/dict](./java/examples/dict/).
+A representative application example can be found under [java/examples/dict](./java/examples/dict/).
 
-### Test data sets
+### Test Data Sets
 
-It is always benefitable to let the domain area specialist to specify synthetic test data stands with pre-defined domain area specific features and dependencies. Such data sets could be applied either by manual or automated tests.
+It is always beneficial to let the domain expert specify synthetic test data sets with pre-defined domain specific features and dependencies. Such data sets could be applied through either manual or automated tests.
 
-The framework allows the domain area specialists to specify the test data using comfortably one of theirs favorite tool and allows the developers othersides to integrate the test data 1:1 into the further test routines, for example:
+The framework allows domain experts to specify the test data comfortably using a familiar tool and allows developers to integrate the test data 1:1 into further test routines, for example:
 * to mock some componenents
 * to import the data into the test data base
-* to reset the system under test in one of a pre-defined states
+* to reset the system under test to one of several pre-defined states
 
-The most benefit of such one approach insists in the repeatably applicability of the test data sets within the development process and in existens of stable consistent test data description documents that can be additively improved and adjust on the further project changes.
+The greatest benefit of such an approach lies in the repeatable application of test data sets within the development process and in existence of stable, consistent test data description documents that can be additively improved and adjusted upon further changes to project requirements.
 
-An representative application example can be found under [java/examples/test-data](./java/examples/test-data/).
+A representative application example can be found under [java/examples/test-data](./java/examples/test-data/).
 
-### Test case scenarios
+### Test Case Scenarios
 
-The next level of improvent relatively to the test data sets could be description of complete test use cases within the calc tables consisting of the following three data peaces:
+The next level of improvement over test data sets could be description of complete test use cases within the Calc tables consisting of the following three data pieces:
 * initial data stand and/or (service under test) input parameters
 * expected result data stand and/or output parameters
 * expected error and/or warning messages
 
-It is thinkable to design project specific test case description documents and using them within the automated tests.
+It is conceivable to design project specific test case description documents and use them within the automated tests.
 
-An representative application example can be found under [java/examples/test-scenarios](./java/examples/test-scenarios/).
+A representative application example can be found under [java/examples/test-scenarios](./java/examples/test-scenarios/).
 
-# Vision and conclusion
+# Vision and Conclusion
 
-The next planned development steps embrace:
+The next planned development steps will focus on:
+* introduction of object references within the Calc tables
+* improvement of customisation features, such as:
+    * customisation of the notation form for collection typed nodes
+    * configuration files for non-programmatical customisation of some basic features
+    * customisation of project-wide consistent regional parameters (date/number formats etc.)
+* support for Dict-/Map-like data types
+* port to other programming languages, Python at least
 
-* introduction of object references within the calc tables
-* improvement of customization features, such as:
-    * customization of the notation form for collection typed nodes
-    * configuration files for non-programmatical customization of some basic features
-    * customization of the project-wide consistent regional parameters (date/
-    number formats etc.)
-* support for the Map data types
-* port to other programming languages, at least for the Python
+It's also conceivable to develop specialized Calc table based data providers for:
+* use in Gherkin-notation based frameworks ([Cucumber](https://cucumber.io), [Robot](https://robotframework.org/), etc.)
 
-It's also thinkable to develop specialized calc table based data providers for:
-
-- use in Gherkin-notation based frameworks ([Cucumber](https://cucumber.io), [Robot](https://robotframework.org/) etc.)
-
-That's all folks. I would very appriciated for the further ideas about possible framework improvements and its new application fields.
+That's all folks. I would much appreciate to read about further ideas concerning possible framework improvements and new fields of application.
 
 Thanks a lot in advance!
