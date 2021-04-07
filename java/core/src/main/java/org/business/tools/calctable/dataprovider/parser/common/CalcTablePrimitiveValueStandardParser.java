@@ -26,6 +26,25 @@ import org.business.tools.calctable.dataprovider.common.util.CalcTableErrorHelpe
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.business.tools.calctable.dataprovider.parser.CalcTablePrimitiveValueParser;
 
+/**
+ * The standard implementation of the {@link CalcTablePrimitiveValueParser}.
+ * <p>
+ * Supports the following data types:
+ * <ul>
+ * <li>Java primitive types and their Wrapper equivalents
+ * <li>Enum's
+ * <li>BigDecimal
+ * <li>BigInteger
+ * <li>Date
+ * <li>LocalDate
+ * <li>LocalDateTime
+ * </ul>
+ * Very important at this point is also a description of the supported text
+ * representations of this data types within the Calt table cells, but it will
+ * stay a TODO I owe you next time. Up to this point look please in the source
+ * code to explore possible error sources and to find out the correct
+ * representation.
+ */
 public class CalcTablePrimitiveValueStandardParser
 		implements
 		CalcTablePrimitiveValueParser
@@ -106,21 +125,21 @@ public class CalcTablePrimitiveValueStandardParser
 
 	@Override
 	public boolean isApplicableTo(
-			final Class<?> propertyType
+			final Class<?> targetDataType
 	)
 	{
 
-		return propertyType.isEnum()
-				|| propertyType.isPrimitive()
+		return targetDataType.isEnum()
+				|| targetDataType.isPrimitive()
 				|| SUPPORTED_DATA_TYPES.contains(
-					propertyType
+					targetDataType
 				);
 	}
 
 	@Override
 	public <DATA_TYPE> Optional<DATA_TYPE> parseValue(
 			final Cell cell,
-			final Class<DATA_TYPE> propertyType,
+			final Class<DATA_TYPE> targetDataType,
 			final List<RuntimeException> messageContainer
 	)
 	{
@@ -137,22 +156,22 @@ public class CalcTablePrimitiveValueStandardParser
 
 			Object result;
 
-			if (propertyType.isEnum()) {
+			if (targetDataType.isEnum()) {
 
-				final Class targetDataAsEnumType = propertyType;
+				final Class targetDataAsEnumType = targetDataType;
 				result = Enum.valueOf(
 					targetDataAsEnumType,
 					cellValueAsString.toUpperCase()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				String.class
 			))
 			{
 
 				result = cellValueAsString;
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				boolean.class,
 				Boolean.class
 			))
@@ -160,7 +179,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseBooleanValue(cellValueAsString);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				char.class,
 				Character.class
 			))
@@ -172,7 +191,7 @@ public class CalcTablePrimitiveValueStandardParser
 					)
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				byte.class,
 				Byte.class
 			))
@@ -180,7 +199,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseNumberValue(cellValueAsString).byteValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				short.class,
 				Short.class
 			))
@@ -188,7 +207,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseNumberValue(cellValueAsString).shortValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				int.class,
 				Integer.class
 			))
@@ -196,7 +215,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseNumberValue(cellValueAsString).intValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				long.class,
 				Long.class
 			))
@@ -204,7 +223,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseNumberValue(cellValueAsString).longValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				float.class,
 				Float.class
 			))
@@ -212,7 +231,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseNumberValue(cellValueAsString).floatValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				double.class,
 				Double.class
 			))
@@ -220,7 +239,7 @@ public class CalcTablePrimitiveValueStandardParser
 
 				result = parseNumberValue(cellValueAsString).doubleValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				BigDecimal.class
 			))
 			{
@@ -229,7 +248,7 @@ public class CalcTablePrimitiveValueStandardParser
 					parseNumberValue(cellValueAsString).doubleValue()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				BigInteger.class
 			))
 			{
@@ -240,7 +259,7 @@ public class CalcTablePrimitiveValueStandardParser
 					).longValue()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				Date.class
 			))
 			{
@@ -255,7 +274,7 @@ public class CalcTablePrimitiveValueStandardParser
 					).toInstant()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				LocalDate.class
 			))
 			{
@@ -265,7 +284,7 @@ public class CalcTablePrimitiveValueStandardParser
 					false
 				).toLocalDate();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				propertyType,
+				targetDataType,
 				LocalDateTime.class
 			))
 			{
@@ -276,7 +295,7 @@ public class CalcTablePrimitiveValueStandardParser
 				);
 			} else {
 				throw CalcTableErrorHelper.handleUnsupportedValueType(
-					propertyType
+					targetDataType
 				);
 			}
 
@@ -291,7 +310,7 @@ public class CalcTablePrimitiveValueStandardParser
 					cell.getSheet().getSheetName(),
 					cell.getRowIndex(),
 					cell.getColumnIndex(),
-					propertyType,
+					targetDataType,
 					cellValueAsString
 				)
 			);
@@ -404,4 +423,5 @@ public class CalcTablePrimitiveValueStandardParser
 		final NumberFormat nf = NumberFormat.getInstance(locale);
 		return nf.parse(numberValueAsString);
 	}
+
 }

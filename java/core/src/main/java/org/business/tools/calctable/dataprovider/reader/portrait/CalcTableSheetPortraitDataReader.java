@@ -7,13 +7,16 @@ import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimen
 import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
-import org.business.tools.calctable.dataprovider.parser.common.CalcTableHeaderCellStandardPredicate;
+import org.business.tools.calctable.dataprovider.parser.common.CalcTableHeaderCellStandardSampler;
 import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableSheetLandscapeStructureParser;
 import org.business.tools.calctable.dataprovider.parser.portrait.CalcTableSheetPortraitDataParser;
 import org.business.tools.calctable.dataprovider.parser.portrait.CalcTableSheetPortraitStructureParser;
 import org.business.tools.calctable.dataprovider.reader.CalcTableDataReaderConfig;
 import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableSheetDataReader;
 
+/**
+ * Sheet Data Reader for Calc table documents in portrait format.
+ */
 public class CalcTableSheetPortraitDataReader
 		extends
 		AbstractCalcTableSheetDataReader
@@ -56,12 +59,13 @@ public class CalcTableSheetPortraitDataReader
 
 		final CalcTableCellsDimension headerDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
 			sheet,
-			CalcTableHeaderCellStandardPredicate.INSTANCE__NON_TRANSPARENT_BACKGROUND
+			CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
 		);
-		final List<CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
-			sheet,
-			headerDimension
-		);
+		final List<
+				CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
+					sheet,
+					headerDimension
+				);
 		final CalcTableCellsDimension headerFirstCellDimension = headerDescription.get(0).getInnerDimension();
 
 		final int firstRowNum = headerDimension.getRow() + headerDimension.getRowSpan();
@@ -95,12 +99,13 @@ public class CalcTableSheetPortraitDataReader
 
 		final CalcTableCellsDimension headerDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
 			sheet,
-			config.getHeaderCellPredicate()
+			config.getHeaderCellSampler()
 		);
-		final List<CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
-			sheet,
-			headerDimension
-		);
+		final List<
+				CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
+					sheet,
+					headerDimension
+				);
 		final CalcTableCellsDimension headerFirstCellDimension = headerDescription.get(0).getInnerDimension();
 
 		final int firstRowNum = headerDimension.getRow() + headerDimension.getRowSpan();

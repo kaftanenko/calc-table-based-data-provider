@@ -12,6 +12,9 @@ import org.business.tools.calctable.dataprovider.parser.landscape.CalcTableSheet
 import org.business.tools.calctable.dataprovider.reader.CalcTableDataReaderConfig;
 import org.business.tools.calctable.dataprovider.reader.common.AbstractCalcTableSheetDataReader;
 
+/**
+ * Sheet Data Reader for Calc table documents in landscape format.
+ */
 public class CalcTableSheetLandscapeDataReader
 		extends
 		AbstractCalcTableSheetDataReader
@@ -71,7 +74,7 @@ public class CalcTableSheetLandscapeDataReader
 
 		final CalcTableCellsDimension structureAreaDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
 			sheet,
-			this.config.getHeaderCellPredicate()
+			this.config.getHeaderCellSampler()
 		);
 
 		final List<CalcTableStructureNode> firstLevelStructureNodes = structureParser.parseStructureArea(

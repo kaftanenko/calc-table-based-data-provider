@@ -17,14 +17,14 @@ import org.business.tools.calctable.dataprovider.common.util.ResourceUtils;
 import org.business.tools.calctable.dataprovider.examples.dictionaries.generator.Example_Dictionaries_QuellCode_Enums_Generator;
 import org.business.tools.calctable.dataprovider.examples.dictionaries.generator.util.FreemarkerTemplateMethodToEnumClassName;
 import org.business.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;
-import org.business.tools.calctable.dataprovider.examples.dictionaries.parser.Example_Dictionaries_Parser;
+import org.business.tools.calctable.dataprovider.examples.dictionaries.parser.Example_Dictionaries_CalcTable_Parser;
 
 public class Example_Dictionaries_PersonData_Enums_Generator_Launcher {
 
 	// ... dependencies
 
-	private static final Example_Dictionaries_Parser dictionariesParser = //
-			new Example_Dictionaries_Parser();
+	private static final Example_Dictionaries_CalcTable_Parser dictionariesParser = //
+			new Example_Dictionaries_CalcTable_Parser();
 
 	private static final Example_Dictionaries_QuellCode_Enums_Generator dictionariesEnumsGenerator = //
 			new Example_Dictionaries_QuellCode_Enums_Generator();
