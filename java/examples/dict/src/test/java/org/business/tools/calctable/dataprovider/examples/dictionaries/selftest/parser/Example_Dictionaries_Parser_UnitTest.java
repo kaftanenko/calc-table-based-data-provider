@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.business.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;
-import org.business.tools.calctable.dataprovider.examples.dictionaries.parser.Example_Dictionaries_Parser;
+import org.business.tools.calctable.dataprovider.examples.dictionaries.parser.Example_Dictionaries_CalcTable_Parser;
 import org.business.tools.calctable.dataprovider.examples.dictionaries.selftest.Example_Dictionaries_TestDataFactory;
 import org.testng.annotations.Test;
 
@@ -13,7 +13,7 @@ class Example_Dictionaries_Parser_UnitTest {
 
 	// ... dependencies
 
-	private final Example_Dictionaries_Parser serviceUnderTest = new Example_Dictionaries_Parser();
+	private final Example_Dictionaries_CalcTable_Parser serviceUnderTest = new Example_Dictionaries_CalcTable_Parser();
 
 	// ... test methods
 

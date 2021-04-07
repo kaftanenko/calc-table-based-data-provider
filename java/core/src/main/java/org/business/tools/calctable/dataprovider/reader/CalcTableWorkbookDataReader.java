@@ -11,10 +11,31 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 
+/**
+ * Reader for a single workbook's sheet from a Calc table workbook document.
+ */
 public class CalcTableWorkbookDataReader {
 
 	// ... business methods
 
+	/**
+	 * Reads data record sets of the given type from the given sheet within the
+	 * given Calc table workbook document with the given Sheet Data Reader.
+	 *
+	 * @param <DATA_RECORD_TYPE>
+	 *          the type of expected data records
+	 * @param workbookInputStream
+	 *          the workbook input stream to read from
+	 * @param sheetName
+	 *          the sheet name to read from
+	 * @param dataRecordType
+	 *          the type of expected data records
+	 * @param sheetDataReader
+	 *          the Sheet Data Reader to read with
+	 * @return resulting data record sets
+	 * @throws Exception
+	 *           it is sad, must be actually never happen.
+	 */
 	public <DATA_RECORD_TYPE> List<DATA_RECORD_TYPE> readData(
 			final InputStream workbookInputStream,
 			final String sheetName,

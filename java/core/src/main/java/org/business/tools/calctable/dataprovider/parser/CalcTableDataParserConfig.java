@@ -31,5 +31,4 @@ public class CalcTableDataParserConfig {
 
 		return structureNamesResolver;
 	}
-
 }

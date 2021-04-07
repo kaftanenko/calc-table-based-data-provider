@@ -16,7 +16,7 @@ import org.business.tools.calctable.dataprovider.examples.dictionaries.model.Dic
 import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeDataReader;
 import org.business.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeStandardDataReader;
 
-public class Example_Dictionaries_Parser {
+public class Example_Dictionaries_CalcTable_Parser {
 
 	// ... constants
 

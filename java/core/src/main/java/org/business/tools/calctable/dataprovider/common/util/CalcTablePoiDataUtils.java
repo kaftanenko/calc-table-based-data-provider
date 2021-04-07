@@ -2,7 +2,6 @@ package org.business.tools.calctable.dataprovider.common.util;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.function.Predicate;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -11,6 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.business.tools.calctable.dataprovider.common.error.CalcTableException;
 import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
+import org.business.tools.calctable.dataprovider.parser.CalcTableHeaderCellSampler;
 
 public class CalcTablePoiDataUtils {
 
@@ -18,7 +18,7 @@ public class CalcTablePoiDataUtils {
 
 	public static CalcTableCellsDimension determineCellsAreaDimension(
 			final Sheet sheet,
-			final Predicate<Cell> cellsAreaPredicate
+			final CalcTableHeaderCellSampler cellsAreaSampler
 	)
 	{
 
@@ -31,7 +31,7 @@ public class CalcTablePoiDataUtils {
 			final Iterator<Cell> cit = row.cellIterator();
 			while (cit.hasNext()) {
 				final Cell cell = cit.next();
-				if (cellsAreaPredicate.test(cell)) {
+				if (cellsAreaSampler.test(cell)) {
 					startStructureCellRowNum = cell.getRowIndex();
 					startStructureCellColumnNum = cell.getColumnIndex();
 					break;
@@ -50,7 +50,7 @@ public class CalcTablePoiDataUtils {
 
 		int lastStructureCellRowNum = startStructureCellRowNum;
 		try {
-			while (cellsAreaPredicate.test(
+			while (cellsAreaSampler.test(
 				CalcTablePoiNavigationUtils.getCell(
 					sheet,
 					lastStructureCellRowNum + 1,
@@ -66,7 +66,7 @@ public class CalcTablePoiDataUtils {
 
 		int lastStructureCellColumnNum = startStructureCellColumnNum;
 		try {
-			while (cellsAreaPredicate.test(
+			while (cellsAreaSampler.test(
 				CalcTablePoiNavigationUtils.getCell(
 					sheet,
 					startStructureCellRowNum,

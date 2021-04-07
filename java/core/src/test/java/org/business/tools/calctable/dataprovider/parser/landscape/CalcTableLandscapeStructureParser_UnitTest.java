@@ -13,7 +13,7 @@ import org.business.tools.calctable.dataprovider.common.type.CalcTableCellsDimen
 import org.business.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.business.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
-import org.business.tools.calctable.dataprovider.parser.common.CalcTableHeaderCellStandardPredicate;
+import org.business.tools.calctable.dataprovider.parser.common.CalcTableHeaderCellStandardSampler;
 import org.business.tools.calctable.dataprovider.parser.landscape.testdata.CalcTableLandscapeStructureParser_TestDataFactory_MergedFormat;
 import org.business.tools.calctable.dataprovider.parser.landscape.testdata.CalcTableLandscapeStructureParser_TestDataFactory_NaturalFormat;
 import org.testng.annotations.DataProvider;
@@ -50,7 +50,7 @@ class CalcTableLandscapeStructureParser_UnitTest
 			// ... call service under test
 			final CalcTableCellsDimension structureAreaDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
 				sheet,
-				CalcTableHeaderCellStandardPredicate.INSTANCE__NON_TRANSPARENT_BACKGROUND
+				CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
 			);
 
 			final List<
