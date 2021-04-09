@@ -1,17 +1,17 @@
 # Calc Table (based) Data Provider
 
-**Content**
+**Contents**
 
 * [Introduction](#introduction)
 * [Examples](#examples)
     * [Sample Data](#sample-data)
-    * [Landscape format representation](#landscape-format-representation)
-    * [Portrait format representation](#portrait-format-representation)
-* [Application fields](#application-fields)
+    * [Landscape Format Representation](#landscape-format-representation)
+    * [Portrait Format Representation](#portrait-format-representation)
+* [Fields of Application](#fields-of-application)
     * [Dictionaries](#dictionaries)
-    * [Test data sets](#test-data-sets)
-    * [Test case scenarios](#test-case-scenarios)
-* [Vision and conclusion](#vision-and-conclusion)
+    * [Test Data Sets](#test-data-sets)
+    * [Test Case Scenarios](#test-case-scenarios)
+* [Vision and Conclusion](#vision-and-conclusion)
 
 ## Introduction
 
@@ -19,14 +19,16 @@ The Calc Table (based) Data Provider is an open source framework for developing 
 
 Currently supported is only the Java language, though support for Python is planned. Support for further languages is possible and may be implemented on demand.
 
-One feature of the ground framework is its high customisability. Possible customisations comprise:
-* integration of a target project's specific
+One of basic features of the framework is its high customisability. Possible customisations comprise:
+
+* integration of the target project's specific
     * value types
     * value notation formats (planned)
 * translation rules from attribute description titles into target attribute names
 * customisable data area definition rules, such as structure description and content area
 
 The framework supports two base data representation formats within the Calc tables:
+
 * [Landscape](#landscape-format-representation)
 * [Portrait](#portrait-format-representation)
 
@@ -155,7 +157,7 @@ Further examples demonstrate source Calc table data representation of personal d
 ]
 ```
 
-### Landscape format representation
+### Landscape Format Representation
 
 The Calc table sheet in Landscape format consists of the two following areas:
 * header area describing data set structure
@@ -163,11 +165,11 @@ The Calc table sheet in Landscape format consists of the two following areas:
 
 The header area is defined (in this case) through its consistent non-transparent and non-white background:
 
-![Example: person data in landscape format](./doc/assets/images/example__person-data_in_landscape-format.png)
+![Example: Person Data in Landscape Format](./doc/assets/images/example__person-data_in_landscape-format.png)
 
 The original Excel file can be found under: [java/examples/test-data/src/test/resources/test-data-sources/Example_TestDataSets_PersonData_in_LandscapeFormat.xlsx](./java/examples/test-data/src/test/resources/test-data-sources/)
 
-### Portrait format representation
+### Portrait Format Representation
 
 The Calc table sheet in Portrait format consists of the three following areas:
 * header area with freely choosable description texts, delimiting the data columns below
@@ -176,24 +178,24 @@ The Calc table sheet in Portrait format consists of the three following areas:
 
 The header area is defined (in this case) through its consistent non-transparent and non-white background as well:
 
-![Example: person data in portrait format](./doc/assets/images/example__person-data_in_portrait-format.png)
+![Example: Person Data in Portrait Format](./doc/assets/images/example__person-data_in_portrait-format.png)
 
 The original Excel file can be found under: [java/examples/test-data/src/test/resources/test-data-sources/Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./java/examples/test-data/src/test/resources/test-data-sources/)
 
 ## Fields of Application
 
-The Calc table is still a favourite tool for many technicians and even more so for non-technical professionals. It is a very appropriate form for data representation of any kind and Calc-like programs provide many commonly used data aggregation facilities as built-in features.
+The Calc table is still a favorite tool for many technicians and even more so for non-technical professionals. It is a very appropriate form for data representation of any kind and Calc-like programs provide many commonly used data aggregation facilities as built-in features.
 
-In many cases it could be very beneficial to enable automatic processing of the Calc table data, avoiding its manual translation into another programmmatically processable form, such as database records, SQL scripts, source code, etc.
+In many cases it could be very beneficial to enable automatic processing of the Calc table data, avoiding its manual translation into another programmatically processable form, such as database records, SQL scripts, source code, etc.
 
 The greatest benefits of such an approach are:
-* the responsibility for the data content specification and (!) realisation shifts to the domain area professionals
+* the responsibility for the data content specification and (!) realization shifts to the domain area professionals
 * error correction during the development time is simplified to:
     1. domain specialist corrects specification documents
-    2. developer generates corrected artefacts corresponding 1:1 to the domain specialist's expectation
+    2. developer generates corrected artifacts corresponding 1:1 to the domain specialist's expectation
 * elimination of error risk from manual translation of the data specification into its technical target representation
 
-These benefits are even more pronounced where the same piece of information from specification documents is to result in multiple different artefacts.
+These benefits are even more pronounced where the same piece of information from specification documents is to result in multiple different artifacts.
 
 ### Dictionaries
 
@@ -205,12 +207,12 @@ A representative application example can be found under [java/examples/dict](./j
 
 ### Test Data Sets
 
-It is always beneficial to let the domain expert specify synthetic test data sets with pre-defined domain specific features and dependencies. Such data sets could be applied through either manual or automated tests.
+It is always beneficial to let the domain expert specify synthetic test data sets with predefined domain specific features and dependencies. Such data sets could be applied through either manual or automated tests.
 
 The framework allows domain experts to specify the test data comfortably using a familiar tool and allows developers to integrate the test data 1:1 into further test routines, for example:
-* to mock some componenents
+* to mock some components
 * to import the data into the test data base
-* to reset the system under test to one of several pre-defined states
+* to reset the system under test to one of several predefined states
 
 The greatest benefit of such an approach lies in the repeatable application of test data sets within the development process and in existence of stable, consistent test data description documents that can be additively improved and adjusted upon further changes to project requirements.
 
@@ -233,7 +235,7 @@ The next planned development steps will focus on:
 * introduction of object references within the Calc tables
 * improvement of customisation features, such as:
     * customisation of the notation form for collection typed nodes
-    * configuration files for non-programmatical customisation of some basic features
+    * configuration files for non-programmatic customisation of some basic features
     * customisation of project-wide consistent regional parameters (date/number formats etc.)
 * support for Dict-/Map-like data types
 * port to other programming languages, Python at least
@@ -241,6 +243,9 @@ The next planned development steps will focus on:
 It's also conceivable to develop specialized Calc table based data providers for:
 * use in Gherkin-notation based frameworks ([Cucumber](https://cucumber.io), [Robot](https://robotframework.org/), etc.)
 
-That's all folks. I would much appreciate to read about further ideas concerning possible framework improvements and new fields of application.
+That's all folks. I would much appreciate to read about further ideas concerning possible framework improvements and new fields of application. You are always welcome by the [Discussions](https://github.com/kaftanenko/calc-table-based-data-provider/discussions) or [Issues](https://github.com/kaftanenko/calc-table-based-data-provider/issues). I will try my best to react so timely I can.
 
-Thanks a lot in advance!
+Thanks a lot in advance for taking a part on the project improvement!
+
+---
+[ [To Top](#calc-table-based-data-provider) ]
