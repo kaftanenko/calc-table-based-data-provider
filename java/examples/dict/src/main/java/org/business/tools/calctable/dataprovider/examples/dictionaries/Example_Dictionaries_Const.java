@@ -1,6 +1,7 @@
 package org.business.tools.calctable.dataprovider.examples.dictionaries;
 
 import java.nio.file.Path;
+import java.util.Locale;
 
 import org.business.tools.calctable.dataprovider.common.util.ResourceUtils;
 
@@ -12,6 +13,10 @@ public interface Example_Dictionaries_Const {
 			ResourceUtils.getAbsoluteResourcePath(
 				"data-sources/Example_Dictionaries_PersonData_in_LandscapeFormat.xlsx"
 			);
+
+	Locale EXAMPLE_DICTIONARIES__SHEET_DATA_READER__PARAMETER__LOCALE__US = Locale.US;
+
+	// ...
 
 	Path ROOT_MODULE_PATH = ResourceUtils.getAbsoluteResourcePath("../../../..");
 

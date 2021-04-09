@@ -1,5 +1,7 @@
 package org.business.tools.calctable.dataprovider.examples.testdatasets;
 
+import java.util.Locale;
+
 public interface Example_TestDataSets_Const {
 
 	// ... constants
@@ -13,5 +15,7 @@ public interface Example_TestDataSets_Const {
 	).getFile();
 
 	String EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA = "Person Data";
+
+	Locale EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US = Locale.US;
 
 }

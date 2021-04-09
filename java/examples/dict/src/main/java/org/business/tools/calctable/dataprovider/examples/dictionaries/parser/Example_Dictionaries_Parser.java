@@ -1,5 +1,7 @@
 package org.business.tools.calctable.dataprovider.examples.dictionaries.parser;
 
+import static org.business.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.EXAMPLE_DICTIONARIES__SHEET_DATA_READER__PARAMETER__LOCALE__US;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -24,7 +26,9 @@ public class Example_Dictionaries_Parser {
 
 	// ... dependencies
 
-	final CalcTableSheetLandscapeDataReader reader = new CalcTableSheetLandscapeStandardDataReader();
+	final CalcTableSheetLandscapeDataReader reader = new CalcTableSheetLandscapeStandardDataReader(
+		EXAMPLE_DICTIONARIES__SHEET_DATA_READER__PARAMETER__LOCALE__US
+	);
 
 	// ... business methods
 

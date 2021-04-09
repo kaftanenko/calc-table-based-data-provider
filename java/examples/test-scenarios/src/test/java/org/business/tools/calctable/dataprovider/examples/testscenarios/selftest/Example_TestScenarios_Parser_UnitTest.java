@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_LANDSCAPE_FORMAT;
 import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT;
 import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
+import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -58,13 +59,17 @@ public class Example_TestScenarios_Parser_UnitTest {
 
 		return new Object[][] {
 				{
-						new CalcTableSheetLandscapeStandardDataReader(),
+						new CalcTableSheetLandscapeStandardDataReader(
+							EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+						),
 						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_LANDSCAPE_FORMAT,
 						EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES,
 						_TestDataFactory.EXPECTED__EXAMPLE_TEST_SCENARIOS__DATA
 				},
 				{
-						new CalcTableSheetPortraitStandardDataReader(),
+						new CalcTableSheetPortraitStandardDataReader(
+							EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+						),
 						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT,
 						EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES,
 						_TestDataFactory.EXPECTED__EXAMPLE_TEST_SCENARIOS__DATA

@@ -1,6 +1,7 @@
 package org.business.tools.calctable.dataprovider.examples.testscenarios;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US;
 import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT;
 import static org.business.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
 
@@ -65,7 +66,9 @@ public class Example_TestScenarios_SimpleCalculator_UnitTest {
 
 			final String sheetName = EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
 			final Class<?> dataRecordType = Example_TestScenarios_SimpleCalculator_Record.class;
-			final CalcTableSheetDataReader sheetDataReader = new CalcTableSheetPortraitStandardDataReader();
+			final CalcTableSheetDataReader sheetDataReader = new CalcTableSheetPortraitStandardDataReader(
+				EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+			);
 
 			return workbookReader.readData(
 				workbookInputStream,

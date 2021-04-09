@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.business.tools.calctable.dataprovider.examples.testdatasets.Example_TestDataSets_Const.EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_LANDSCAPE_FORMAT;
 import static org.business.tools.calctable.dataprovider.examples.testdatasets.Example_TestDataSets_Const.EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_PORTRAIT_FORMAT;
 import static org.business.tools.calctable.dataprovider.examples.testdatasets.Example_TestDataSets_Const.EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA;
+import static org.business.tools.calctable.dataprovider.examples.testdatasets.Example_TestDataSets_Const.EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US;
 import static org.business.tools.calctable.dataprovider.examples.testdatasets.selftest._TestDataFactory.EXPECTED__TEST_DATA_SETS__PERSON_DATA;
 
 import java.io.FileInputStream;
@@ -81,13 +82,17 @@ public class Example_TestDataSets_UnitTest {
 		return new Object[][] {
 
 				{
-						new CalcTableSheetLandscapeStandardDataReader(),
+						new CalcTableSheetLandscapeStandardDataReader(
+							EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+						),
 						EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_LANDSCAPE_FORMAT,
 						EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA,
 						EXPECTED__TEST_DATA_SETS__PERSON_DATA
 				},
 				{
-						new CalcTableSheetPortraitStandardDataReader(),
+						new CalcTableSheetPortraitStandardDataReader(
+							EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+						),
 						EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_PORTRAIT_FORMAT,
 						EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA,
 						EXPECTED__TEST_DATA_SETS__PERSON_DATA

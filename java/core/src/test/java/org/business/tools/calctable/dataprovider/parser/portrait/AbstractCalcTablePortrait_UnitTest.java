@@ -3,6 +3,7 @@ package org.business.tools.calctable.dataprovider.parser.portrait;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.business.tools.calctable.dataprovider.parser.CalcTableDataParserConfig;
 import org.business.tools.calctable.dataprovider.parser.common.CalcTablePrimitiveValueStandardParser;
@@ -20,6 +21,8 @@ abstract class AbstractCalcTablePortrait_UnitTest {
 		"/UnitTest_CalcTable_Portrait_StructureParser.xlsx"
 	).getFile();
 
+	protected final Locale UNIT_TEST__PARSER_PARAMETER__LOCALE__US = Locale.US;
+
 	// ... constants: test data
 
 	final int FIRST_ROW_NUM = 2;
@@ -32,7 +35,7 @@ abstract class AbstractCalcTablePortrait_UnitTest {
 
 	protected final CalcTableDataParserConfig DATA_PARSER_STANDARD_CONFIG = //
 			new CalcTableDataParserConfig(
-				CalcTablePrimitiveValueStandardParser.INSTANCE,
+				new CalcTablePrimitiveValueStandardParser(UNIT_TEST__PARSER_PARAMETER__LOCALE__US),
 				CalcTableStructureNamesStandardResolver.INSTANCE__TO_CAMEL_CASE__IGNORING_PARENTHESES__AND__HASH_SIGN_PREFIXED_COMMENTS
 			);
 
