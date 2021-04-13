@@ -31,9 +31,15 @@
 	<scm>
 		<connection>scm:git:https://github.com/kaftanenko/calc-table-based-data-provider.git</connection>
 		<developerConnection>scm:git:https://github.com/kaftanenko/calc-table-based-data-provider.git</developerConnection>
-		<tag>HEAD</tag>
-		<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
+		<url>http://github.com/kaftanenko/calc-table-based-data-provider</url>
 	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>local-releases</id>
+			<url>http://localhost:8081/repository/releases/</url>
+		</repository>
+	</distributionManagement>
 
 	<properties>
 
@@ -50,14 +56,16 @@
 		<lib.apache.commons-text.version>1.9</lib.apache.commons-text.version>
 
 		<lib.apache.poi.version>3.17</lib.apache.poi.version>
-		
+
 		<lib.test.assertj.version>3.19.0</lib.test.assertj.version>
 		<lib.test.testng.version>7.4.0</lib.test.testng.version>
 
 		<!-- Plug-In Versions -->
 		<plugin.maven.assembly.version>3.3.0</plugin.maven.assembly.version>
 		<plugin.maven.compiler.version>3.8.1</plugin.maven.compiler.version>
+		<plugin.maven.release.version>2.5.3</plugin.maven.release.version>
 		<plugin.maven.resources.version>3.2.0</plugin.maven.resources.version>
+		<plugin.maven.scm.version>1.11.2</plugin.maven.scm.version>
 
 	</properties>
 
@@ -135,6 +143,25 @@
 						<target>${java.version}</target>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${plugin.maven.release.version}</version>
+					<configuration>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.scm</groupId>
+							<artifactId>maven-scm-api</artifactId>
+							<version>${plugin.maven.scm.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.maven.scm</groupId>
+							<artifactId>maven-scm-provider-gitexe</artifactId>
+							<version>${plugin.maven.scm.version}</version>
+						</dependency>
+					</dependencies>				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
