@@ -2,11 +2,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>calc-table-data-provider-examples</artifactId>
+	<artifactId>calctable-dataprovider-examples</artifactId>
 
 	<parent>
-		<groupId>org.business.tools</groupId>
-		<artifactId>calc-table-data-provider</artifactId>
+		<groupId>org.drakosha.tools.calctable</groupId>
+		<artifactId>calctable-dataprovider</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 

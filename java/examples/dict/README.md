@@ -65,7 +65,7 @@ The original Calc table document can be found under "[src/main/resources/data-so
 As mentioned above, the Example generates enumeration classes for an other Example sub-project ([test-data](../test-data)). The generated class for the "Phone Kind" dictionary looks like:
 
 ```java
-package org.business.tools.calctable.dataprovider.examples.testdatasets.external.model.type;
+package org.drakosha.tools.calctable.dataprovider.examples.testdatasets.external.model.type;
 
 /**
  * Enumeration representation of the dictionary 'Phone Kind'.

@@ -2,11 +2,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>calc-table-data-provider-examples_dict</artifactId>
+	<artifactId>calctable-dataprovider-examples_dict</artifactId>
 
 	<parent>
-		<groupId>org.business.tools</groupId>
-		<artifactId>calc-table-data-provider-examples</artifactId>
+		<groupId>org.drakosha.tools.calctable</groupId>
+		<artifactId>calctable-dataprovider-examples</artifactId>
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
@@ -20,8 +20,8 @@
 
 		<!-- Internal -->
 		<dependency>
-			<groupId>org.business.tools</groupId>
-			<artifactId>calc-table-data-provider-core</artifactId>
+			<groupId>org.drakosha.tools.calctable</groupId>
+			<artifactId>calctable-dataprovider-core</artifactId>
 		</dependency>
 
 		<!-- Faster XML / Jackson -->

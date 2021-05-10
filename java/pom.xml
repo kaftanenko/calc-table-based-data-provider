@@ -2,8 +2,8 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.business.tools</groupId>
-	<artifactId>calc-table-data-provider</artifactId>
+	<groupId>org.drakosha.tools.calctable</groupId>
+	<artifactId>calctable-dataprovider</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
@@ -73,8 +73,8 @@
 
 			<!-- Internal -->
 			<dependency>
-				<groupId>org.business.tools</groupId>
-				<artifactId>calc-table-data-provider-core</artifactId>
+				<groupId>org.drakosha.tools.calctable</groupId>
+				<artifactId>calctable-dataprovider-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 

@@ -1,4 +1,4 @@
-package org.business.tools.calctable.dataprovider.examples.dictionaries.generated.type;
+package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generated.type;
 
 /**
  * Enumeration representation of the dictionary 'Some Dictionary'.

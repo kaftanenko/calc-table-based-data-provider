@@ -26,7 +26,7 @@ The basic functionality consist generally in reading of complex data sets contai
 The both implement a common interface [CalcTableSheetDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/CalcTableSheetDataReader.java):
 
 ```java
-package org.business.tools.calctable.dataprovider.reader;
+package org.drakosha.tools.calctable.dataprovider.reader;
 
 // ...
 
@@ -54,7 +54,7 @@ The both Sheet Data Readers (for Landscape and Portrait formats) expect a config
 
 
 ```java
-package org.business.tools.calctable.dataprovider.reader;
+package org.drakosha.tools.calctable.dataprovider.reader;
 
 // ...
 
@@ -81,7 +81,7 @@ The ingredients of this configuration structure means as follow:
 The Core sub-project offers standard implementations for each of this parts and offers to use it through the standard configuration class [CalcTableDataStandardReaderConfig](./src/main/java/org/business/tools/calctable/dataprovider/reader/common/CalcTableDataStandardReaderConfig.java):
 
 ```java
-package org.business.tools.calctable.dataprovider.reader.common;
+package org.drakosha.tools.calctable.dataprovider.reader.common;
 
 // ...
 
@@ -150,7 +150,7 @@ This component is an integral part of the Sheet Data Reader configuration and is
 A "Primitive Value Parser" using within the Framework must implement the [CalcTablePrimitiveValueParser](./src/main/java/org/business/tools/calctable/dataprovider/parser/CalcTablePrimitiveValueParser.java) interface:
 
 ```java
-package org.business.tools.calctable.dataprovider.parser;
+package org.drakosha.tools.calctable.dataprovider.parser;
 
 // ...
 
@@ -189,7 +189,7 @@ This component is an integral part of the Sheet Data Reader configuration and is
 A "Structure Name Resolver" using within the Framework must implement the [CalcTableStructureNamesResolver](./src/main/java/org/business/tools/calctable/dataprovider/parser/CalcTableStructureNamesResolver.java) interface:
 
 ```java
-package org.business.tools.calctable.dataprovider.parser;
+package org.drakosha.tools.calctable.dataprovider.parser;
 
 public interface CalcTableStructureNamesResolver {
 
