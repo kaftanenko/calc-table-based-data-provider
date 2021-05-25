@@ -1,22 +1,24 @@
 package org.drakosha.tools.calctable.dataprovider.examples.testscenarios.selftest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_LANDSCAPE_FORMAT;
-import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT;
-import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US;
-import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
+
+import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_LANDSCAPE_FORMAT;
+import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT;
+import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US;
+import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Const.EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
 
 import org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Record;
 import org.drakosha.tools.calctable.dataprovider.reader.CalcTableSheetDataReader;
 import org.drakosha.tools.calctable.dataprovider.reader.CalcTableWorkbookDataReader;
 import org.drakosha.tools.calctable.dataprovider.reader.landscape.CalcTableSheetLandscapeStandardDataReader;
 import org.drakosha.tools.calctable.dataprovider.reader.portrait.CalcTableSheetPortraitStandardDataReader;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 public class Example_TestScenarios_Parser_UnitTest {
 

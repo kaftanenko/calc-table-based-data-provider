@@ -1,9 +1,9 @@
 package org.drakosha.tools.calctable.dataprovider.examples.testdatasets.selftest;
 
-import static org.drakosha.tools.calctable.dataprovider.common.util.CalcTableCollectionUtils.listOf;
-
 import java.time.LocalDate;
 import java.util.List;
+
+import static org.drakosha.tools.calctable.dataprovider.common.util.CalcTableCollectionUtils.listOf;
 
 import org.drakosha.tools.calctable.dataprovider.examples.testdatasets.external.model.ContactData;
 import org.drakosha.tools.calctable.dataprovider.examples.testdatasets.external.model.Email;

@@ -2,19 +2,20 @@ package org.drakosha.tools.calctable.dataprovider.parser.portrait;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.drakosha.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 import org.drakosha.tools.calctable.dataprovider.parser.portrait.testdata.CalcTablePortraitStructureParser_TestDataFactory;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 class CalcTablePortraitStructureParser_UnitTest
 		extends

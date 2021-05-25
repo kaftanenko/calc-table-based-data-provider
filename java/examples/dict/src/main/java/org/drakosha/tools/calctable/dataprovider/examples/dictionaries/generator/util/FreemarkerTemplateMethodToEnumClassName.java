@@ -1,13 +1,12 @@
 package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator.util;
 
-import java.util.List;
-
-import org.apache.commons.text.WordUtils;
-
 import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateMethodModel;
 import freemarker.template.TemplateModel;
 import freemarker.template.TemplateModelException;
+import org.apache.commons.text.WordUtils;
+
+import java.util.List;
 
 public class FreemarkerTemplateMethodToEnumClassName
 		implements

@@ -1,9 +1,9 @@
 package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator;
 
-import java.io.File;
-
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+
+import java.io.File;
 
 public class Example_Dictionaries_Freemarker_Configuration
 		extends

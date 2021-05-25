@@ -2,12 +2,13 @@ package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.selftest
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.testng.annotations.Test;
+
 import java.util.List;
 
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.parser.Example_Dictionaries_CalcTable_Parser;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.selftest.Example_Dictionaries_TestDataFactory;
-import org.testng.annotations.Test;
 
 class Example_Dictionaries_Parser_UnitTest {
 

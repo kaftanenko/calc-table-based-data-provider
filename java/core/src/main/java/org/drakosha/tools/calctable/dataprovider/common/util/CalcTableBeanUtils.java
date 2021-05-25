@@ -1,12 +1,12 @@
 package org.drakosha.tools.calctable.dataprovider.common.util;
 
+import org.apache.commons.beanutils.PropertyUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Collection;
-
-import org.apache.commons.beanutils.PropertyUtils;
 
 public class CalcTableBeanUtils {
 

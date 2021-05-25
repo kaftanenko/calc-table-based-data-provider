@@ -1,8 +1,9 @@
 package org.drakosha.tools.calctable.dataprovider.parser.portrait;
 
+import org.testng.annotations.DataProvider;
+
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.CalcTableDataParser_PrimitiveTypes_TestDataFactory;
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.primitive.CalcTableDataParser_PrimitiveTypes;
-import org.testng.annotations.DataProvider;
 
 class CalcTablePortraitDataParser_PrimitiveTypes_UnitTest
 		extends

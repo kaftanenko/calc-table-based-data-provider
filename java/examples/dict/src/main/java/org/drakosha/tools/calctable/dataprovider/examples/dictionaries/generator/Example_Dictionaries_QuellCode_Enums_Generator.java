@@ -1,5 +1,8 @@
 package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator;
 
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,9 +10,6 @@ import java.util.Map;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator.util.FreemarkerTemplateMethodToEnumClassName;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator.util.FreemarkerTemplateMethodToEnumConstantName;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;
-
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 
 public class Example_Dictionaries_QuellCode_Enums_Generator {
 

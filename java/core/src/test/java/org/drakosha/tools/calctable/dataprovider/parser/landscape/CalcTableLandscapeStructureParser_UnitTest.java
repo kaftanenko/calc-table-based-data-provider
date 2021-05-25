@@ -2,13 +2,16 @@ package org.drakosha.tools.calctable.dataprovider.parser.landscape;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableStructureNode;
 import org.drakosha.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
@@ -16,8 +19,6 @@ import org.drakosha.tools.calctable.dataprovider.common.util.CalcTablePoiNavigat
 import org.drakosha.tools.calctable.dataprovider.parser.common.CalcTableHeaderCellStandardSampler;
 import org.drakosha.tools.calctable.dataprovider.parser.landscape.testdata.CalcTableLandscapeStructureParser_TestDataFactory_MergedFormat;
 import org.drakosha.tools.calctable.dataprovider.parser.landscape.testdata.CalcTableLandscapeStructureParser_TestDataFactory_NaturalFormat;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 class CalcTableLandscapeStructureParser_UnitTest
 		extends

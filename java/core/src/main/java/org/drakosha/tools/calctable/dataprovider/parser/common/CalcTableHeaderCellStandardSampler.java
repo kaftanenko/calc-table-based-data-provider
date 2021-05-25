@@ -3,6 +3,7 @@ package org.drakosha.tools.calctable.dataprovider.parser.common;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Color;
 import org.apache.poi.xssf.usermodel.XSSFColor;
+
 import org.drakosha.tools.calctable.dataprovider.common.util.CalcTablePoiDataUtils;
 import org.drakosha.tools.calctable.dataprovider.parser.CalcTableHeaderCellSampler;
 

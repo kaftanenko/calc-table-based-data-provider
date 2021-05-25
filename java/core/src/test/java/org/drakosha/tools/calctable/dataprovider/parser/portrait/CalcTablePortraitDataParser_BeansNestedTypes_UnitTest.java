@@ -1,11 +1,12 @@
 package org.drakosha.tools.calctable.dataprovider.parser.portrait;
 
+import org.testng.annotations.DataProvider;
+
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.beansnested.BeanNestedLevel_1;
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.beansnested.BeanNestedLevel_1_2;
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.beansnested.BeanNestedLevel_1_3;
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.beansnested.BeanNestedLevel_1_3_2;
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.beansnested.BeanNestedType;
-import org.testng.annotations.DataProvider;
 
 class CalcTablePortraitDataParser_BeansNestedTypes_UnitTest
 		extends

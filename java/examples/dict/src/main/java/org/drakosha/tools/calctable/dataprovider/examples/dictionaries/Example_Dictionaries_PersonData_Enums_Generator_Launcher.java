@@ -1,17 +1,17 @@
 package org.drakosha.tools.calctable.dataprovider.examples.dictionaries;
 
-import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.EXAMPLE_DICTIONARIES__FILE_PATH__IN_LANDSCAPE_FORMAT;
-import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.MODULE_INTERNAL_PATH__SRC_MAIN_JAVA;
-import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.MODULE_PATH__EXAMPLES_TESTDATA;
-import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.ROOT_MODULE_PATH;
-import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.TARGET_ENUMS_PACKAGE_NAME;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
+
+import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.EXAMPLE_DICTIONARIES__FILE_PATH__IN_LANDSCAPE_FORMAT;
+import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.MODULE_INTERNAL_PATH__SRC_MAIN_JAVA;
+import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.MODULE_PATH__EXAMPLES_TESTDATA;
+import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.ROOT_MODULE_PATH;
+import static org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const.TARGET_ENUMS_PACKAGE_NAME;
 
 import org.drakosha.tools.calctable.dataprovider.common.util.ResourceUtils;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator.Example_Dictionaries_QuellCode_Enums_Generator;

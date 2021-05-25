@@ -1,6 +1,7 @@
 package org.drakosha.tools.calctable.dataprovider.common.error.navigation;
 
 import org.apache.poi.ss.usermodel.Sheet;
+
 import org.drakosha.tools.calctable.dataprovider.common.error.CalcTableException;
 
 public class CalcTableNavigationCellNotFoundException

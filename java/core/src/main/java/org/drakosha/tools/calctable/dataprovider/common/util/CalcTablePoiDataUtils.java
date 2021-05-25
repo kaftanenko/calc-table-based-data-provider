@@ -1,13 +1,14 @@
 package org.drakosha.tools.calctable.dataprovider.common.util;
 
-import java.util.Arrays;
-import java.util.Iterator;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Color;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+
+import java.util.Arrays;
+import java.util.Iterator;
+
 import org.drakosha.tools.calctable.dataprovider.common.error.CalcTableException;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
 import org.drakosha.tools.calctable.dataprovider.parser.CalcTableHeaderCellSampler;

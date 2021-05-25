@@ -1,9 +1,9 @@
 package org.drakosha.tools.calctable.dataprovider.parser;
 
+import org.apache.poi.ss.usermodel.Cell;
+
 import java.util.List;
 import java.util.Optional;
-
-import org.apache.poi.ss.usermodel.Cell;
 
 /**
  * Parser component responsible for parsing of data cell contents into the

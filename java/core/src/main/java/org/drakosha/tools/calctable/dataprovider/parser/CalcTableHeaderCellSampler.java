@@ -1,8 +1,8 @@
 package org.drakosha.tools.calctable.dataprovider.parser;
 
-import java.util.function.Predicate;
-
 import org.apache.poi.ss.usermodel.Cell;
+
+import java.util.function.Predicate;
 
 /**
  * Sampler component responsible for recognizing the Calc table cells as

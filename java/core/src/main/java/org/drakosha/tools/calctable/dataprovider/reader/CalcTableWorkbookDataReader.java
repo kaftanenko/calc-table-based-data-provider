@@ -2,13 +2,14 @@ package org.drakosha.tools.calctable.dataprovider.reader;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.drakosha.tools.calctable.dataprovider.common.util.CalcTablePoiNavigationUtils;
 
 /**

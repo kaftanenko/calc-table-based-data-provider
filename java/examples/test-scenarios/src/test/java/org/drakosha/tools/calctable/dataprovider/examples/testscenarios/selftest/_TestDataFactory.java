@@ -1,12 +1,12 @@
 package org.drakosha.tools.calctable.dataprovider.examples.testscenarios.selftest;
 
+import java.util.List;
+
 import static org.drakosha.tools.calctable.dataprovider.common.util.CalcTableCollectionUtils.listOf;
 import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.EArithmeticOperation.ADD;
 import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.EArithmeticOperation.DIVIDE;
 import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.EArithmeticOperation.MULTIPLY;
 import static org.drakosha.tools.calctable.dataprovider.examples.testscenarios.EArithmeticOperation.SUBTRACT;
-
-import java.util.List;
 
 import org.drakosha.tools.calctable.dataprovider.examples.testscenarios.Example_TestScenarios_SimpleCalculator_Record;
 import org.drakosha.tools.calctable.dataprovider.examples.testscenarios.model.ExpectedErrorMessage;

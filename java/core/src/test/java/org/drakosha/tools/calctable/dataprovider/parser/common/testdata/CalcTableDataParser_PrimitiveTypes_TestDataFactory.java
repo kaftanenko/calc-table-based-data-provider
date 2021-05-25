@@ -3,7 +3,6 @@ package org.drakosha.tools.calctable.dataprovider.parser.common.testdata;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
-
 import javax.lang.model.element.ElementKind;
 
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.primitive.CalcTableDataParser_PrimitiveTypes;

@@ -1,5 +1,8 @@
 package org.drakosha.tools.calctable.dataprovider.parser.portrait;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -7,8 +10,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.drakosha.tools.calctable.dataprovider.common.error.CalcTableException;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableCellsDimension;
 import org.drakosha.tools.calctable.dataprovider.common.type.CalcTableStructureNode;

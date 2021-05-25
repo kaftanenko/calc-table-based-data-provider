@@ -1,8 +1,8 @@
 package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.selftest;
 
-import static org.drakosha.tools.calctable.dataprovider.common.util.CalcTableCollectionUtils.listOf;
-
 import java.util.List;
+
+import static org.drakosha.tools.calctable.dataprovider.common.util.CalcTableCollectionUtils.listOf;
 
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.Example_Dictionaries_Const;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;

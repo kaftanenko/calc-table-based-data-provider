@@ -1,11 +1,12 @@
 package org.drakosha.tools.calctable.dataprovider.parser.landscape;
 
+import org.testng.annotations.DataProvider;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.CalcTableDataParser_CollectonTypes_TestDataFactory;
 import org.drakosha.tools.calctable.dataprovider.parser.common.testdata.type.collection.SupportingCollectionTypes;
-import org.testng.annotations.DataProvider;
 
 class CalcTableLandscapeDataParser_CollectionTypes_UnitTest
 		extends

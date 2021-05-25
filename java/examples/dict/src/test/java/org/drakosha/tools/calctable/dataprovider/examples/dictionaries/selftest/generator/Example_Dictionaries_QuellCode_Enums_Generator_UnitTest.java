@@ -2,14 +2,15 @@ package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.selftest
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import java.io.StringWriter;
 
 import org.drakosha.tools.calctable.dataprovider.common.util.ResourceUtils;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator.Example_Dictionaries_QuellCode_Enums_Generator;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.model.Dictionary;
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.selftest.Example_Dictionaries_TestDataFactory;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 public class Example_Dictionaries_QuellCode_Enums_Generator_UnitTest {
 

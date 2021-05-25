@@ -2,16 +2,16 @@ package org.drakosha.tools.calctable.dataprovider.examples.dictionaries.selftest
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import freemarker.template.TemplateModel;
+import freemarker.template.TemplateModelException;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.drakosha.tools.calctable.dataprovider.examples.dictionaries.generator.util.FreemarkerTemplateMethodToEnumClassName;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
-import freemarker.template.TemplateModel;
-import freemarker.template.TemplateModelException;
 
 public class FreemarkerTemplateMethodToEnumClassName_UnitTest {
 

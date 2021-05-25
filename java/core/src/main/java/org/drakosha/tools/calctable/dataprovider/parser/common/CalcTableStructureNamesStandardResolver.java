@@ -1,6 +1,7 @@
 package org.drakosha.tools.calctable.dataprovider.parser.common;
 
 import org.apache.commons.text.WordUtils;
+
 import org.drakosha.tools.calctable.dataprovider.parser.CalcTableStructureNamesResolver;
 
 /**
