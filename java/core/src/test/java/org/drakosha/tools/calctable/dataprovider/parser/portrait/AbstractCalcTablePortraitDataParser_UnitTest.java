@@ -24,7 +24,7 @@ abstract class AbstractCalcTablePortraitDataParser_UnitTest
 	// ... dependencies
 
 	private final CalcTableSheetPortraitDataParser serviceUnderTest = new CalcTableSheetPortraitDataParser(
-		DATA_PARSER_STANDARD_CONFIG
+			DATA_PARSER_STANDARD_CONFIG
 	);
 
 	// ... test methods
@@ -39,62 +39,66 @@ abstract class AbstractCalcTablePortraitDataParser_UnitTest
 	{
 
 		// ... prepare test data
-		try (final InputStream is = new FileInputStream(
-			filePath
-		);
+		try (
+				final InputStream is = new FileInputStream(
+						filePath
+				);
 				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
-		{
+						is
+				)
+		) {
 			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				sheetName
+					workbook,
+					sheetName
 			);
 
 			final CalcTableCellsDimension structureAreaDimension = CalcTableCellsDimension.of(
-				FIRST_ROW_NUM,
-				FIRST_STRUCTURE_COLUMN_NUM,
-				sheet.getLastRowNum() - FIRST_ROW_NUM + 1,
-				FIRST_DATA_COLUMN_NUM - FIRST_STRUCTURE_COLUMN_NUM
+					FIRST_ROW_NUM,
+					FIRST_STRUCTURE_COLUMN_NUM,
+					sheet.getLastRowNum() - FIRST_ROW_NUM + 1,
+					FIRST_DATA_COLUMN_NUM - FIRST_STRUCTURE_COLUMN_NUM
 			);
 
 			final List<
 					CalcTableStructureNode> structureDescription = new CalcTableSheetPortraitStructureParser().parseStructureArea(
-						sheet,
-						structureAreaDimension
-					);
+					sheet,
+					structureAreaDimension
+			);
 
 			final Class<DATA_RECORD_TYPE> dataRecordType = (Class<
-					DATA_RECORD_TYPE>) expectedDataRecords.getClass().getComponentType();
+					DATA_RECORD_TYPE>) expectedDataRecords
+					.getClass()
+					.getComponentType();
 
 			final List<RuntimeException> messageContainer = new ArrayList<>();
 
 			// ... call service under test
 			final CalcTableCellsDimension dataAreaDimension = CalcTableCellsDimension.of(
-				FIRST_ROW_NUM,
-				FIRST_DATA_COLUMN_NUM,
-				sheet.getLastRowNum() - FIRST_ROW_NUM + 1,
-				expectedDataRecords.length
+					FIRST_ROW_NUM,
+					FIRST_DATA_COLUMN_NUM,
+					sheet.getLastRowNum() - FIRST_ROW_NUM + 1,
+					expectedDataRecords.length
 			);
 
 			final List<DATA_RECORD_TYPE> resultDataRecords = this.serviceUnderTest.parseDataArea(
-				sheet,
-				dataRecordType,
-				dataAreaDimension,
-				structureDescription,
-				messageContainer
+					sheet,
+					dataRecordType,
+					dataAreaDimension,
+					structureDescription,
+					messageContainer
 			);
 
 			// ... verify post-conditions
 			verifyMessageContainer(
-				messageContainer
+					messageContainer
 			);
 
 			assertThat(
-				resultDataRecords
-			).containsExactly(
-				expectedDataRecords
-			);
+					resultDataRecords
+			)
+					.containsExactly(
+							expectedDataRecords
+					);
 		}
 	}
 

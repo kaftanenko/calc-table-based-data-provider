@@ -22,11 +22,11 @@ public class CalcTableNavigationSheetNotFoundException
 	{
 
 		super(
-			String.format(
-				"There is no such sheet: [sheet: '%s'] within the workbook: '%s'.",
-				sheetName,
-				workbook
-			)
+				String.format(
+						"There is no such sheet: [sheet: '%s'] within the workbook: '%s'.",
+						sheetName,
+						workbook
+				)
 		);
 	}
 

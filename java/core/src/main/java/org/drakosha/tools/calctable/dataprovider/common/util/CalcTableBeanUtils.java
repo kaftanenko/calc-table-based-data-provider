@@ -20,12 +20,12 @@ public class CalcTableBeanUtils {
 
 		try {
 			return PropertyUtils.getPropertyType(
-				dataBean,
-				propertyName
+					dataBean,
+					propertyName
 			);
 		} catch (final Exception ex) {
 			throw CalcTableErrorHelper.handleFatalException(
-				ex
+					ex
 			);
 		}
 	}
@@ -37,9 +37,9 @@ public class CalcTableBeanUtils {
 
 		return propertyType.isArray()
 				|| isTypeCompatibleWith(
-					propertyType,
-					Collection.class
-				);
+				propertyType,
+				Collection.class
+		);
 	}
 
 	public static Class<?> getPropertyItemType(
@@ -50,22 +50,23 @@ public class CalcTableBeanUtils {
 	{
 
 		final Class<?> propertyType = getPropertyType(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 		if (propertyType.isArray()) {
 
 			return propertyType.getComponentType();
 		} else if (isTypeCompatibleWith(
-			propertyType,
-			Collection.class
-		))
-		{
-			final Field field = dataBean.getClass().getDeclaredField(
-				propertyName
-			);
+				propertyType,
+				Collection.class
+		)) {
+			final Field field = dataBean
+					.getClass()
+					.getDeclaredField(
+							propertyName
+					);
 			field.setAccessible(
-				true
+					true
 			);
 
 			final Type genericFieldType = field.getGenericType();
@@ -76,35 +77,35 @@ public class CalcTableBeanUtils {
 				switch (fieldArgTypes.length) {
 					case 0:
 						throw new RuntimeException(
-							"No generics for item type specification found: "
-									+ buildErrorContext(
+								"No generics for item type specification found: "
+										+ buildErrorContext(
 										dataBean,
 										propertyName
-									)
+								)
 						);
 					case 1:
 						return (Class) fieldArgTypes[0];
 					default:
 						throw new RuntimeException(
-							"Multiply generics for item type specification found: "
-									+ buildErrorContext(
+								"Multiply generics for item type specification found: "
+										+ buildErrorContext(
 										dataBean,
 										propertyName
-									)
+								)
 						);
 				}
 			} else {
 				throw new RuntimeException(
-					"No generics for item type specification found: "
-							+ buildErrorContext(
+						"No generics for item type specification found: "
+								+ buildErrorContext(
 								dataBean,
 								propertyName
-							)
+						)
 				);
 			}
 		} else {
 			throw CalcTableErrorHelper.handleUnsupportedValueType(
-				propertyType
+					propertyType
 			);
 		}
 	}
@@ -117,12 +118,12 @@ public class CalcTableBeanUtils {
 
 		try {
 			return PropertyUtils.getProperty(
-				dataBean,
-				propertyName
+					dataBean,
+					propertyName
 			);
 		} catch (final Exception ex) {
 			throw CalcTableErrorHelper.handleFatalException(
-				ex
+					ex
 			);
 		}
 	}
@@ -135,8 +136,8 @@ public class CalcTableBeanUtils {
 
 		try {
 			PropertyUtils.getProperty(
-				dataBean,
-				propertyName
+					dataBean,
+					propertyName
 			);
 			return true;
 		} catch (final Exception ex) {
@@ -153,13 +154,13 @@ public class CalcTableBeanUtils {
 
 		try {
 			PropertyUtils.setProperty(
-				dataBean,
-				propertyName,
-				propertyValue
+					dataBean,
+					propertyName,
+					propertyValue
 			);
 		} catch (final Exception ex) {
 			throw CalcTableErrorHelper.handleFatalException(
-				ex
+					ex
 			);
 		}
 	}
@@ -180,7 +181,7 @@ public class CalcTableBeanUtils {
 	{
 
 		return expectedSameOrSuperClass.isAssignableFrom(
-			propertyType
+				propertyType
 		);
 	}
 
@@ -190,14 +191,18 @@ public class CalcTableBeanUtils {
 	)
 	{
 
-		return Arrays.stream(
-			expectedSameOrSuperClasses
-		).filter(
-			expectedSameOrSuperClass -> isTypeCompatibleWith(
-				propertyType,
-				expectedSameOrSuperClass
-			)
-		).findFirst().isPresent();
+		return Arrays
+				.stream(
+						expectedSameOrSuperClasses
+				)
+				.filter(
+						expectedSameOrSuperClass -> isTypeCompatibleWith(
+								propertyType,
+								expectedSameOrSuperClass
+						)
+				)
+				.findFirst()
+				.isPresent();
 	}
 
 	// ... helper methods
@@ -209,9 +214,9 @@ public class CalcTableBeanUtils {
 	{
 
 		return String.format(
-			"[bean: '%s', property name: %s]",
-			dataBean.getClass(),
-			propertyName
+				"[bean: '%s', property name: %s]",
+				dataBean.getClass(),
+				propertyName
 		);
 	}
 

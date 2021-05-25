@@ -25,10 +25,10 @@ public class CalcTableSheetPortraitStructureParser {
 	{
 
 		final List<CalcTableStructureNode> firstLevelStructureNodes = parseStructureArea(
-			sheet,
-			structureAreaDimension,
-			structureAreaDimension.getRow(),
-			structureAreaDimension.getColumn()
+				sheet,
+				structureAreaDimension,
+				structureAreaDimension.getRow(),
+				structureAreaDimension.getColumn()
 		);
 		return firstLevelStructureNodes;
 	}
@@ -44,9 +44,9 @@ public class CalcTableSheetPortraitStructureParser {
 		final Cell currentStructureCell;
 		try {
 			currentStructureCell = CalcTablePoiNavigationUtils.getCell(
-				sheet,
-				currentRow,
-				currentColumn
+					sheet,
+					currentRow,
+					currentColumn
 			);
 		} catch (final CalcTableException ex) {
 			return Arrays.asList();
@@ -54,12 +54,12 @@ public class CalcTableSheetPortraitStructureParser {
 
 		final String currentStructureCellText = CalcTablePoiDataUtils.getCellValueAsString(currentStructureCell);
 		final boolean currentStructureCellEmpty = StringUtils.isBlank(
-			currentStructureCellText
+				currentStructureCellText
 		);
 
 		final boolean stopTraversingStructureCells = !structureAreaDimension.contains(
-			currentStructureCell.getRowIndex(),
-			currentStructureCell.getColumnIndex()
+				currentStructureCell.getRowIndex(),
+				currentStructureCell.getColumnIndex()
 		) || currentStructureCellEmpty;
 		if (stopTraversingStructureCells) {
 
@@ -69,8 +69,8 @@ public class CalcTableSheetPortraitStructureParser {
 			final List<CalcTableStructureNode> resultStructureNodes = new ArrayList<>();
 
 			final CalcTableCellsDimension currentStructureCellInnerDimension = CalcTablePoiNavigationUtils.getCellDimension(
-				sheet,
-				currentStructureCell
+					sheet,
+					currentStructureCell
 			);
 
 			final int childStructureCellsStartRowNum = currentStructureCellInnerDimension.getRow()
@@ -78,18 +78,18 @@ public class CalcTableSheetPortraitStructureParser {
 			final int childStructureCellsStartColumnNum = currentStructureCellInnerDimension.getColumn() + 1;
 
 			final List<CalcTableStructureNode> childStructureNodes = parseStructureArea(
-				sheet,
-				structureAreaDimension,
-				childStructureCellsStartRowNum,
-				childStructureCellsStartColumnNum
+					sheet,
+					structureAreaDimension,
+					childStructureCellsStartRowNum,
+					childStructureCellsStartColumnNum
 			);
 
 			resultStructureNodes.add(
-				CalcTableStructureNode.of(
-					currentStructureCellText,
-					currentStructureCellInnerDimension,
-					childStructureNodes
-				)
+					CalcTableStructureNode.of(
+							currentStructureCellText,
+							currentStructureCellInnerDimension,
+							childStructureNodes
+					)
 			);
 
 			final int nextSiblingCellColumnNum = currentStructureCellInnerDimension.getColumn();
@@ -100,21 +100,21 @@ public class CalcTableSheetPortraitStructureParser {
 						+ currentStructureCellInnerDimension.getRowSpan();
 			} else {
 				final CalcTableStructureNode lastChildStructureNode = childStructureNodes.get(
-					childStructureNodes.size() - 1
+						childStructureNodes.size() - 1
 				);
 				final CalcTableCellsDimension lastChildCellInnerDimension = lastChildStructureNode.getInnerDimension();
 				nextSiblingCellRowNum = lastChildCellInnerDimension.getRow() + lastChildCellInnerDimension.getRowSpan();
 			}
 
 			final List<CalcTableStructureNode> siblingStructureNodes = parseStructureArea(
-				sheet,
-				structureAreaDimension,
-				nextSiblingCellRowNum,
-				nextSiblingCellColumnNum
+					sheet,
+					structureAreaDimension,
+					nextSiblingCellRowNum,
+					nextSiblingCellColumnNum
 			);
 
 			resultStructureNodes.addAll(
-				siblingStructureNodes
+					siblingStructureNodes
 			);
 
 			return resultStructureNodes;

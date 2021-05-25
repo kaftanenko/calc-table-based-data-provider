@@ -26,7 +26,7 @@ abstract class AbstractCalcTableLandscapeDataParser_UnitTest
 	// ... dependencies
 
 	private final CalcTableSheetLandscapeDataParser serviceUnderTest = new CalcTableSheetLandscapeDataParser(
-		DATA_PARSER_STANDARD_CONFIG
+			DATA_PARSER_STANDARD_CONFIG
 	);
 
 	// ... test methods
@@ -41,52 +41,56 @@ abstract class AbstractCalcTableLandscapeDataParser_UnitTest
 	{
 
 		// ... prepare test data
-		try (final InputStream is = new FileInputStream(
-			filePath
-		);
+		try (
+				final InputStream is = new FileInputStream(
+						filePath
+				);
 				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
-		{
+						is
+				)
+		) {
 			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				sheetName
+					workbook,
+					sheetName
 			);
 
 			final CalcTableCellsDimension structureAreaDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
-				sheet,
-				CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
+					sheet,
+					CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
 			);
 
 			final List<
 					CalcTableStructureNode> structureDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
-						sheet,
-						structureAreaDimension
-					);
+					sheet,
+					structureAreaDimension
+			);
 
 			final Class<DATA_RECORD_TYPE> dataRecordType = (Class<
-					DATA_RECORD_TYPE>) expectedDataRecords.getClass().getComponentType();
+					DATA_RECORD_TYPE>) expectedDataRecords
+					.getClass()
+					.getComponentType();
 
 			final List<RuntimeException> messageContainer = new ArrayList<>();
 
 			// ... call service under test
 			final List<DATA_RECORD_TYPE> resultDataRecords = this.serviceUnderTest.parseDataArea(
-				sheet,
-				dataRecordType,
-				structureDescription,
-				messageContainer
+					sheet,
+					dataRecordType,
+					structureDescription,
+					messageContainer
 			);
 
 			// ... verify post-conditions
 			verifyMessageContainer(
-				messageContainer
+					messageContainer
 			);
 
 			assertThat(
-				resultDataRecords
-			).containsExactly(
-				expectedDataRecords
-			);
+					resultDataRecords
+			)
+					.containsExactly(
+							expectedDataRecords
+					);
 		}
 	}
 

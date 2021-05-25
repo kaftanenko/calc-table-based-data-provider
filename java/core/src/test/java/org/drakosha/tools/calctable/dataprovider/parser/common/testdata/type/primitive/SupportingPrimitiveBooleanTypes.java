@@ -36,8 +36,8 @@ public class SupportingPrimitiveBooleanTypes
 	{
 
 		return new SupportingPrimitiveBooleanTypes(
-			primitive,
-			wrapper
+				primitive,
+				wrapper
 		);
 	}
 

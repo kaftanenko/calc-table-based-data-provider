@@ -37,9 +37,9 @@ public class CalcTableStructureNode
 	{
 
 		return new CalcTableStructureNode(
-			text,
-			innerDimension,
-			childStructureNodes
+				text,
+				innerDimension,
+				childStructureNodes
 		);
 	}
 

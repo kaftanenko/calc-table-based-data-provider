@@ -44,31 +44,34 @@ public class CalcTableSheetLandscapeDataParser
 	{
 
 		final CalcTableCellsDimension structureAreaDimension = determineStructureAreaDimension(
-			structureDescription
+				structureDescription
 		);
 
 		final int startRowNum = structureAreaDimension.getRow() + structureAreaDimension.getRowSpan();
 		final int finishRowNum = sheet.getLastRowNum();
 
-		final int startColumnNum = structureDescription.get(0).getInnerDimension().getColumn();
+		final int startColumnNum = structureDescription
+				.get(0)
+				.getInnerDimension()
+				.getColumn();
 		final CalcTableStructureNode rootStructureDescription = CalcTableStructureNode.of(
-			"dataRecords",
-			CalcTableCellsDimension.of(
-				0,
-				startColumnNum,
-				1,
-				1
-			),
-			structureDescription
+				"dataRecords",
+				CalcTableCellsDimension.of(
+						0,
+						startColumnNum,
+						1,
+						1
+				),
+				structureDescription
 		);
 
 		return parseCollectionPropertyOfItemType(
-			sheet,
-			rootStructureDescription,
-			dataRecordType,
-			startRowNum,
-			finishRowNum,
-			messageContainer
+				sheet,
+				rootStructureDescription,
+				dataRecordType,
+				startRowNum,
+				finishRowNum,
+				messageContainer
 		);
 	}
 
@@ -83,9 +86,9 @@ public class CalcTableSheetLandscapeDataParser
 	{
 
 		final Optional<String> propertyNameOptional = getBeanPropertyName(
-			parentDataBean,
-			structureNode,
-			messageContainer
+				parentDataBean,
+				structureNode,
+				messageContainer
 		);
 
 		final String propertyName;
@@ -96,35 +99,35 @@ public class CalcTableSheetLandscapeDataParser
 		}
 
 		final Class<?> propertyType = getBeanPropertyType(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		if (isPrimitiveType(propertyType)) {
 			parsePrimitiveProperty(
-				sheet,
-				structureNode,
-				parentDataBean,
-				startRowNum,
-				messageContainer
+					sheet,
+					structureNode,
+					parentDataBean,
+					startRowNum,
+					messageContainer
 			);
 		} else if (isCollectionType(propertyType)) {
 			parseCollectionProperty(
-				sheet,
-				structureNode,
-				parentDataBean,
-				startRowNum,
-				finishRowNum,
-				messageContainer
+					sheet,
+					structureNode,
+					parentDataBean,
+					startRowNum,
+					finishRowNum,
+					messageContainer
 			);
 		} else {
 			parseDataBeanProperty(
-				sheet,
-				structureNode,
-				parentDataBean,
-				startRowNum,
-				finishRowNum,
-				messageContainer
+					sheet,
+					structureNode,
+					parentDataBean,
+					startRowNum,
+					finishRowNum,
+					messageContainer
 			);
 		}
 	}
@@ -139,39 +142,41 @@ public class CalcTableSheetLandscapeDataParser
 	{
 
 		final String propertyName = getBeanPropertyName(
-			parentDataBean,
-			structureNode,
-			messageContainer
-		).get();
+				parentDataBean,
+				structureNode,
+				messageContainer
+		)
+				.get();
 
 		final Class<?> propertyType = getBeanPropertyType(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		final Optional<?> propertyValueOptional = parsePrimitivePropertyOfType(
-			sheet,
-			structureNode,
-			propertyType,
-			rowNum,
-			messageContainer
+				sheet,
+				structureNode,
+				propertyType,
+				rowNum,
+				messageContainer
 		);
 
 		propertyValueOptional.ifPresent(
-			propertyValue -> setBeanPropertyValue(
-				parentDataBean,
-				propertyName,
-				propertyValue,
-				messageContainer
-			)
+				propertyValue -> setBeanPropertyValue(
+						parentDataBean,
+						propertyName,
+						propertyValue,
+						messageContainer
+				)
 		);
 		// TODO: evtl. warning if no value
 	}
 
 	private Optional<?> parsePrimitivePropertyOfType(
 			final Sheet sheet,
-			final CalcTableStructureNode structureNode, // TODO: eliminate or merge
-																									// with cell coords (romNum)
+			final CalcTableStructureNode structureNode,
+			// TODO: eliminate or merge
+			// with cell coords (romNum)
 			final Class<?> propertyType,
 			final int rowNum,
 			final List<RuntimeException> messageContainer
@@ -180,18 +185,22 @@ public class CalcTableSheetLandscapeDataParser
 
 		try {
 
-			final int columnNum = structureNode.getInnerDimension().getColumn();
+			final int columnNum = structureNode
+					.getInnerDimension()
+					.getColumn();
 			final Cell cell = CalcTablePoiNavigationUtils.getCell(
-				sheet,
-				rowNum,
-				columnNum
+					sheet,
+					rowNum,
+					columnNum
 			);
 
-			final Optional<?> propertyValueOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
-				cell,
-				propertyType,
-				messageContainer
-			);
+			final Optional<?> propertyValueOptional = this.parserConfig
+					.getPrimitiveValueParser()
+					.parseValue(
+							cell,
+							propertyType,
+							messageContainer
+					);
 			return propertyValueOptional;
 		} catch (final CalcTableException ex) {
 			return Optional.empty();
@@ -213,9 +222,9 @@ public class CalcTableSheetLandscapeDataParser
 		}
 
 		final Optional<String> propertyNameOptional = getBeanPropertyName(
-			dataBean,
-			structureNode,
-			messageContainer
+				dataBean,
+				structureNode,
+				messageContainer
 		);
 
 		final String propertyName;
@@ -226,19 +235,19 @@ public class CalcTableSheetLandscapeDataParser
 		}
 
 		final Class<?> propertyType = getBeanPropertyType(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 
 		final Object originalPropertyValue = getBeanPropertyValue(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 		final Optional<?> propertyValueOptional;
 		if (originalPropertyValue == null) {
 			propertyValueOptional = instantiateBean(
-				propertyType,
-				messageContainer
+					propertyType,
+					messageContainer
 			);
 		} else {
 			propertyValueOptional = Optional.of(originalPropertyValue);
@@ -246,23 +255,25 @@ public class CalcTableSheetLandscapeDataParser
 
 		propertyValueOptional.ifPresent(propertyValue -> {
 
-			structureNode.getChildStructureNodes().forEach(childStructureNode ->
+			structureNode
+					.getChildStructureNodes()
+					.forEach(childStructureNode ->
 
-			parseStructureNode(
-				sheet,
-				childStructureNode,
-				propertyValue,
-				startRowNum,
-				finishRowNum,
-				messageContainer
-			)
-			);
+							parseStructureNode(
+									sheet,
+									childStructureNode,
+									propertyValue,
+									startRowNum,
+									finishRowNum,
+									messageContainer
+							)
+					);
 
 			setBeanPropertyValue(
-				dataBean,
-				propertyName,
-				propertyValue,
-				messageContainer
+					dataBean,
+					propertyName,
+					propertyValue,
+					messageContainer
 			);
 		});
 		// TODO evtl. warning for no value
@@ -279,25 +290,26 @@ public class CalcTableSheetLandscapeDataParser
 	{
 
 		final String propertyName = getBeanPropertyName(
-			parentDataBean,
-			structureNode,
-			messageContainer
-		).get();
+				parentDataBean,
+				structureNode,
+				messageContainer
+		)
+				.get();
 
 		final Optional<Class<?>> propertyItemTypeOptional = getBeanPropertyItemType(
-			parentDataBean,
-			propertyName,
-			messageContainer
+				parentDataBean,
+				propertyName,
+				messageContainer
 		);
 
 		final Class<?> propertyType = getBeanPropertyType(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		final Object originalPropertyValue = getBeanPropertyValue(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		final Class<?> propertyItemType;
@@ -308,12 +320,12 @@ public class CalcTableSheetLandscapeDataParser
 		}
 
 		final List newPropertyItemValues = parseCollectionPropertyOfItemType(
-			sheet,
-			structureNode,
-			propertyItemType,
-			startRowNum,
-			finishRowNum,
-			messageContainer
+				sheet,
+				structureNode,
+				propertyItemType,
+				startRowNum,
+				finishRowNum,
+				messageContainer
 		);
 
 		if (newPropertyItemValues.size() > 0) {
@@ -324,18 +336,18 @@ public class CalcTableSheetLandscapeDataParser
 				if (originalPropertyValue == null) {
 
 					final Collection propertyValueAsProperCollType = toCollectionType(
-						newPropertyItemValues,
-						propertyType
+							newPropertyItemValues,
+							propertyType
 					);
 					setBeanPropertyValue(
-						parentDataBean,
-						propertyName,
-						propertyValueAsProperCollType,
-						messageContainer
+							parentDataBean,
+							propertyName,
+							propertyValueAsProperCollType,
+							messageContainer
 					);
 				} else {
 					((Collection) originalPropertyValue).addAll(
-						newPropertyItemValues
+							newPropertyItemValues
 					);
 				}
 			}
@@ -354,12 +366,14 @@ public class CalcTableSheetLandscapeDataParser
 
 		final List<DATA_TYPE> result = new ArrayList<>();
 
-		final int startColumnNum = structureNode.getInnerDimension().getColumn();
+		final int startColumnNum = structureNode
+				.getInnerDimension()
+				.getColumn();
 		final List<Integer> collectionItemsStartRowNums = getRowsWithNonEmptyCells(
-			sheet,
-			startRowNum,
-			finishRowNum,
-			startColumnNum
+				sheet,
+				startRowNum,
+				finishRowNum,
+				startColumnNum
 		);
 
 		final int lastItemsRowNumIndex = collectionItemsStartRowNums.size() - 1;
@@ -373,11 +387,11 @@ public class CalcTableSheetLandscapeDataParser
 			final Optional<?> propertyItemValueOptional;
 			if (isPrimitiveType(propertyItemType)) {
 				propertyItemValueOptional = parsePrimitivePropertyOfType(
-					sheet,
-					structureNode,
-					propertyItemType,
-					startItemRowNum,
-					messageContainer
+						sheet,
+						structureNode,
+						propertyItemType,
+						startItemRowNum,
+						messageContainer
 				);
 			} else if (isCollectionType(propertyItemType)) {
 				// TODO evtl. just a warning message
@@ -385,22 +399,24 @@ public class CalcTableSheetLandscapeDataParser
 			} else {
 
 				final Optional<?> propertyDataBeanOptional = instantiateBean(
-					propertyItemType,
-					messageContainer
+						propertyItemType,
+						messageContainer
 				);
 
 				propertyDataBeanOptional.ifPresent(propertyDataBean -> {
 
-					structureNode.getChildStructureNodes().forEach(
-						childStructureNode -> parseStructureNode(
-							sheet,
-							childStructureNode,
-							propertyDataBean,
-							startItemRowNum,
-							finishItemRowNum,
-							messageContainer
-						)
-					);
+					structureNode
+							.getChildStructureNodes()
+							.forEach(
+									childStructureNode -> parseStructureNode(
+											sheet,
+											childStructureNode,
+											propertyDataBean,
+											startItemRowNum,
+											finishItemRowNum,
+											messageContainer
+									)
+							);
 				});
 				// TODO evtl. warning if no value
 
@@ -426,14 +442,18 @@ public class CalcTableSheetLandscapeDataParser
 		final int lastColumnNum = getLastColumnNum(structureDescription);
 
 		final CalcTableStructureNode firstCalcTableStructureNode = structureDescription.get(0);
-		final int firstRowNum = firstCalcTableStructureNode.getInnerDimension().getRow();
-		final int firstColumnNum = firstCalcTableStructureNode.getInnerDimension().getColumn();
+		final int firstRowNum = firstCalcTableStructureNode
+				.getInnerDimension()
+				.getRow();
+		final int firstColumnNum = firstCalcTableStructureNode
+				.getInnerDimension()
+				.getColumn();
 
 		return CalcTableCellsDimension.of(
-			firstRowNum,
-			firstColumnNum,
-			lastRowNum - firstRowNum + 1,
-			lastColumnNum - firstColumnNum + 1
+				firstRowNum,
+				firstColumnNum,
+				lastRowNum - firstRowNum + 1,
+				lastColumnNum - firstColumnNum + 1
 		);
 	}
 
@@ -444,8 +464,8 @@ public class CalcTableSheetLandscapeDataParser
 		for (final CalcTableStructureNode structureNode : structureNodes) {
 
 			lastRowNum = Math.max(
-				lastRowNum,
-				getLastRowNum(structureNode)
+					lastRowNum,
+					getLastRowNum(structureNode)
 			);
 		}
 
@@ -454,9 +474,15 @@ public class CalcTableSheetLandscapeDataParser
 
 	private static int getLastRowNum(final CalcTableStructureNode structureNode) {
 
-		if (structureNode.getChildStructureNodes().size() == 0) {
+		if (structureNode
+				.getChildStructureNodes()
+				.size() == 0) {
 
-			return structureNode.getInnerDimension().getRow() + structureNode.getInnerDimension().getRowSpan() - 1;
+			return structureNode
+					.getInnerDimension()
+					.getRow() + structureNode
+					.getInnerDimension()
+					.getRowSpan() - 1;
 		} else {
 			return getLastRowNum(structureNode.getChildStructureNodes());
 		}
@@ -469,8 +495,8 @@ public class CalcTableSheetLandscapeDataParser
 		for (final CalcTableStructureNode structureNode : structureNodes) {
 
 			lastColumnNum = Math.max(
-				lastColumnNum,
-				getLastColumnNum(structureNode)
+					lastColumnNum,
+					getLastColumnNum(structureNode)
 			);
 		}
 
@@ -479,9 +505,15 @@ public class CalcTableSheetLandscapeDataParser
 
 	private static int getLastColumnNum(final CalcTableStructureNode structureNode) {
 
-		if (structureNode.getChildStructureNodes().size() == 0) {
+		if (structureNode
+				.getChildStructureNodes()
+				.size() == 0) {
 
-			return structureNode.getInnerDimension().getColumn() + structureNode.getInnerDimension().getColumnSpan() - 1;
+			return structureNode
+					.getInnerDimension()
+					.getColumn() + structureNode
+					.getInnerDimension()
+					.getColumnSpan() - 1;
 		} else {
 			return getLastColumnNum(structureNode.getChildStructureNodes());
 		}
@@ -495,16 +527,20 @@ public class CalcTableSheetLandscapeDataParser
 	)
 	{
 
-		return IntStream.rangeClosed(
-			startRowNum,
-			finishRowNum
-		).filter(
-			rowNum -> isCellNoneEmpty(
-				sheet,
-				rowNum,
-				columnNum
-			)
-		).mapToObj(Integer::valueOf).collect(Collectors.toList());
+		return IntStream
+				.rangeClosed(
+						startRowNum,
+						finishRowNum
+				)
+				.filter(
+						rowNum -> isCellNoneEmpty(
+								sheet,
+								rowNum,
+								columnNum
+						)
+				)
+				.mapToObj(Integer::valueOf)
+				.collect(Collectors.toList());
 	}
 
 }

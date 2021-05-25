@@ -22,10 +22,10 @@ public class SimpleCalculatorAsServiceUnderTest {
 				return arg1 * arg2;
 			default:
 				throw new RuntimeException(
-					String.format(
-						"Unsupported operation: %s.",
-						op
-					)
+						String.format(
+								"Unsupported operation: %s.",
+								op
+						)
 				);
 		}
 	}

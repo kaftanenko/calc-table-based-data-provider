@@ -14,11 +14,14 @@ public class EnumUtils {
 
 		try {
 
-			final Field fieldName = enumValue.getClass().getSuperclass().getDeclaredField("name");
+			final Field fieldName = enumValue
+					.getClass()
+					.getSuperclass()
+					.getDeclaredField("name");
 			fieldName.setAccessible(true);
 			fieldName.set(
-				enumValue,
-				alternativeValueToBeUsedByValueOf
+					enumValue,
+					alternativeValueToBeUsedByValueOf
 			);
 			fieldName.setAccessible(false);
 		} catch (final Exception ex) {

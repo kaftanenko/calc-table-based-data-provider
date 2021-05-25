@@ -65,12 +65,17 @@ public class CalcTablePrimitiveValueStandardParser
 
 		this.locale = locale;
 
-		this.supportedDateTimeFormattersWithLocale = Arrays.asList(getSupportedDateTimePatterns(locale)).stream().map(
-			pattern -> DateTimeFormatter.ofPattern(
-				pattern,
-				locale
-			)
-		).collect(Collectors.toList()).toArray(new DateTimeFormatter[0]);
+		this.supportedDateTimeFormattersWithLocale = Arrays
+				.asList(getSupportedDateTimePatterns(locale))
+				.stream()
+				.map(
+						pattern -> DateTimeFormatter.ofPattern(
+								pattern,
+								locale
+						)
+				)
+				.collect(Collectors.toList())
+				.toArray(new DateTimeFormatter[0]);
 	}
 
 	// ... configuration methods
@@ -87,41 +92,41 @@ public class CalcTablePrimitiveValueStandardParser
 
 	private static final List<Class<? extends Object>> SUPPORTED_DATA_TYPES = Arrays.asList(
 
-		String.class,
+			String.class,
 
-		boolean.class,
-		Boolean.class,
+			boolean.class,
+			Boolean.class,
 
-		byte.class,
-		Byte.class,
+			byte.class,
+			Byte.class,
 
-		char.class,
-		Character.class,
+			char.class,
+			Character.class,
 
-		short.class,
-		Short.class,
+			short.class,
+			Short.class,
 
-		int.class,
-		Integer.class,
+			int.class,
+			Integer.class,
 
-		long.class,
-		Long.class,
+			long.class,
+			Long.class,
 
-		float.class,
-		Float.class,
+			float.class,
+			Float.class,
 
-		double.class,
-		Double.class,
+			double.class,
+			Double.class,
 
-		void.class,
-		Void.class,
+			void.class,
+			Void.class,
 
-		BigDecimal.class,
-		BigInteger.class,
+			BigDecimal.class,
+			BigInteger.class,
 
-		Date.class,
-		LocalDate.class,
-		LocalDateTime.class
+			Date.class,
+			LocalDate.class,
+			LocalDateTime.class
 	);
 
 	@Override
@@ -133,8 +138,8 @@ public class CalcTablePrimitiveValueStandardParser
 		return targetDataType.isEnum()
 				|| targetDataType.isPrimitive()
 				|| SUPPORTED_DATA_TYPES.contains(
-					targetDataType
-				);
+				targetDataType
+		);
 	}
 
 	@Override
@@ -146,7 +151,7 @@ public class CalcTablePrimitiveValueStandardParser
 	{
 
 		final String cellValueAsString = CalcTablePoiDataUtils.getCellValueAsString(
-			cell
+				cell
 		);
 
 		if (StringUtils.isBlank(cellValueAsString)) {
@@ -161,162 +166,161 @@ public class CalcTablePrimitiveValueStandardParser
 
 				final Class targetDataAsEnumType = targetDataType;
 				result = Enum.valueOf(
-					targetDataAsEnumType,
-					cellValueAsString.toUpperCase()
+						targetDataAsEnumType,
+						cellValueAsString.toUpperCase()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				String.class
-			))
-			{
+					targetDataType,
+					String.class
+			)) {
 
 				result = cellValueAsString;
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				boolean.class,
-				Boolean.class
-			))
-			{
+					targetDataType,
+					boolean.class,
+					Boolean.class
+			)) {
 
 				result = parseBooleanValue(cellValueAsString);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				char.class,
-				Character.class
-			))
-			{
+					targetDataType,
+					char.class,
+					Character.class
+			)) {
 
 				result = Character.valueOf(
-					cellValueAsString.charAt(
-						0
-					)
+						cellValueAsString.charAt(
+								0
+						)
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				byte.class,
-				Byte.class
-			))
-			{
+					targetDataType,
+					byte.class,
+					Byte.class
+			)) {
 
-				result = parseNumberValue(cellValueAsString).byteValue();
+				result = parseNumberValue(cellValueAsString)
+						.byteValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				short.class,
-				Short.class
-			))
-			{
+					targetDataType,
+					short.class,
+					Short.class
+			)) {
 
-				result = parseNumberValue(cellValueAsString).shortValue();
+				result = parseNumberValue(cellValueAsString)
+						.shortValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				int.class,
-				Integer.class
-			))
-			{
+					targetDataType,
+					int.class,
+					Integer.class
+			)) {
 
-				result = parseNumberValue(cellValueAsString).intValue();
+				result = parseNumberValue(cellValueAsString)
+						.intValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				long.class,
-				Long.class
-			))
-			{
+					targetDataType,
+					long.class,
+					Long.class
+			)) {
 
-				result = parseNumberValue(cellValueAsString).longValue();
+				result = parseNumberValue(cellValueAsString)
+						.longValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				float.class,
-				Float.class
-			))
-			{
+					targetDataType,
+					float.class,
+					Float.class
+			)) {
 
-				result = parseNumberValue(cellValueAsString).floatValue();
+				result = parseNumberValue(cellValueAsString)
+						.floatValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				double.class,
-				Double.class
-			))
-			{
+					targetDataType,
+					double.class,
+					Double.class
+			)) {
 
-				result = parseNumberValue(cellValueAsString).doubleValue();
+				result = parseNumberValue(cellValueAsString)
+						.doubleValue();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				BigDecimal.class
-			))
-			{
+					targetDataType,
+					BigDecimal.class
+			)) {
 
 				result = BigDecimal.valueOf(
-					parseNumberValue(cellValueAsString).doubleValue()
+						parseNumberValue(cellValueAsString)
+								.doubleValue()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				BigInteger.class
-			))
-			{
+					targetDataType,
+					BigInteger.class
+			)) {
 
 				result = BigInteger.valueOf(
-					parseNumberValue(
-						cellValueAsString
-					).longValue()
+						parseNumberValue(
+								cellValueAsString
+						)
+								.longValue()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				Date.class
-			))
-			{
+					targetDataType,
+					Date.class
+			)) {
 
 				final LocalDateTime localDateTime = parseLocalDateTimeValue(
-					cell,
-					true
+						cell,
+						true
 				);
 				result = Date.from(
-					localDateTime.atZone(
-						ZoneId.systemDefault()
-					).toInstant()
+						localDateTime
+								.atZone(
+										ZoneId.systemDefault()
+								)
+								.toInstant()
 				);
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				LocalDate.class
-			))
-			{
+					targetDataType,
+					LocalDate.class
+			)) {
 
 				result = parseLocalDateTimeValue(
-					cell,
-					false
-				).toLocalDate();
+						cell,
+						false
+				)
+						.toLocalDate();
 			} else if (CalcTableBeanUtils.isTypeCompatibleWithAnyOf(
-				targetDataType,
-				LocalDateTime.class
-			))
-			{
+					targetDataType,
+					LocalDateTime.class
+			)) {
 
 				result = parseLocalDateTimeValue(
-					cell,
-					true
+						cell,
+						true
 				);
 			} else {
 				throw CalcTableErrorHelper.handleUnsupportedValueType(
-					targetDataType
+						targetDataType
 				);
 			}
 
 			return (Optional<DATA_TYPE>) Optional.of(
-				result
+					result
 			);
 		} catch (final Exception ex) {
 
 			final RuntimeException warningException = new CalcTableException(
-				String.format(
-					"No primitive value could be parsed within the cell [sheet:'%s',rowNum:'%s',columnNum:'%s'] for the type %s from the original cell text '%s'.",
-					cell.getSheet().getSheetName(),
-					cell.getRowIndex(),
-					cell.getColumnIndex(),
-					targetDataType,
-					cellValueAsString
-				)
+					String.format(
+							"No primitive value could be parsed within the cell [sheet:'%s',rowNum:'%s',columnNum:'%s'] for the type %s from the original cell text '%s'.",
+							cell
+									.getSheet()
+									.getSheetName(),
+							cell.getRowIndex(),
+							cell.getColumnIndex(),
+							targetDataType,
+							cellValueAsString
+					)
 			);
 			messageContainer.add(
-				warningException
+					warningException
 			);
 			return Optional.empty();
 		}
@@ -336,7 +340,7 @@ public class CalcTablePrimitiveValueStandardParser
 	protected boolean parseBooleanValue(final String cellValueAsString) {
 
 		return Boolean.valueOf(
-			cellValueAsString
+				cellValueAsString
 		);
 	}
 
@@ -350,13 +354,16 @@ public class CalcTablePrimitiveValueStandardParser
 		switch (cellType) {
 			case NUMERIC:
 				if (DateUtil.isCellDateFormatted(
-					cell
-				))
-				{
+						cell
+				)) {
 					try {
-						return cell.getDateCellValue().toInstant().atZone(
-							ZoneId.systemDefault()
-						).toLocalDateTime();
+						return cell
+								.getDateCellValue()
+								.toInstant()
+								.atZone(
+										ZoneId.systemDefault()
+								)
+								.toLocalDateTime();
 					} catch (final NullPointerException ex) {
 						return null;
 					}
@@ -368,19 +375,19 @@ public class CalcTablePrimitiveValueStandardParser
 					try {
 						if (includingTimePart) {
 							return LocalDateTime.parse(
-								dateValueAsString,
-								formatter
+									dateValueAsString,
+									formatter
 							);
 						} else {
 							return LocalDateTime.of(
-								LocalDate.parse(
-									dateValueAsString,
-									formatter
-								),
-								LocalTime.of(
-									0,
-									0
-								)
+									LocalDate.parse(
+											dateValueAsString,
+											formatter
+									),
+									LocalTime.of(
+											0,
+											0
+									)
 							);
 						}
 					} catch (final Exception ex) {
@@ -393,26 +400,26 @@ public class CalcTablePrimitiveValueStandardParser
 						return LocalDateTime.parse(dateValueAsString);
 					} else {
 						return LocalDateTime.of(
-							LocalDate.parse(dateValueAsString),
-							LocalTime.of(
-								0,
-								0
-							)
+								LocalDate.parse(dateValueAsString),
+								LocalTime.of(
+										0,
+										0
+								)
 						);
 					}
 				} catch (final Exception ex) {
 					// ... no one try succeeded, nothing to do.
 					throw new CalcTableException(
-						String.format(
-							"No date formatter fits the given value '%s'. The date formatters tried: %s + the default one.",
-							dateValueAsString,
-							supportedDateTimeFormattersWithLocale
-						)
+							String.format(
+									"No date formatter fits the given value '%s'. The date formatters tried: %s + the default one.",
+									dateValueAsString,
+									supportedDateTimeFormattersWithLocale
+							)
 					);
 				}
 			default:
 				throw CalcTableErrorHelper.handleUnsupportedValue(
-					cellType
+						cellType
 				);
 		}
 	}

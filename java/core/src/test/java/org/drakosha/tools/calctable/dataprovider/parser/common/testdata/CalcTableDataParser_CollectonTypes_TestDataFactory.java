@@ -6,16 +6,16 @@ public interface CalcTableDataParser_CollectonTypes_TestDataFactory {
 
 	SupportingCollectionItem ENTRY_1 = //
 			SupportingCollectionItem.of(
-				true,
-				0,
-				"ABC"
+					true,
+					0,
+					"ABC"
 			);
 
 	SupportingCollectionItem ENTRY_2 = //
 			SupportingCollectionItem.of(
-				false,
-				0,
-				"BCD"
+					false,
+					0,
+					"BCD"
 			);
 
 }

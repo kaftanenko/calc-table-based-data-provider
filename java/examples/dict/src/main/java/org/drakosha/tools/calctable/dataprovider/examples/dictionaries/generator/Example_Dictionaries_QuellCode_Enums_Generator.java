@@ -35,25 +35,25 @@ public class Example_Dictionaries_QuellCode_Enums_Generator {
 
 		final Map<String, Object> templateDataModel = new HashMap<>();
 		templateDataModel.put(
-			"packageName",
-			enumPackageName
+				"packageName",
+				enumPackageName
 		);
 		templateDataModel.put(
-			"dictionary",
-			dictionaryData
+				"dictionary",
+				dictionaryData
 		);
 		templateDataModel.put(
-			"toEnumClassName",
-			new FreemarkerTemplateMethodToEnumClassName()
+				"toEnumClassName",
+				new FreemarkerTemplateMethodToEnumClassName()
 		);
 		templateDataModel.put(
-			"toEnumConstantName",
-			new FreemarkerTemplateMethodToEnumConstantName()
+				"toEnumConstantName",
+				new FreemarkerTemplateMethodToEnumConstantName()
 		);
 
 		template.process(
-			templateDataModel,
-			enumWriter
+				templateDataModel,
+				enumWriter
 		);
 	}
 }

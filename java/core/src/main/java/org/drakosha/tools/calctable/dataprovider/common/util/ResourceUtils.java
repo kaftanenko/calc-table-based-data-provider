@@ -19,11 +19,15 @@ public class ResourceUtils {
 	public static Path getAbsoluteResourcePath(final String resourcePath) {
 
 		try {
-			return Paths.get(
-				ResourceUtils.class.getResource(
-					"/"
-				).toURI()
-			).resolve(resourcePath);
+			return Paths
+					.get(
+							ResourceUtils.class
+									.getResource(
+											"/"
+									)
+									.toURI()
+					)
+					.resolve(resourcePath);
 		} catch (final URISyntaxException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -32,8 +36,8 @@ public class ResourceUtils {
 	public static String getResourceText(final String resourcePath) {
 
 		return getResourceText(
-			resourcePath,
-			STANDARD_CHARSET__UTF8
+				resourcePath,
+				STANDARD_CHARSET__UTF8
 		);
 	}
 
@@ -45,10 +49,12 @@ public class ResourceUtils {
 
 		try {
 
-			final Path resourceFilePath = new File(ResourceUtils.class.getResource(resourcePath).toURI()).toPath();
+			final Path resourceFilePath = new File(ResourceUtils.class
+					.getResource(resourcePath)
+					.toURI()).toPath();
 			return new String(
-				Files.readAllBytes(resourceFilePath),
-				charset
+					Files.readAllBytes(resourceFilePath),
+					charset
 			);
 		} catch (final Exception ex) {
 			throw new RuntimeException(ex);
@@ -64,9 +70,11 @@ public class ResourceUtils {
 			throws IOException
 	{
 
-		final Path absoluteDirPath = rootModuleAbsolutePath.resolve(targetModuleReleativePath).resolve(
-			targetModuleSourceDirReleativePath
-		);
+		final Path absoluteDirPath = rootModuleAbsolutePath
+				.resolve(targetModuleReleativePath)
+				.resolve(
+						targetModuleSourceDirReleativePath
+				);
 
 		Files.createDirectories(absoluteDirPath);
 

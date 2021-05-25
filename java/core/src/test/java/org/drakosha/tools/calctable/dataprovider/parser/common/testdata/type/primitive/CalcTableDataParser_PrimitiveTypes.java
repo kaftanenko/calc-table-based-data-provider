@@ -51,11 +51,11 @@ public class CalcTableDataParser_PrimitiveTypes
 	{
 
 		return new CalcTableDataParser_PrimitiveTypes(
-			bool,
-			calendar,
-			enumeration,
-			numeric,
-			text
+				bool,
+				calendar,
+				enumeration,
+				numeric,
+				text
 		);
 	}
 

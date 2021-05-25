@@ -45,23 +45,25 @@ public class Example_Dictionaries_PersonData_Enums_Generator_Launcher {
 		dictionariesSourceData.forEach(dictionary -> {
 			try {
 
-				final String enumClassName = new FreemarkerTemplateMethodToEnumClassName().exec(
-					Collections.singletonList(dictionary.getName())
-				).toString();
+				final String enumClassName = new FreemarkerTemplateMethodToEnumClassName()
+						.exec(
+								Collections.singletonList(dictionary.getName())
+						)
+						.toString();
 
 				final Path targetFilePath = buildTargetFilePath(enumClassName + ".java");
 
 				System.out.println(
-					String.format(
-						"Try to generate the file: %s",
-						targetFilePath
-					)
+						String.format(
+								"Try to generate the file: %s",
+								targetFilePath
+						)
 				);
 
 				dictionariesEnumsGenerator.generate(
-					dictionary,
-					TARGET_ENUMS_PACKAGE_NAME,
-					new FileWriter(targetFilePath.toFile())
+						dictionary,
+						TARGET_ENUMS_PACKAGE_NAME,
+						new FileWriter(targetFilePath.toFile())
 				);
 
 				System.out.println("... succeeded.");
@@ -80,8 +82,8 @@ public class Example_Dictionaries_PersonData_Enums_Generator_Launcher {
 	{
 
 		final String targetPackageDirRelativePath = TARGET_ENUMS_PACKAGE_NAME.replaceAll(
-			"\\.",
-			"/"
+				"\\.",
+				"/"
 		);
 
 		final String targetModuleInternalResourceDirPath = MODULE_INTERNAL_PATH__SRC_MAIN_JAVA
@@ -89,10 +91,10 @@ public class Example_Dictionaries_PersonData_Enums_Generator_Launcher {
 				+ targetPackageDirRelativePath;
 
 		final Path targetFilePath = ResourceUtils.buildFilePath_And_CreateTargetDir_If_NotExists(
-			ROOT_MODULE_PATH,
-			MODULE_PATH__EXAMPLES_TESTDATA,
-			targetModuleInternalResourceDirPath,
-			enumClassFileName
+				ROOT_MODULE_PATH,
+				MODULE_PATH__EXAMPLES_TESTDATA,
+				targetModuleInternalResourceDirPath,
+				enumClassFileName
 		);
 		return targetFilePath;
 	}

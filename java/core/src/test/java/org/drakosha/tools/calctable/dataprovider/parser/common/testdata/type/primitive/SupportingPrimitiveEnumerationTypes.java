@@ -38,8 +38,8 @@ public class SupportingPrimitiveEnumerationTypes
 	{
 
 		return new SupportingPrimitiveEnumerationTypes(
-			original,
-			withCustomValueOf
+				original,
+				withCustomValueOf
 		);
 	}
 

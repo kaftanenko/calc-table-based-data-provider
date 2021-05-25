@@ -41,9 +41,9 @@ public class SupportingCollectionItem
 	{
 
 		return new SupportingCollectionItem(
-			booleanProperty,
-			numericProperty,
-			textProperty
+				booleanProperty,
+				numericProperty,
+				textProperty
 		);
 	}
 

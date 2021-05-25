@@ -43,13 +43,14 @@ public class Example_Dictionaries_QuellCode_Enums_Generator_UnitTest {
 
 		// ... call service under test
 		serviceUnderTest.generate(
-			dictionaryData,
-			enumPackageName,
-			serviceOutputWriter
+				dictionaryData,
+				enumPackageName,
+				serviceOutputWriter
 		);
 
 		// ... verify post conditions
-		assertThat(serviceOutputWriter.toString()).isEqualTo(expectedGeneratedContent);
+		assertThat(serviceOutputWriter.toString())
+				.isEqualTo(expectedGeneratedContent);
 	}
 
 	@DataProvider

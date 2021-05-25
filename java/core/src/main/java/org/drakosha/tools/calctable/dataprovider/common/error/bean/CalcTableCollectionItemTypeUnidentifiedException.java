@@ -21,12 +21,12 @@ public class CalcTableCollectionItemTypeUnidentifiedException
 	{
 
 		super(
-			String.format(
-				"No type of a collection item could be identified: [bean: '%s', property name: %s].",
-				beanClass,
-				propertyName
-			),
-			ex
+				String.format(
+						"No type of a collection item could be identified: [bean: '%s', property name: %s].",
+						beanClass,
+						propertyName
+				),
+				ex
 		);
 	}
 

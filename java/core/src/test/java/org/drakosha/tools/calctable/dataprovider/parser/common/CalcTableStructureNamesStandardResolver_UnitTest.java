@@ -26,15 +26,16 @@ class CalcTableStructureNamesStandardResolver_UnitTest {
 
 		// ... call service under test
 		final String resultPropertyName = this.serviceUnderTest.resolvePropertyName(
-			structureName
+				structureName
 		);
 
 		// ... verify post-conditions
 		assertThat(
-			resultPropertyName
-		).isEqualTo(
-			expectedPropertyName
-		);
+				resultPropertyName
+		)
+				.isEqualTo(
+						expectedPropertyName
+				);
 	}
 
 	@DataProvider
@@ -42,10 +43,10 @@ class CalcTableStructureNamesStandardResolver_UnitTest {
 
 		return new Object[][] {
 				new Object[]
-				{
-						"some domain name",
-						"someDomainName"
-				},
+						{
+								"some domain name",
+								"someDomainName"
+						},
 				{
 						"some_domain_name",
 						"someDomainName"

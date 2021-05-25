@@ -15,14 +15,14 @@ class CalcTableLandscapeDataParser_PrimitiveTypes_UnitTest
 
 		return new Object[][] {
 				new Object[]
-				{
-						TEST_DATA_SOURCE__LANDSCAPE__DATA_PARSER__FILE_PATH,
-						"UT - Data Primitive Types",
-						new CalcTableDataParser_PrimitiveTypes[]
 						{
-								CalcTableDataParser_PrimitiveTypes_TestDataFactory.EXPECTED_DATA_NODES,
-						}
-				},
+								TEST_DATA_SOURCE__LANDSCAPE__DATA_PARSER__FILE_PATH,
+								"UT - Data Primitive Types",
+								new CalcTableDataParser_PrimitiveTypes[]
+										{
+												CalcTableDataParser_PrimitiveTypes_TestDataFactory.EXPECTED_DATA_NODES,
+										}
+						},
 		};
 	}
 

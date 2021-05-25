@@ -27,9 +27,9 @@ public class CalcTableSheetLandscapeStructureParser {
 		final Cell currentStructureCell;
 		try {
 			currentStructureCell = CalcTablePoiNavigationUtils.getCell(
-				sheet,
-				structureAreaDimension.getRow(),
-				structureAreaDimension.getColumn()
+					sheet,
+					structureAreaDimension.getRow(),
+					structureAreaDimension.getColumn()
 			);
 		} catch (final CalcTableException ex) {
 			return Arrays.asList();
@@ -37,17 +37,16 @@ public class CalcTableSheetLandscapeStructureParser {
 
 		final String currentStructureCellText = CalcTablePoiDataUtils.getCellValueAsString(currentStructureCell);
 		if (StringUtils.isBlank(
-			currentStructureCellText
-		))
-		{
+				currentStructureCellText
+		)) {
 			return Arrays.asList();
 		}
 
 		final List<CalcTableStructureNode> resultStructureNodes = new ArrayList<>();
 
 		final CalcTableCellsDimension currentStructureCellInnerDimension = CalcTablePoiNavigationUtils.getCellDimension(
-			sheet,
-			currentStructureCell
+				sheet,
+				currentStructureCell
 		);
 
 		final List<CalcTableStructureNode> childStructureNodes;
@@ -62,23 +61,23 @@ public class CalcTableSheetLandscapeStructureParser {
 			childStructureNodes = Arrays.asList();
 		} else {
 			final CalcTableCellsDimension childStructureAreaDimension = CalcTableCellsDimension.of(
-				childStructureCellStartRowNum,
-				structureAreaDimension.getColumn(),
-				structureAreaDimension.getRowSpan() - currentStructureCellInnerDimension.getRowSpan(),
-				currentStructureCellInnerDimension.getColumnSpan()
+					childStructureCellStartRowNum,
+					structureAreaDimension.getColumn(),
+					structureAreaDimension.getRowSpan() - currentStructureCellInnerDimension.getRowSpan(),
+					currentStructureCellInnerDimension.getColumnSpan()
 			);
 			childStructureNodes = parseStructureArea(
-				sheet,
-				childStructureAreaDimension
+					sheet,
+					childStructureAreaDimension
 			);
 		}
 
 		resultStructureNodes.add(
-			CalcTableStructureNode.of(
-				currentStructureCellText,
-				currentStructureCellInnerDimension,
-				childStructureNodes
-			)
+				CalcTableStructureNode.of(
+						currentStructureCellText,
+						currentStructureCellInnerDimension,
+						childStructureNodes
+				)
 		);
 
 		final List<CalcTableStructureNode> siblingStructureNodes;
@@ -95,19 +94,19 @@ public class CalcTableSheetLandscapeStructureParser {
 			siblingStructureNodes = Arrays.asList();
 		} else {
 			final CalcTableCellsDimension siblingStructureNodesDimension = CalcTableCellsDimension.of(
-				structureAreaDimension.getRow(),
-				nextSiblingColumnNum,
-				structureAreaDimension.getRowSpan(),
-				structureAreaDimension.getColumnSpan() - currentStructureCellInnerDimension.getColumnSpan()
+					structureAreaDimension.getRow(),
+					nextSiblingColumnNum,
+					structureAreaDimension.getRowSpan(),
+					structureAreaDimension.getColumnSpan() - currentStructureCellInnerDimension.getColumnSpan()
 			);
 			siblingStructureNodes = parseStructureArea(
-				sheet,
-				siblingStructureNodesDimension
+					sheet,
+					siblingStructureNodesDimension
 			);
 		}
 
 		resultStructureNodes.addAll(
-			siblingStructureNodes
+				siblingStructureNodes
 		);
 
 		return resultStructureNodes;

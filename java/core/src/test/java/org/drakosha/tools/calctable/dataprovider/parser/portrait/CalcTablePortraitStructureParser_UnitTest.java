@@ -37,31 +37,32 @@ class CalcTablePortraitStructureParser_UnitTest
 	{
 
 		// ... prepare test data
-		try (final InputStream is = new FileInputStream(
-			UNIT_TEST__SAMPLE_XLS_FILE__STRUCTURE_PARSER
-		);
+		try (
+				final InputStream is = new FileInputStream(
+						UNIT_TEST__SAMPLE_XLS_FILE__STRUCTURE_PARSER
+				);
 				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
-		{
+						is
+				)
+		) {
 			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				sheetName
+					workbook,
+					sheetName
 			);
 
 			final CalcTableCellsDimension structureAreaDimension = CalcTableCellsDimension.of(
-				FIRST_ROW_NUM,
-				FIRST_STRUCTURE_COLUMN_NUM,
-				sheet.getLastRowNum() - FIRST_ROW_NUM + 1,
-				FIRST_DATA_COLUMN_NUM - FIRST_STRUCTURE_COLUMN_NUM
+					FIRST_ROW_NUM,
+					FIRST_STRUCTURE_COLUMN_NUM,
+					sheet.getLastRowNum() - FIRST_ROW_NUM + 1,
+					FIRST_DATA_COLUMN_NUM - FIRST_STRUCTURE_COLUMN_NUM
 			);
 
 			// ... call service under test
 			final List<
 					CalcTableStructureNode> resultStructureNodes = serviceUnderTest.parseStructureArea(
-						sheet,
-						structureAreaDimension
-					);
+					sheet,
+					structureAreaDimension
+			);
 
 			// ... verify post-conditions
 			// verifyMessageContainer(
@@ -69,10 +70,11 @@ class CalcTablePortraitStructureParser_UnitTest
 			// );
 
 			assertThat(
-				resultStructureNodes
-			).containsExactly(
-				expectedStructureNode
-			);
+					resultStructureNodes
+			)
+					.containsExactly(
+							expectedStructureNode
+					);
 		}
 	}
 
@@ -81,13 +83,13 @@ class CalcTablePortraitStructureParser_UnitTest
 
 		return new Object[][] {
 				new Object[]
-				{
-						"UT - Structure Parser",
-						new CalcTableStructureNode[]
 						{
-								CalcTablePortraitStructureParser_TestDataFactory.EXPECTED_STRUCTURE_NODES
-						}
-				},
+								"UT - Structure Parser",
+								new CalcTableStructureNode[]
+										{
+												CalcTablePortraitStructureParser_TestDataFactory.EXPECTED_STRUCTURE_NODES
+										}
+						},
 		};
 	}
 

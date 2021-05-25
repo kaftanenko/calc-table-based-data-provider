@@ -24,20 +24,20 @@ public class FreemarkerTemplateMethodToEnumConstantName
 
 		String tmpResult = (String) args.get(0);
 		tmpResult = tmpResult.replaceAll(
-			"\\(.*\\)",
-			" "
+				"\\(.*\\)",
+				" "
 		);
 		tmpResult = tmpResult.replaceAll(
-			"[^A-Za-z0-9]+",
-			" "
+				"[^A-Za-z0-9]+",
+				" "
 		);
 		tmpResult = WordUtils.capitalize(
-			tmpResult
+				tmpResult
 		);
 		tmpResult = tmpResult.trim();
 		tmpResult = tmpResult.replaceAll(
-			"\\s+",
-			"_"
+				"\\s+",
+				"_"
 		);
 		tmpResult = tmpResult.toUpperCase();
 

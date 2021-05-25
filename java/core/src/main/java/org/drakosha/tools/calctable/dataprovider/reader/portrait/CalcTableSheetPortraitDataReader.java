@@ -42,8 +42,8 @@ public class CalcTableSheetPortraitDataReader
 
 		final CalcTableDataParserConfig dataParserConfig = //
 				new CalcTableDataParserConfig(
-					config.getPrimitiveValueParser(),
-					config.getStructureNamesResolver()
+						config.getPrimitiveValueParser(),
+						config.getStructureNamesResolver()
 				);
 		this.dataParser = new CalcTableSheetPortraitDataParser(dataParserConfig);
 	}
@@ -59,35 +59,37 @@ public class CalcTableSheetPortraitDataReader
 	{
 
 		final CalcTableCellsDimension headerDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
-			sheet,
-			CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
+				sheet,
+				CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
 		);
 		final List<
 				CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
-					sheet,
-					headerDimension
-				);
-		final CalcTableCellsDimension headerFirstCellDimension = headerDescription.get(0).getInnerDimension();
+				sheet,
+				headerDimension
+		);
+		final CalcTableCellsDimension headerFirstCellDimension = headerDescription
+				.get(0)
+				.getInnerDimension();
 
 		final int firstRowNum = headerDimension.getRow() + headerDimension.getRowSpan();
 		final int firstStructureColumnNum = headerFirstCellDimension.getColumn();
 		final int firstDataColumnNum = headerFirstCellDimension.getColumn() + headerFirstCellDimension.getColumnSpan();
 
 		final CalcTableCellsDimension dataAreaDimension = CalcTableCellsDimension.of(
-			firstRowNum,
-			firstDataColumnNum,
-			sheet.getLastRowNum() - firstRowNum + 1,
-			headerDimension.getColumnSpan() - firstDataColumnNum + firstStructureColumnNum
+				firstRowNum,
+				firstDataColumnNum,
+				sheet.getLastRowNum() - firstRowNum + 1,
+				headerDimension.getColumnSpan() - firstDataColumnNum + firstStructureColumnNum
 		);
 
 		final List<CalcTableStructureNode> structureDescription = parseStructureArea(sheet);
 
 		final List<DATA_TYPE> result = dataParser.parseDataArea(
-			sheet,
-			dataRecordType,
-			dataAreaDimension,
-			structureDescription,
-			messageContainer
+				sheet,
+				dataRecordType,
+				dataAreaDimension,
+				structureDescription,
+				messageContainer
 		);
 
 		return result;
@@ -99,30 +101,32 @@ public class CalcTableSheetPortraitDataReader
 	{
 
 		final CalcTableCellsDimension headerDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
-			sheet,
-			config.getHeaderCellSampler()
+				sheet,
+				config.getHeaderCellSampler()
 		);
 		final List<
 				CalcTableStructureNode> headerDescription = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
-					sheet,
-					headerDimension
-				);
-		final CalcTableCellsDimension headerFirstCellDimension = headerDescription.get(0).getInnerDimension();
+				sheet,
+				headerDimension
+		);
+		final CalcTableCellsDimension headerFirstCellDimension = headerDescription
+				.get(0)
+				.getInnerDimension();
 
 		final int firstRowNum = headerDimension.getRow() + headerDimension.getRowSpan();
 		final int firstStructureColumnNum = headerFirstCellDimension.getColumn();
 		final int firstDataColumnNum = headerFirstCellDimension.getColumn() + headerFirstCellDimension.getColumnSpan();
 
 		final CalcTableCellsDimension structureAreaDimension = CalcTableCellsDimension.of(
-			firstRowNum,
-			firstStructureColumnNum,
-			sheet.getLastRowNum() - firstRowNum + 1,
-			firstDataColumnNum - firstStructureColumnNum
+				firstRowNum,
+				firstStructureColumnNum,
+				sheet.getLastRowNum() - firstRowNum + 1,
+				firstDataColumnNum - firstStructureColumnNum
 		);
 
 		final List<CalcTableStructureNode> firstLevelStructureNodes = structureParser.parseStructureArea(
-			sheet,
-			structureAreaDimension
+				sheet,
+				structureAreaDimension
 		);
 		return firstLevelStructureNodes;
 	}

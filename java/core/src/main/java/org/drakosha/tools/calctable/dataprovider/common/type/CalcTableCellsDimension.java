@@ -40,10 +40,10 @@ public class CalcTableCellsDimension
 	{
 
 		return new CalcTableCellsDimension(
-			row,
-			column,
-			rowSpan,
-			columnSpan
+				row,
+				column,
+				rowSpan,
+				columnSpan
 		);
 	}
 

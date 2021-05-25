@@ -36,43 +36,46 @@ class CalcTableLandscapeStructureParser_UnitTest
 	{
 
 		// ... prepare test data
-		try (final InputStream is = new FileInputStream(
-			this.UNIT_TEST__SAMPLE_XLS_FILE__STRUCTURE_PARSER
-		);
+		try (
+				final InputStream is = new FileInputStream(
+						this.UNIT_TEST__SAMPLE_XLS_FILE__STRUCTURE_PARSER
+				);
 				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
-		{
+						is
+				)
+		) {
 			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				sheetName
+					workbook,
+					sheetName
 			);
 
 			// ... call service under test
 			final CalcTableCellsDimension structureAreaDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
-				sheet,
-				CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
+					sheet,
+					CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND
 			);
 
 			final List<
 					CalcTableStructureNode> resultStructureNodes = new CalcTableSheetLandscapeStructureParser().parseStructureArea(
-						sheet,
-						structureAreaDimension
-					);
+					sheet,
+					structureAreaDimension
+			);
 
 			// ... verify post-conditions
 			assertThat(
-				resultStructureNodes
-			).hasSize(
-				1
-			);
+					resultStructureNodes
+			)
+					.hasSize(
+							1
+					);
 			assertThat(
-				resultStructureNodes.get(
-					0
-				)
-			).isEqualTo(
-				expectedStructureNode
-			);
+					resultStructureNodes.get(
+							0
+					)
+			)
+					.isEqualTo(
+							expectedStructureNode
+					);
 		}
 	}
 
@@ -81,15 +84,15 @@ class CalcTableLandscapeStructureParser_UnitTest
 
 		return new Object[][] {
 				new Object[]
-				{
-						"UT - Structure Parser (merged)",
-						CalcTableLandscapeStructureParser_TestDataFactory_MergedFormat.EXPECTED_STRUCTURE_NODES
-				},
+						{
+								"UT - Structure Parser (merged)",
+								CalcTableLandscapeStructureParser_TestDataFactory_MergedFormat.EXPECTED_STRUCTURE_NODES
+						},
 				new Object[]
-				{
-						"UT - Structure Parser (natural)",
-						CalcTableLandscapeStructureParser_TestDataFactory_NaturalFormat.EXPECTED_STRUCTURE_NODES
-				},
+						{
+								"UT - Structure Parser (natural)",
+								CalcTableLandscapeStructureParser_TestDataFactory_NaturalFormat.EXPECTED_STRUCTURE_NODES
+						},
 		};
 	}
 

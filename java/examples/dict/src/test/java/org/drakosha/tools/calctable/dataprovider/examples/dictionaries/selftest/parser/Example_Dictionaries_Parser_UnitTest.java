@@ -31,6 +31,7 @@ class Example_Dictionaries_Parser_UnitTest {
 		final List<Dictionary> result = serviceUnderTest.parseDictionaryFile(filePath);
 
 		// ... verify post conditions
-		assertThat(result).containsExactlyElementsOf(expectedResult);
+		assertThat(result)
+				.containsExactlyElementsOf(expectedResult);
 	}
 }

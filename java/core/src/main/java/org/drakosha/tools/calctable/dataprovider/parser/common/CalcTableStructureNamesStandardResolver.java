@@ -37,8 +37,7 @@ public class CalcTableStructureNamesStandardResolver
 	 * Recognize cell text as a comment node in case it is prefixed with the "#"
 	 * sign.
 	 *
-	 * @param structureNodeText
-	 *          original text from the structure description cell.
+	 * @param structureNodeText original text from the structure description cell.
 	 * @return true or false, see method description for further details.
 	 */
 	@Override
@@ -53,8 +52,7 @@ public class CalcTableStructureNamesStandardResolver
 	 * interpreted as the word delimiter signs and will be removed. The method
 	 * ignores either text parts within round brackets.
 	 *
-	 * @param structureNodeText
-	 *          original text from the structure description cell.
+	 * @param structureNodeText original text from the structure description cell.
 	 * @return true or false, see method description for further details.
 	 */
 	@Override
@@ -65,22 +63,22 @@ public class CalcTableStructureNamesStandardResolver
 
 		String tmpResult = structureNodeText;
 		tmpResult = tmpResult.replaceAll(
-			"\\(.*\\)",
-			" "
+				"\\(.*\\)",
+				" "
 		);
 		tmpResult = tmpResult.replaceAll(
-			"[^A-Za-z0-9]+",
-			" "
+				"[^A-Za-z0-9]+",
+				" "
 		);
 		tmpResult = WordUtils.capitalize(
-			tmpResult
+				tmpResult
 		);
 		tmpResult = tmpResult.replaceAll(
-			" +",
-			""
+				" +",
+				""
 		);
 		tmpResult = WordUtils.uncapitalize(
-			tmpResult
+				tmpResult
 		);
 		return tmpResult;
 	}

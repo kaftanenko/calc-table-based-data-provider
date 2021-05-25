@@ -21,12 +21,12 @@ public class CalcTableBeanPropertyMissingException
 	{
 
 		super(
-			String.format(
-				"There is no such bean property: [bean: '%s', property name: %s]. The original structure cell text: '%s'.",
-				beanClass,
-				propertyName,
-				originalStructureCellText
-			)
+				String.format(
+						"There is no such bean property: [bean: '%s', property name: %s]. The original structure cell text: '%s'.",
+						beanClass,
+						propertyName,
+						originalStructureCellText
+				)
 		);
 	}
 

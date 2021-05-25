@@ -22,13 +22,13 @@ public class CalcTableBeanPropertyUnsettableException
 	{
 
 		super(
-			String.format(
-				"The bean property [bean: '%s', property name: '%s'] couldn't be set to the value '%s'.",
-				beanClass,
-				propertyName,
-				propertyValue
-			),
-			ex
+				String.format(
+						"The bean property [bean: '%s', property name: '%s'] couldn't be set to the value '%s'.",
+						beanClass,
+						propertyName,
+						propertyValue
+				),
+				ex
 		);
 	}
 

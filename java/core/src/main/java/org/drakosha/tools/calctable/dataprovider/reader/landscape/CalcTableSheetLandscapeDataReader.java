@@ -40,8 +40,8 @@ public class CalcTableSheetLandscapeDataReader
 
 		final CalcTableDataParserConfig dataParserConfig = //
 				new CalcTableDataParserConfig(
-					config.getPrimitiveValueParser(),
-					config.getStructureNamesResolver()
+						config.getPrimitiveValueParser(),
+						config.getStructureNamesResolver()
 				);
 		this.dataParser = new CalcTableSheetLandscapeDataParser(dataParserConfig);
 	}
@@ -59,10 +59,10 @@ public class CalcTableSheetLandscapeDataReader
 		final List<CalcTableStructureNode> structureDescription = parseStructureArea(sheet);
 
 		final List<DATA_TYPE> result = dataParser.parseDataArea(
-			sheet,
-			dataRecordType,
-			structureDescription,
-			messageContainer
+				sheet,
+				dataRecordType,
+				structureDescription,
+				messageContainer
 		);
 
 		return result;
@@ -74,13 +74,13 @@ public class CalcTableSheetLandscapeDataReader
 	{
 
 		final CalcTableCellsDimension structureAreaDimension = CalcTablePoiDataUtils.determineCellsAreaDimension(
-			sheet,
-			this.config.getHeaderCellSampler()
+				sheet,
+				this.config.getHeaderCellSampler()
 		);
 
 		final List<CalcTableStructureNode> firstLevelStructureNodes = structureParser.parseStructureArea(
-			sheet,
-			structureAreaDimension
+				sheet,
+				structureAreaDimension
 		);
 		return firstLevelStructureNodes;
 	}

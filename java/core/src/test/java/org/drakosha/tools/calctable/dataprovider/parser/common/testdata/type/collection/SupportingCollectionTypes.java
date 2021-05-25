@@ -44,9 +44,9 @@ public class SupportingCollectionTypes
 	{
 
 		return new SupportingCollectionTypes(
-			array,
-			list,
-			set
+				array,
+				list,
+				set
 		);
 	}
 

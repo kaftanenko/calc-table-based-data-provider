@@ -13,9 +13,11 @@ public class Example_Dictionaries_Freemarker_Configuration
 	// ... constants
 
 	private final static File FTL_TEMPALTES_DIR = new File(
-		Example_Dictionaries_Freemarker_Configuration.class.getResource(
-			"/generator-templates"
-		).getFile()
+			Example_Dictionaries_Freemarker_Configuration.class
+					.getResource(
+							"/generator-templates"
+					)
+					.getFile()
 	);
 
 	private final static String STANDARD_ENCODING__UTF8 = "UTF-8";

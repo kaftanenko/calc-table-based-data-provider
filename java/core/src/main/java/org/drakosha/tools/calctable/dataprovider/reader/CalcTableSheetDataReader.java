@@ -16,13 +16,10 @@ public interface CalcTableSheetDataReader {
 	 * must be accumulated within the given message container.
 	 *
 	 * @param <DATA_TYPE>
-	 * @param sheet
-	 *          the Calc table sheet to read from
-	 * @param dataRecordType
-	 *          the type of expected data records
-	 * @param messageContainer
-	 *          container to accumulate exceptions had arisen during the reading
-	 *          process
+	 * @param sheet            the Calc table sheet to read from
+	 * @param dataRecordType   the type of expected data records
+	 * @param messageContainer container to accumulate exceptions had arisen during the reading
+	 *                         process
 	 * @return resulting data record sets
 	 */
 	<DATA_TYPE> List<DATA_TYPE> readData(

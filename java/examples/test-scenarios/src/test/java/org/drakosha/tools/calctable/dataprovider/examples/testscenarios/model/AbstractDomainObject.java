@@ -12,11 +12,12 @@ public abstract class AbstractDomainObject {
 	// ... dependencies
 
 	private final static ObjectMapper JSON_OBJECT_WRAPPER = new ObjectMapper();
+
 	static {
 		JSON_OBJECT_WRAPPER.registerModule(new JSR310Module());
 		JSON_OBJECT_WRAPPER.configure(
-			SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
-			false
+				SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
+				false
 		);
 	}
 
@@ -26,8 +27,8 @@ public abstract class AbstractDomainObject {
 	public int hashCode() {
 
 		return HashCodeBuilder.reflectionHashCode(
-			this,
-			true
+				this,
+				true
 		);
 	}
 
@@ -38,9 +39,9 @@ public abstract class AbstractDomainObject {
 	{
 
 		return EqualsBuilder.reflectionEquals(
-			this,
-			obj,
-			true
+				this,
+				obj,
+				true
 		);
 	}
 
@@ -48,7 +49,9 @@ public abstract class AbstractDomainObject {
 	public String toString() {
 
 		try {
-			return JSON_OBJECT_WRAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(this);
+			return JSON_OBJECT_WRAPPER
+					.writerWithDefaultPrettyPrinter()
+					.writeValueAsString(this);
 		} catch (final JsonProcessingException ex) {
 			throw new RuntimeException(ex);
 		}

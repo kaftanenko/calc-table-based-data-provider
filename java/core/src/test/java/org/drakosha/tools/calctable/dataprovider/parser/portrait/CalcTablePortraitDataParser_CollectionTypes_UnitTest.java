@@ -18,40 +18,40 @@ class CalcTablePortraitDataParser_CollectionTypes_UnitTest
 
 		return new Object[][] {
 				new Object[]
-				{
-						TEST_DATA_SOURCE__PORTRAIT__DATA_PARSER__FILE_PATH,
-						"UT - Data Collection Types",
-						new SupportingCollectionTypes[]
 						{
-								SupportingCollectionTypes.of(
-									null,
-									Arrays.asList(
-										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
-										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2,
-										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1
-									),
-									new HashSet(
-										Arrays.asList(
-											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
-											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
-										)
-									)
-								),
-								SupportingCollectionTypes.of(
-									null,
-									Arrays.asList(
-										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
-										CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
-									),
-									new HashSet(
-										Arrays.asList(
-											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
-											CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
-										)
-									)
-								),
-						}
-				},
+								TEST_DATA_SOURCE__PORTRAIT__DATA_PARSER__FILE_PATH,
+								"UT - Data Collection Types",
+								new SupportingCollectionTypes[]
+										{
+												SupportingCollectionTypes.of(
+														null,
+														Arrays.asList(
+																CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
+																CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2,
+																CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1
+														),
+														new HashSet(
+																Arrays.asList(
+																		CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
+																		CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
+																)
+														)
+												),
+												SupportingCollectionTypes.of(
+														null,
+														Arrays.asList(
+																CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
+																CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
+														),
+														new HashSet(
+																Arrays.asList(
+																		CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_1,
+																		CalcTableDataParser_CollectonTypes_TestDataFactory.ENTRY_2
+																)
+														)
+												),
+										}
+						},
 		};
 	}
 

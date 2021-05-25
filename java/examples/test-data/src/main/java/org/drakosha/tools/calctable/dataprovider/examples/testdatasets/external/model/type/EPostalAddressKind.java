@@ -10,38 +10,39 @@ public enum EPostalAddressKind {
 	// ... value constants
 
 	HOME(
-		/* value: */ "H",
-		/* display text: */ "home"
+			/* value: */ "H",
+			/* display text: */ "home"
 	),
 	WORK(
-		/* value: */ "W",
-		/* display text: */ "work"
+			/* value: */ "W",
+			/* display text: */ "work"
 	),
 	;
-	
+
 	// ... properties
-	
+
 	private final String value;
-	
+
 	private final String displayText;
-	
+
 	// ... constructors
-	
+
 	private EPostalAddressKind(
-		final String value,
-		final String displayText
-	) {
-	
+			final String value,
+			final String displayText
+	)
+	{
+
 		this.value = value;
 		this.displayText = displayText;
 	}
-	
+
 	// ... getter methods
-	
+
 	public String getValue() {
 		return value;
 	}
-	
+
 	public String getDisplayText() {
 		return displayText;
 	}

@@ -20,11 +20,11 @@ public class CalcTableBeanInstantiationException
 	{
 
 		super(
-			String.format(
-				"The bean couldn't be instantiated: [bean: '%s'].",
-				beanClass
-			),
-			ex
+				String.format(
+						"The bean couldn't be instantiated: [bean: '%s'].",
+						beanClass
+				),
+				ex
 		);
 	}
 

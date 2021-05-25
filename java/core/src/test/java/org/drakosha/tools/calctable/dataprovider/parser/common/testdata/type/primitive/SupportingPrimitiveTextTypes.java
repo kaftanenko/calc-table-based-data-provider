@@ -31,7 +31,7 @@ public class SupportingPrimitiveTextTypes
 	{
 
 		return new SupportingPrimitiveTextTypes(
-			string
+				string
 		);
 	}
 

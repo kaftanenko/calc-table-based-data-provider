@@ -38,9 +38,15 @@ public class Example_TestScenarios_SimpleCalculator_UnitTest {
 		String actualErrorMessageText;
 		try {
 			actualResult = serviceUnderTest.calculate(
-				testScenarioRecord.getInputParameters().getArgument1(),
-				testScenarioRecord.getInputParameters().getOperation(),
-				testScenarioRecord.getInputParameters().getArgument2()
+					testScenarioRecord
+							.getInputParameters()
+							.getArgument1(),
+					testScenarioRecord
+							.getInputParameters()
+							.getOperation(),
+					testScenarioRecord
+							.getInputParameters()
+							.getArgument2()
 			);
 			actualErrorMessageText = null;
 		} catch (final Exception ex) {
@@ -49,8 +55,14 @@ public class Example_TestScenarios_SimpleCalculator_UnitTest {
 		}
 
 		// ... verify post-conditions
-		assertThat(actualResult).isEqualTo(testScenarioRecord.getExpectedOutput().getResult());
-		assertThat(actualErrorMessageText).isEqualTo(testScenarioRecord.getExpectedErrorMessage().getText());
+		assertThat(actualResult)
+				.isEqualTo(testScenarioRecord
+						.getExpectedOutput()
+						.getResult());
+		assertThat(actualErrorMessageText)
+				.isEqualTo(testScenarioRecord
+						.getExpectedErrorMessage()
+						.getText());
 	}
 
 	// ... test data provider
@@ -60,27 +72,33 @@ public class Example_TestScenarios_SimpleCalculator_UnitTest {
 			throws Exception
 	{
 
-		try (final InputStream workbookInputStream = new FileInputStream(
-			EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT
-		))
-		{
+		try (
+				final InputStream workbookInputStream = new FileInputStream(
+						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT
+				)
+		) {
 			final CalcTableWorkbookDataReader workbookReader = new CalcTableWorkbookDataReader();
 
 			final String sheetName = EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES;
 			final Class<?> dataRecordType = Example_TestScenarios_SimpleCalculator_Record.class;
 			final CalcTableSheetDataReader sheetDataReader = new CalcTableSheetPortraitStandardDataReader(
-				EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+					EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
 			);
 
-			return workbookReader.readData(
-				workbookInputStream,
-				sheetName,
-				dataRecordType,
-				sheetDataReader
-			).stream().map(e -> new Object[]
-			{
-					e
-			}).collect(Collectors.toList()).toArray(new Object[0][0]);
+			return workbookReader
+					.readData(
+							workbookInputStream,
+							sheetName,
+							dataRecordType,
+							sheetDataReader
+					)
+					.stream()
+					.map(e -> new Object[]
+							{
+									e
+							})
+					.collect(Collectors.toList())
+					.toArray(new Object[0][0]);
 		}
 	}
 

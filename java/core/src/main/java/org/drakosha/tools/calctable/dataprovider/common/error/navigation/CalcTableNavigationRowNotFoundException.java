@@ -22,12 +22,12 @@ public class CalcTableNavigationRowNotFoundException
 	{
 
 		super(
-			String.format(
-				"There is no such row: [sheet: '%s', row: %d] within the workbook: '%s'.",
-				sheet.getSheetName(),
-				rowNum,
-				sheet.getWorkbook()
-			)
+				String.format(
+						"There is no such row: [sheet: '%s', row: %d] within the workbook: '%s'.",
+						sheet.getSheetName(),
+						rowNum,
+						sheet.getWorkbook()
+				)
 		);
 	}
 

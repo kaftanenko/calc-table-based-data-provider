@@ -45,20 +45,19 @@ public class CalcTablePoiDataUtils {
 
 		if (startStructureCellRowNum < 0) {
 			throw handleCellsAreaNotFoundException(
-				sheet
+					sheet
 			);
 		}
 
 		int lastStructureCellRowNum = startStructureCellRowNum;
 		try {
 			while (cellsAreaSampler.test(
-				CalcTablePoiNavigationUtils.getCell(
-					sheet,
-					lastStructureCellRowNum + 1,
-					startStructureCellColumnNum
-				)
-			))
-			{
+					CalcTablePoiNavigationUtils.getCell(
+							sheet,
+							lastStructureCellRowNum + 1,
+							startStructureCellColumnNum
+					)
+			)) {
 				lastStructureCellRowNum++;
 			}
 		} catch (final CalcTableException ex) {
@@ -68,13 +67,12 @@ public class CalcTablePoiDataUtils {
 		int lastStructureCellColumnNum = startStructureCellColumnNum;
 		try {
 			while (cellsAreaSampler.test(
-				CalcTablePoiNavigationUtils.getCell(
-					sheet,
-					startStructureCellRowNum,
-					lastStructureCellColumnNum + 1
-				)
-			))
-			{
+					CalcTablePoiNavigationUtils.getCell(
+							sheet,
+							startStructureCellRowNum,
+							lastStructureCellColumnNum + 1
+					)
+			)) {
 				lastStructureCellColumnNum++;
 			}
 		} catch (final CalcTableException ex) {
@@ -82,10 +80,10 @@ public class CalcTablePoiDataUtils {
 		}
 
 		final CalcTableCellsDimension structureAreaDimension = CalcTableCellsDimension.of(
-			startStructureCellRowNum,
-			startStructureCellColumnNum,
-			1 + lastStructureCellRowNum - startStructureCellRowNum,
-			1 + lastStructureCellColumnNum - startStructureCellColumnNum
+				startStructureCellRowNum,
+				startStructureCellColumnNum,
+				1 + lastStructureCellRowNum - startStructureCellRowNum,
+				1 + lastStructureCellColumnNum - startStructureCellColumnNum
 		);
 		return structureAreaDimension;
 	}
@@ -96,13 +94,21 @@ public class CalcTablePoiDataUtils {
 	)
 	{
 
-		final Color cellBackgroundColor = cell.getCellStyle().getFillBackgroundColorColor();
-		return Arrays.stream(bgColors).filter(bgColor -> bgColor.equals(cellBackgroundColor)).findAny().isPresent();
+		final Color cellBackgroundColor = cell
+				.getCellStyle()
+				.getFillBackgroundColorColor();
+		return Arrays
+				.stream(bgColors)
+				.filter(bgColor -> bgColor.equals(cellBackgroundColor))
+				.findAny()
+				.isPresent();
 	}
 
 	public static boolean hasNoBackgroundColor(final Cell cell) {
 
-		final Color cellBackgroundColor = cell.getCellStyle().getFillBackgroundColorColor();
+		final Color cellBackgroundColor = cell
+				.getCellStyle()
+				.getFillBackgroundColorColor();
 		return cellBackgroundColor == null;
 	}
 
@@ -117,17 +123,19 @@ public class CalcTablePoiDataUtils {
 				return null;
 			case BOOLEAN:
 				return Boolean.toString(
-					cell.getBooleanCellValue()
+						cell.getBooleanCellValue()
 				);
 			case NUMERIC:
 				return Double.toString(
-					cell.getNumericCellValue()
+						cell.getNumericCellValue()
 				);
 			case STRING:
-				return cell.getStringCellValue().trim();
+				return cell
+						.getStringCellValue()
+						.trim();
 			default:
 				throw CalcTableErrorHelper.handleUnsupportedValue(
-					cellTypeEnum
+						cellTypeEnum
 				);
 		}
 	}
@@ -140,10 +148,10 @@ public class CalcTablePoiDataUtils {
 	{
 
 		throw new CalcTableException(
-			String.format(
-				"No structure area found within the [sheet: '%s']!",
-				sheet.getSheetName()
-			)
+				String.format(
+						"No structure area found within the [sheet: '%s']!",
+						sheet.getSheetName()
+				)
 		);
 	}
 

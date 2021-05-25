@@ -17,7 +17,7 @@ public class CalcTableException
 	{
 
 		super(
-			message
+				message
 		);
 	}
 
@@ -27,7 +27,7 @@ public class CalcTableException
 	{
 
 		super(
-			cause
+				cause
 		);
 	}
 
@@ -38,8 +38,8 @@ public class CalcTableException
 	{
 
 		super(
-			message,
-			cause
+				message,
+				cause
 		);
 	}
 

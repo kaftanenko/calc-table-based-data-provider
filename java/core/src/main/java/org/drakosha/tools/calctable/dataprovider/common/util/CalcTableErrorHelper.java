@@ -12,7 +12,7 @@ public class CalcTableErrorHelper {
 	{
 
 		throw new CalcTableException(
-			message
+				message
 		);
 	}
 
@@ -22,7 +22,7 @@ public class CalcTableErrorHelper {
 	{
 
 		throw new CalcTableException(
-			cause
+				cause
 		);
 	}
 
@@ -33,15 +33,15 @@ public class CalcTableErrorHelper {
 	{
 
 		throw new CalcTableException(
-			message,
-			cause
+				message,
+				cause
 		);
 	}
 
 	public static RuntimeException handleNotImplementedYetException() {
 
 		throw new CalcTableException(
-			"... not implemented yet."
+				"... not implemented yet."
 		);
 	}
 
@@ -51,10 +51,10 @@ public class CalcTableErrorHelper {
 	{
 
 		throw new CalcTableException(
-			String.format(
-				"The value is unsupported yet: '%s'.",
-				value
-			)
+				String.format(
+						"The value is unsupported yet: '%s'.",
+						value
+				)
 		);
 	}
 
@@ -64,10 +64,10 @@ public class CalcTableErrorHelper {
 	{
 
 		throw new CalcTableException(
-			String.format(
-				"The type is unsupported yet: '%s'.",
-				type
-			)
+				String.format(
+						"The type is unsupported yet: '%s'.",
+						type
+				)
 		);
 	}
 

@@ -25,11 +25,18 @@ public class ExternalPersonDataServiceMock
 	)
 	{
 
-		return getDataItems().stream().filter(
-			e -> lastName.equals(e.getPersonalData().getLastName()) && firstName.equals(e.getPersonalData().getFirstName())
-		).collect(
-			Collectors.toList()
-		);
+		return getDataItems()
+				.stream()
+				.filter(
+						e -> lastName.equals(e
+								.getPersonalData()
+								.getLastName()) && firstName.equals(e
+								.getPersonalData()
+								.getFirstName())
+				)
+				.collect(
+						Collectors.toList()
+				);
 	}
 
 	// ... configuration methods

@@ -30,23 +30,24 @@ public abstract class AbstractCalcTableDrivenDataRepository<DATA_ITEM_TYPE> {
 
 		if (cachedDataItems == null) {
 
-			try (final InputStream workbookInputStream = new FileInputStream(
-				getDataSourceFilePath()
-			))
-			{
+			try (
+					final InputStream workbookInputStream = new FileInputStream(
+							getDataSourceFilePath()
+					)
+			) {
 				final String sheetName = getDataSourceSheetName();
 				final Class<DATA_ITEM_TYPE> dataRecordType = getDataRecordType();
 				final CalcTableSheetLandscapeDataReader sheetDataReader = new CalcTableSheetLandscapeStandardDataReader(
-					EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+						EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
 				);
 
 				final CalcTableWorkbookDataReader workbookReader = new CalcTableWorkbookDataReader();
 
 				cachedDataItems = workbookReader.readData(
-					workbookInputStream,
-					sheetName,
-					dataRecordType,
-					sheetDataReader
+						workbookInputStream,
+						sheetName,
+						dataRecordType,
+						sheetDataReader
 				);
 			} catch (final Exception ex) {
 				throw new RuntimeException(ex);

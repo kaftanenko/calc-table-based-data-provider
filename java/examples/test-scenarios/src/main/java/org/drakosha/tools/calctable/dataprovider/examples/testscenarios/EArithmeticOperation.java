@@ -25,23 +25,28 @@ public enum EArithmeticOperation {
 		this.sign = sign;
 
 		EnumUtils.overrideValueOfBehaviour(
-			this,
-			sign
+				this,
+				sign
 		);
 	}
 
 	public static EArithmeticOperation findBySign(final String sign) {
 
-		return Arrays.asList(EArithmeticOperation.values()).stream().filter(
-			e -> e.sign.equals(sign)
-		).findFirst().orElseThrow(
-			() -> new RuntimeException(
-				String.format(
-					"Operation '%s' is not supported yet.",
-					sign
+		return Arrays
+				.asList(EArithmeticOperation.values())
+				.stream()
+				.filter(
+						e -> e.sign.equals(sign)
 				)
-			)
-		);
+				.findFirst()
+				.orElseThrow(
+						() -> new RuntimeException(
+								String.format(
+										"Operation '%s' is not supported yet.",
+										sign
+								)
+						)
+				);
 	}
 
 }

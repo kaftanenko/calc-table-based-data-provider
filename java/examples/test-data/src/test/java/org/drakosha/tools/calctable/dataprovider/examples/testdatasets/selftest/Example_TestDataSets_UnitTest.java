@@ -41,25 +41,26 @@ public class Example_TestDataSets_UnitTest {
 
 		// ... prepare test data
 
-		try (final InputStream is = new FileInputStream(
-			workbookFilePath
-		);
+		try (
+				final InputStream is = new FileInputStream(
+						workbookFilePath
+				);
 				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
-		{
+						is
+				)
+		) {
 			final Sheet sheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				sheetName
+					workbook,
+					sheetName
 			);
 
 			final List<RuntimeException> messageContainer = new ArrayList<>();
 
 			// ... call service under test
 			final List<Person> result = reader.readData(
-				sheet,
-				Person.class,
-				messageContainer
+					sheet,
+					Person.class,
+					messageContainer
 			);
 
 			// ... verify post-conditions
@@ -68,11 +69,13 @@ public class Example_TestDataSets_UnitTest {
 
 			System.out.println("# Expected result:");
 			System.out.println(expectedResult);
-			assertThat(result).containsExactlyElementsOf(expectedResult);
+			assertThat(result)
+					.containsExactlyElementsOf(expectedResult);
 
 			System.out.println("# Actual error messages:");
 			System.out.println(messageContainer);
-			assertThat(messageContainer).isEmpty();
+			assertThat(messageContainer)
+					.isEmpty();
 		}
 	}
 
@@ -85,7 +88,7 @@ public class Example_TestDataSets_UnitTest {
 
 				{
 						new CalcTableSheetLandscapeStandardDataReader(
-							EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+								EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
 						),
 						EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_LANDSCAPE_FORMAT,
 						EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA,
@@ -93,7 +96,7 @@ public class Example_TestDataSets_UnitTest {
 				},
 				{
 						new CalcTableSheetPortraitStandardDataReader(
-							EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+								EXAMPLE_TEST_DATA_SETS__SHEET_DATA_READER__PARAMETER__LOCALE__US
 						),
 						EXAMPLE_TEST_DATA_SETS__FILE_PATH__IN_PORTRAIT_FORMAT,
 						EXAMPLE_TEST_DATA_SETS__SHEET_NAME__PERSON_DATA,

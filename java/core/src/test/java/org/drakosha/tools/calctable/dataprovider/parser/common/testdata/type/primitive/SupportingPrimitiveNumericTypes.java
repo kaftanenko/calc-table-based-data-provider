@@ -96,20 +96,20 @@ public class SupportingPrimitiveNumericTypes
 	{
 
 		return new SupportingPrimitiveNumericTypes(
-			// bigInteger,
-			// bigDecimal,
-			primitiveByte,
-			primitiveShort,
-			primitiveInteger,
-			primitiveLong,
-			primitiveFloat,
-			primitiveDouble,
-			wrapperByte,
-			wrapperShort,
-			wrapperInteger,
-			wrapperLong,
-			wrapperFloat,
-			wrapperDouble
+				// bigInteger,
+				// bigDecimal,
+				primitiveByte,
+				primitiveShort,
+				primitiveInteger,
+				primitiveLong,
+				primitiveFloat,
+				primitiveDouble,
+				wrapperByte,
+				wrapperShort,
+				wrapperInteger,
+				wrapperLong,
+				wrapperFloat,
+				wrapperDouble
 		);
 	}
 

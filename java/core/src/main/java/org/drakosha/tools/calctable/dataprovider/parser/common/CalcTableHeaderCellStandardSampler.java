@@ -41,8 +41,8 @@ public class CalcTableHeaderCellStandardSampler
 
 		return !(CalcTablePoiDataUtils.hasNoBackgroundColor(cell)
 				|| CalcTablePoiDataUtils.hasBackgroundColor(
-					cell,
-					DEFAULT_BG_COLORS
-				));
+				cell,
+				DEFAULT_BG_COLORS
+		));
 	}
 }

@@ -33,7 +33,8 @@ public class FreemarkerTemplateMethodToEnumSonstantName_UnitTest {
 		final TemplateModel result = serviceUnderTest.exec(Collections.singletonList(value));
 
 		// ... verify post-conditions
-		assertThat(result.toString()).isEqualTo(expectedResult);
+		assertThat(result.toString())
+				.isEqualTo(expectedResult);
 	}
 
 	@Test(
@@ -58,16 +59,22 @@ public class FreemarkerTemplateMethodToEnumSonstantName_UnitTest {
 
 		return new Object[][] {
 				{
-						/* value */ "some free text",
-						/* expectedResult */ "SOME_FREE_TEXT"
+						/* value */
+						"some free text",
+						/* expectedResult */
+						"SOME_FREE_TEXT"
 				},
 				{
-						/* value */ "some free text (comment must be ignored)",
-						/* expectedResult */ "SOME_FREE_TEXT"
+						/* value */
+						"some free text (comment must be ignored)",
+						/* expectedResult */
+						"SOME_FREE_TEXT"
 				},
 				{
-						/* value */ " = some $ free %& text (non-alpha-numeric signs must be ignored) /; ",
-						/* expectedResult */ "SOME_FREE_TEXT"
+						/* value */
+						" = some $ free %& text (non-alpha-numeric signs must be ignored) /; ",
+						/* expectedResult */
+						"SOME_FREE_TEXT"
 				},
 		};
 	}
@@ -81,8 +88,8 @@ public class FreemarkerTemplateMethodToEnumSonstantName_UnitTest {
 				},
 				{
 						Arrays.asList(
-							"arg 1",
-							"arg 2"
+								"arg 1",
+								"arg 2"
 						)
 				},
 		};

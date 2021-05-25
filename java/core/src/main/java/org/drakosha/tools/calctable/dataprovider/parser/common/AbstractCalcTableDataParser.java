@@ -54,27 +54,28 @@ public abstract class AbstractCalcTableDataParser {
 
 		final String structureNodeText = structureNode.getText();
 
-		final String propertyName = this.parserConfig.getStructureNamesResolver().resolvePropertyName(
-			structureNodeText
-		);
+		final String propertyName = this.parserConfig
+				.getStructureNamesResolver()
+				.resolvePropertyName(
+						structureNodeText
+				);
 
 		if (hasBeanProperty(
-			dataBean,
-			propertyName
-		))
-		{
-			return Optional.of(
+				dataBean,
 				propertyName
+		)) {
+			return Optional.of(
+					propertyName
 			);
 		}
 
 		final RuntimeException warningException = new CalcTableBeanPropertyMissingException(
-			dataBean.getClass(),
-			propertyName,
-			structureNodeText
+				dataBean.getClass(),
+				propertyName,
+				structureNodeText
 		);
 		messageContainer.add(
-			warningException
+				warningException
 		);
 
 		return Optional.empty();
@@ -87,8 +88,8 @@ public abstract class AbstractCalcTableDataParser {
 	{
 
 		return CalcTableBeanUtils.getPropertyType(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 	}
 
@@ -101,20 +102,20 @@ public abstract class AbstractCalcTableDataParser {
 
 		try {
 			return Optional.of(
-				CalcTableBeanUtils.getPropertyItemType(
-					dataBean,
-					propertyName
-				)
+					CalcTableBeanUtils.getPropertyItemType(
+							dataBean,
+							propertyName
+					)
 			);
 		} catch (final Exception ex) {
 
 			final RuntimeException warningException = new CalcTableCollectionItemTypeUnidentifiedException(
-				dataBean.getClass(),
-				propertyName,
-				ex
+					dataBean.getClass(),
+					propertyName,
+					ex
 			);
 			messageContainer.add(
-				warningException
+					warningException
 			);
 		}
 
@@ -128,8 +129,8 @@ public abstract class AbstractCalcTableDataParser {
 	{
 
 		return CalcTableBeanUtils.getPropertyValue(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 	}
 
@@ -140,8 +141,8 @@ public abstract class AbstractCalcTableDataParser {
 	{
 
 		return CalcTableBeanUtils.hasProperty(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 	}
 
@@ -154,15 +155,17 @@ public abstract class AbstractCalcTableDataParser {
 
 		try {
 			final Cell cell = CalcTablePoiNavigationUtils.getCell(
-				sheet,
-				rowNum,
-				columnNum
+					sheet,
+					rowNum,
+					columnNum
 			);
-			final Optional<String> cellValueAsStringOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
-				cell,
-				String.class,
-				new ArrayList<>()
-			);
+			final Optional<String> cellValueAsStringOptional = this.parserConfig
+					.getPrimitiveValueParser()
+					.parseValue(
+							cell,
+							String.class,
+							new ArrayList<>()
+					);
 			return !cellValueAsStringOptional.isPresent()
 					|| StringUtils.isBlank(cellValueAsStringOptional.get());
 		} catch (final CalcTableException ex) {
@@ -178,9 +181,9 @@ public abstract class AbstractCalcTableDataParser {
 	{
 
 		return !isCellEmpty(
-			sheet,
-			rowNum,
-			columnNum
+				sheet,
+				rowNum,
+				columnNum
 		);
 	}
 
@@ -192,18 +195,18 @@ public abstract class AbstractCalcTableDataParser {
 
 		try {
 			return Optional.of(
-				CalcTableBeanUtils.instantiate(
-					dataBeanType
-				)
+					CalcTableBeanUtils.instantiate(
+							dataBeanType
+					)
 			);
 		} catch (final Exception ex) {
 
 			final RuntimeException warningException = new CalcTableBeanInstantiationException(
-				dataBeanType,
-				ex
+					dataBeanType,
+					ex
 			);
 			messageContainer.add(
-				warningException
+					warningException
 			);
 		}
 
@@ -216,7 +219,7 @@ public abstract class AbstractCalcTableDataParser {
 	{
 
 		return CalcTableBeanUtils.isCollectionType(
-			propertyType
+				propertyType
 		);
 	}
 
@@ -225,7 +228,9 @@ public abstract class AbstractCalcTableDataParser {
 	)
 	{
 
-		return parserConfig.getStructureNamesResolver().isComment(structureNode.getText());
+		return parserConfig
+				.getStructureNamesResolver()
+				.isComment(structureNode.getText());
 	}
 
 	protected boolean isPrimitiveType(
@@ -233,9 +238,11 @@ public abstract class AbstractCalcTableDataParser {
 	)
 	{
 
-		return this.parserConfig.getPrimitiveValueParser().isApplicableTo(
-			propertyType
-		);
+		return this.parserConfig
+				.getPrimitiveValueParser()
+				.isApplicableTo(
+						propertyType
+				);
 	}
 
 	protected <DATA_TYPE> void setBeanPropertyValue(
@@ -248,20 +255,20 @@ public abstract class AbstractCalcTableDataParser {
 
 		try {
 			CalcTableBeanUtils.setPropertyValue(
-				dataBean,
-				propertyName,
-				propertyValue
+					dataBean,
+					propertyName,
+					propertyValue
 			);
 		} catch (final Exception ex) {
 
 			final RuntimeException warningException = new CalcTableBeanPropertyUnsettableException(
-				dataBean.getClass(),
-				propertyName,
-				propertyValue,
-				ex
+					dataBean.getClass(),
+					propertyName,
+					propertyValue,
+					ex
 			);
 			messageContainer.add(
-				warningException
+					warningException
 			);
 		}
 	}
@@ -273,14 +280,16 @@ public abstract class AbstractCalcTableDataParser {
 
 		final Object[] result = new Object[collection.size()];
 
-		IntStream.range(
-			0,
-			collection.size()
-		).forEach(
-			i -> result[i] = collection.get(
-				i
-			)
-		);
+		IntStream
+				.range(
+						0,
+						collection.size()
+				)
+				.forEach(
+						i -> result[i] = collection.get(
+								i
+						)
+				);
 
 		return result;
 	}
@@ -292,26 +301,24 @@ public abstract class AbstractCalcTableDataParser {
 	{
 
 		if (CalcTableBeanUtils.isTypeCompatibleWith(
-			collectionPropertyType,
-			List.class
-		))
-		{
+				collectionPropertyType,
+				List.class
+		)) {
 
 			return new ArrayList<>(
-				tempResultCollection
+					tempResultCollection
 			);
 		} else if (CalcTableBeanUtils.isTypeCompatibleWith(
-			collectionPropertyType,
-			Set.class
-		))
-		{
+				collectionPropertyType,
+				Set.class
+		)) {
 
 			return new HashSet<>(
-				tempResultCollection
+					tempResultCollection
 			);
 		} else {
 			throw CalcTableErrorHelper.handleUnsupportedValueType(
-				collectionPropertyType
+					collectionPropertyType
 			);
 		}
 	}

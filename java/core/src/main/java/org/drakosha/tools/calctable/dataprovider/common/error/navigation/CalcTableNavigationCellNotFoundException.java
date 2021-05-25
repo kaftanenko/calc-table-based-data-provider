@@ -23,13 +23,13 @@ public class CalcTableNavigationCellNotFoundException
 	{
 
 		super(
-			String.format(
-				"There is no such cell: [sheet: '%s', row: %d, column: %d] within the workbook: '%s'.",
-				sheet.getSheetName(),
-				rowNum,
-				columnNum,
-				sheet.getWorkbook()
-			)
+				String.format(
+						"There is no such cell: [sheet: '%s', row: %d, column: %d] within the workbook: '%s'.",
+						sheet.getSheetName(),
+						rowNum,
+						columnNum,
+						sheet.getWorkbook()
+				)
 		);
 	}
 

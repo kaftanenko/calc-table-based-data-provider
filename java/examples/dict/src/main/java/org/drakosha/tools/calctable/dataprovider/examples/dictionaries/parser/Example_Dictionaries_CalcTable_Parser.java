@@ -28,7 +28,7 @@ public class Example_Dictionaries_CalcTable_Parser {
 	// ... dependencies
 
 	final CalcTableSheetLandscapeDataReader reader = new CalcTableSheetLandscapeStandardDataReader(
-		EXAMPLE_DICTIONARIES__SHEET_DATA_READER__PARAMETER__LOCALE__US
+			EXAMPLE_DICTIONARIES__SHEET_DATA_READER__PARAMETER__LOCALE__US
 	);
 
 	// ... business methods
@@ -39,43 +39,47 @@ public class Example_Dictionaries_CalcTable_Parser {
 
 		final List<RuntimeException> messageContainer = new ArrayList<>();
 
-		try (final InputStream is = new FileInputStream(
-			filePath
-		);
+		try (
+				final InputStream is = new FileInputStream(
+						filePath
+				);
 				final Workbook workbook = new XSSFWorkbook(
-					is
-				))
-		{
+						is
+				)
+		) {
 			final Sheet overviewSheet = CalcTablePoiNavigationUtils.getSheet(
-				workbook,
-				STANDARD_SHEET_NAME__OVERVIEW
+					workbook,
+					STANDARD_SHEET_NAME__OVERVIEW
 			);
 
 			final List<OverviewSheetEntry> overviewSheetEntries = reader.readData(
-				overviewSheet,
-				OverviewSheetEntry.class,
-				messageContainer
+					overviewSheet,
+					OverviewSheetEntry.class,
+					messageContainer
 			);
 
-			final List<Dictionary> dictionaries = overviewSheetEntries.stream().map(dictionaryHeadInfo -> {
+			final List<Dictionary> dictionaries = overviewSheetEntries
+					.stream()
+					.map(dictionaryHeadInfo -> {
 
-				final Sheet dictionarySheet = CalcTablePoiNavigationUtils.getSheet(
-					workbook,
-					dictionaryHeadInfo.getName()
-				);
+						final Sheet dictionarySheet = CalcTablePoiNavigationUtils.getSheet(
+								workbook,
+								dictionaryHeadInfo.getName()
+						);
 
-				final List<DictionaryEntry> dictionaryEntries = reader.readData(
-					dictionarySheet,
-					DictionaryEntry.class,
-					messageContainer
-				);
+						final List<DictionaryEntry> dictionaryEntries = reader.readData(
+								dictionarySheet,
+								DictionaryEntry.class,
+								messageContainer
+						);
 
-				return new Dictionary(
-					dictionaryHeadInfo.getName(),
-					dictionaryHeadInfo.getDescription(),
-					dictionaryEntries
-				);
-			}).collect(Collectors.toList());
+						return new Dictionary(
+								dictionaryHeadInfo.getName(),
+								dictionaryHeadInfo.getDescription(),
+								dictionaryEntries
+						);
+					})
+					.collect(Collectors.toList());
 
 			if (messageContainer.isEmpty()) {
 

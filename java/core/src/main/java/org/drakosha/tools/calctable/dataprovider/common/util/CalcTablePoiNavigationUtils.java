@@ -22,7 +22,7 @@ public class CalcTablePoiNavigationUtils {
 	{
 
 		final Sheet sheet = workbook.getSheet(
-			sheetName
+				sheetName
 		);
 
 		if (sheet != null) {
@@ -30,8 +30,8 @@ public class CalcTablePoiNavigationUtils {
 			return sheet;
 		} else {
 			throw new CalcTableNavigationSheetNotFoundException(
-				workbook,
-				sheetName
+					workbook,
+					sheetName
 			);
 		}
 	}
@@ -43,15 +43,15 @@ public class CalcTablePoiNavigationUtils {
 	{
 
 		final Row row = sheet.getRow(
-			rowNum
+				rowNum
 		);
 
 		if (row != null) {
 			return row;
 		} else {
 			throw new CalcTableNavigationRowNotFoundException(
-				sheet,
-				rowNum
+					sheet,
+					rowNum
 			);
 		}
 	}
@@ -63,16 +63,16 @@ public class CalcTablePoiNavigationUtils {
 	{
 
 		final Cell cell = row.getCell(
-			columnNum
+				columnNum
 		);
 
 		if (cell != null) {
 			return cell;
 		} else {
 			throw new CalcTableNavigationCellNotFoundException(
-				row.getSheet(),
-				row.getRowNum(),
-				columnNum
+					row.getSheet(),
+					row.getRowNum(),
+					columnNum
 			);
 		}
 	}
@@ -85,12 +85,12 @@ public class CalcTablePoiNavigationUtils {
 	{
 
 		final Row row = getRow(
-			sheet,
-			rowNum
+				sheet,
+				rowNum
 		);
 		return getCell(
-			row,
-			columnNum
+				row,
+				columnNum
 		);
 	}
 
@@ -103,30 +103,35 @@ public class CalcTablePoiNavigationUtils {
 		final int cellRowNum = cell.getRowIndex();
 		final int cellColumnNum = cell.getColumnIndex();
 
-		final CellRangeAddress cellRangeAddress = sheet.getMergedRegions().stream().filter(
-			mr ->
-			{
-				return mr.containsRow(
-					cellRowNum
+		final CellRangeAddress cellRangeAddress = sheet
+				.getMergedRegions()
+				.stream()
+				.filter(
+						mr ->
+						{
+							return mr.containsRow(
+									cellRowNum
+							)
+									&& mr.containsColumn(
+									cellColumnNum
+							);
+						}
 				)
-						&& mr.containsColumn(
-							cellColumnNum
-						);
-			}
-		).findFirst().orElse(
-			new CellRangeAddress(
-				cellRowNum,
-				cellRowNum,
-				cellColumnNum,
-				cellColumnNum
-			)
-		);
+				.findFirst()
+				.orElse(
+						new CellRangeAddress(
+								cellRowNum,
+								cellRowNum,
+								cellColumnNum,
+								cellColumnNum
+						)
+				);
 
 		final CalcTableCellsDimension innerDimension = CalcTableCellsDimension.of(
-			cellRangeAddress.getFirstRow(),
-			cellRangeAddress.getFirstColumn(),
-			1 + cellRangeAddress.getLastRow() - cellRangeAddress.getFirstRow(),
-			1 + cellRangeAddress.getLastColumn() - cellRangeAddress.getFirstColumn()
+				cellRangeAddress.getFirstRow(),
+				cellRangeAddress.getFirstColumn(),
+				1 + cellRangeAddress.getLastRow() - cellRangeAddress.getFirstRow(),
+				1 + cellRangeAddress.getLastColumn() - cellRangeAddress.getFirstColumn()
 		);
 		return innerDimension;
 	}

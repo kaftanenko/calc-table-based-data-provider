@@ -13,8 +13,8 @@ public abstract class AbstractCalcTablePojo {
 	public int hashCode() {
 
 		return HashCodeBuilder.reflectionHashCode(
-			this,
-			true
+				this,
+				true
 		);
 	}
 
@@ -25,9 +25,9 @@ public abstract class AbstractCalcTablePojo {
 	{
 
 		return EqualsBuilder.reflectionEquals(
-			this,
-			obj,
-			true
+				this,
+				obj,
+				true
 		);
 	}
 
@@ -35,9 +35,9 @@ public abstract class AbstractCalcTablePojo {
 	public String toString() {
 
 		return ToStringBuilder.reflectionToString(
-			this,
-			ToStringStyle.MULTI_LINE_STYLE,
-			true
+				this,
+				ToStringStyle.MULTI_LINE_STYLE,
+				true
 		);
 	}
 

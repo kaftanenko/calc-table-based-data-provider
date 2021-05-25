@@ -52,18 +52,21 @@ public class CalcTableSheetPortraitDataParser
 		final int startColumnNum = dataAreaDimension.getColumn();
 		final int finishColumnNum = dataAreaDimension.getColumn() + dataAreaDimension.getColumnSpan() - 1;
 
-		return IntStream.rangeClosed(
-			startColumnNum,
-			finishColumnNum
-		).mapToObj(
-			columnNum -> parseRootDataBean(
-				sheet,
-				structureDescription,
-				dataRecordType,
-				columnNum,
-				messageContainer
-			)
-		).collect(Collectors.toList());
+		return IntStream
+				.rangeClosed(
+						startColumnNum,
+						finishColumnNum
+				)
+				.mapToObj(
+						columnNum -> parseRootDataBean(
+								sheet,
+								structureDescription,
+								dataRecordType,
+								columnNum,
+								messageContainer
+						)
+				)
+				.collect(Collectors.toList());
 	}
 
 	private <DATA_TYPE> DATA_TYPE parseRootDataBean(
@@ -76,19 +79,19 @@ public class CalcTableSheetPortraitDataParser
 	{
 
 		final Optional<DATA_TYPE> dataBeanOptional = instantiateBean(
-			dataBeanType,
-			messageContainer
+				dataBeanType,
+				messageContainer
 		);
 
 		dataBeanOptional.ifPresent(dataBean -> {
 
 			structureDescription.forEach(structureNode -> {
 				parseStructureNode(
-					sheet,
-					structureNode,
-					dataBean,
-					columnNum,
-					messageContainer
+						sheet,
+						structureNode,
+						dataBean,
+						columnNum,
+						messageContainer
 				);
 			});
 		});
@@ -107,9 +110,9 @@ public class CalcTableSheetPortraitDataParser
 	{
 
 		final Optional<String> propertyNameOptional = getBeanPropertyName(
-			parentDataBean,
-			structureNode,
-			messageContainer
+				parentDataBean,
+				structureNode,
+				messageContainer
 		);
 
 		final String propertyName;
@@ -120,33 +123,33 @@ public class CalcTableSheetPortraitDataParser
 		}
 
 		final Class<?> propertyType = getBeanPropertyType(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		if (isPrimitiveType(propertyType)) {
 			parsePrimitiveProperty(
-				sheet,
-				structureNode,
-				parentDataBean,
-				columnNum,
-				messageContainer
+					sheet,
+					structureNode,
+					parentDataBean,
+					columnNum,
+					messageContainer
 			);
 		} else if (isCollectionType(propertyType)) {
 			parseCollectionProperty(
-				sheet,
-				structureNode,
-				parentDataBean,
-				columnNum,
-				messageContainer
+					sheet,
+					structureNode,
+					parentDataBean,
+					columnNum,
+					messageContainer
 			);
 		} else {
 			parseDataBeanProperty(
-				sheet,
-				structureNode,
-				parentDataBean,
-				columnNum,
-				messageContainer
+					sheet,
+					structureNode,
+					parentDataBean,
+					columnNum,
+					messageContainer
 			);
 		}
 	}
@@ -161,39 +164,41 @@ public class CalcTableSheetPortraitDataParser
 	{
 
 		final String propertyName = getBeanPropertyName(
-			parentDataBean,
-			structureNode,
-			messageContainer
-		).get();
+				parentDataBean,
+				structureNode,
+				messageContainer
+		)
+				.get();
 
 		final Class<?> propertyType = getBeanPropertyType(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		final Optional<?> propertyValueOptional = parsePrimitivePropertyOfType(
-			sheet,
-			structureNode,
-			propertyType,
-			columnNum,
-			messageContainer
+				sheet,
+				structureNode,
+				propertyType,
+				columnNum,
+				messageContainer
 		);
 
 		propertyValueOptional.ifPresent(
-			propertyValue -> setBeanPropertyValue(
-				parentDataBean,
-				propertyName,
-				propertyValue,
-				messageContainer
-			)
+				propertyValue -> setBeanPropertyValue(
+						parentDataBean,
+						propertyName,
+						propertyValue,
+						messageContainer
+				)
 		);
 		// TODO: evtl. warning if no value
 	}
 
 	private Optional<?> parsePrimitivePropertyOfType(
 			final Sheet sheet,
-			final CalcTableStructureNode structureNode, // TODO: eliminate or merge
-																									// with cell coords (romNum)
+			final CalcTableStructureNode structureNode,
+			// TODO: eliminate or merge
+			// with cell coords (romNum)
 			final Class<?> propertyType,
 			final int columnNum,
 			final List<RuntimeException> messageContainer
@@ -202,18 +207,22 @@ public class CalcTableSheetPortraitDataParser
 
 		try {
 
-			final int rowNum = structureNode.getInnerDimension().getRow();
+			final int rowNum = structureNode
+					.getInnerDimension()
+					.getRow();
 			final Cell cell = CalcTablePoiNavigationUtils.getCell(
-				sheet,
-				rowNum,
-				columnNum
+					sheet,
+					rowNum,
+					columnNum
 			);
 
-			final Optional<?> propertyValueOptional = this.parserConfig.getPrimitiveValueParser().parseValue(
-				cell,
-				propertyType,
-				messageContainer
-			);
+			final Optional<?> propertyValueOptional = this.parserConfig
+					.getPrimitiveValueParser()
+					.parseValue(
+							cell,
+							propertyType,
+							messageContainer
+					);
 			return propertyValueOptional;
 		} catch (final CalcTableException ex) {
 			return Optional.empty();
@@ -234,9 +243,9 @@ public class CalcTableSheetPortraitDataParser
 		}
 
 		final Optional<String> propertyNameOptional = getBeanPropertyName(
-			dataBean,
-			structureNode,
-			messageContainer
+				dataBean,
+				structureNode,
+				messageContainer
 		);
 
 		final String propertyName;
@@ -247,19 +256,19 @@ public class CalcTableSheetPortraitDataParser
 		}
 
 		final Class<?> propertyType = getBeanPropertyType(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 
 		final Object originalPropertyValue = getBeanPropertyValue(
-			dataBean,
-			propertyName
+				dataBean,
+				propertyName
 		);
 		final Optional<?> propertyValueOptional;
 		if (originalPropertyValue == null) {
 			propertyValueOptional = instantiateBean(
-				propertyType,
-				messageContainer
+					propertyType,
+					messageContainer
 			);
 		} else {
 			propertyValueOptional = Optional.of(originalPropertyValue);
@@ -267,22 +276,24 @@ public class CalcTableSheetPortraitDataParser
 
 		propertyValueOptional.ifPresent(propertyValue -> {
 
-			structureNode.getChildStructureNodes().forEach(childStructureNode ->
+			structureNode
+					.getChildStructureNodes()
+					.forEach(childStructureNode ->
 
-			parseStructureNode(
-				sheet,
-				childStructureNode,
-				propertyValue,
-				columnNum,
-				messageContainer
-			)
-			);
+							parseStructureNode(
+									sheet,
+									childStructureNode,
+									propertyValue,
+									columnNum,
+									messageContainer
+							)
+					);
 
 			setBeanPropertyValue(
-				dataBean,
-				propertyName,
-				propertyValue,
-				messageContainer
+					dataBean,
+					propertyName,
+					propertyValue,
+					messageContainer
 			);
 		});
 		// TODO evtl. warning for no value
@@ -298,15 +309,16 @@ public class CalcTableSheetPortraitDataParser
 	{
 
 		final String propertyName = getBeanPropertyName(
-			parentDataBean,
-			structureNode,
-			messageContainer
-		).get();
+				parentDataBean,
+				structureNode,
+				messageContainer
+		)
+				.get();
 
 		final Optional<Class<?>> propertyItemTypeOptional = getBeanPropertyItemType(
-			parentDataBean,
-			propertyName,
-			messageContainer
+				parentDataBean,
+				propertyName,
+				messageContainer
 		);
 
 		final Class<?> propertyItemType;
@@ -317,13 +329,13 @@ public class CalcTableSheetPortraitDataParser
 		}
 
 		final Class<?> propertyType = getBeanPropertyType(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		final Object originalPropertyValue = getBeanPropertyValue(
-			parentDataBean,
-			propertyName
+				parentDataBean,
+				propertyName
 		);
 
 		final List newPropertyItemValues = new ArrayList<>();
@@ -331,45 +343,50 @@ public class CalcTableSheetPortraitDataParser
 		final Optional<?> propertyItemValueOptional;
 		if (isPrimitiveType(propertyItemType)) {
 			propertyItemValueOptional = parsePrimitivePropertyOfType(
-				sheet,
-				structureNode,
-				propertyItemType,
-				columnNum,
-				messageContainer
+					sheet,
+					structureNode,
+					propertyItemType,
+					columnNum,
+					messageContainer
 			);
 		} else if (isCollectionType(propertyItemType)) {
 			// TODO evtl. just a warning message
 			throw CalcTableErrorHelper.handleFatalException("Collections of collections are not supported.");
 		} else {
 
-			final CalcTableStructureNode firstChildStructureNode = structureNode.getChildStructureNodes().get(0);
-			final int firstChildRowNum = firstChildStructureNode.getInnerDimension().getRow();
+			final CalcTableStructureNode firstChildStructureNode = structureNode
+					.getChildStructureNodes()
+					.get(0);
+			final int firstChildRowNum = firstChildStructureNode
+					.getInnerDimension()
+					.getRow();
 
 			if (isCellEmpty(
-				sheet,
-				firstChildRowNum,
-				columnNum
-			))
-			{
+					sheet,
+					firstChildRowNum,
+					columnNum
+			)) {
 				propertyItemValueOptional = Optional.empty();
 			} else {
 
 				final Optional<?> propertyDataBeanOptional = instantiateBean(
-					propertyItemType,
-					messageContainer
+						propertyItemType,
+						messageContainer
 				);
 
 				propertyDataBeanOptional.ifPresent(propertyDataBean -> {
 
-					structureNode.getChildStructureNodes().forEach(
-						childStructureNode -> parseStructureNode(
-							sheet,
-							childStructureNode,
-							propertyDataBean,
-							columnNum,
-							messageContainer
-						)
-					);
+					structureNode
+							.getChildStructureNodes()
+							.forEach(
+									childStructureNode -> parseStructureNode(
+											sheet,
+											childStructureNode,
+											propertyDataBean,
+											columnNum,
+											messageContainer
+									)
+							);
 				});
 				// TODO evtl. warning if no value
 
@@ -389,18 +406,18 @@ public class CalcTableSheetPortraitDataParser
 				if (originalPropertyValue == null) {
 
 					final Collection propertyValueAsProperCollType = toCollectionType(
-						newPropertyItemValues,
-						propertyType
+							newPropertyItemValues,
+							propertyType
 					);
 					setBeanPropertyValue(
-						parentDataBean,
-						propertyName,
-						propertyValueAsProperCollType,
-						messageContainer
+							parentDataBean,
+							propertyName,
+							propertyValueAsProperCollType,
+							messageContainer
 					);
 				} else {
 					((Collection) originalPropertyValue).addAll(
-						newPropertyItemValues
+							newPropertyItemValues
 					);
 				}
 			}

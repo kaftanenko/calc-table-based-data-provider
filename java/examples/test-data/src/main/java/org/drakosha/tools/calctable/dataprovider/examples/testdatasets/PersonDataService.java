@@ -25,17 +25,26 @@ public class PersonDataService {
 	{
 
 		try {
-			assertThat(firstName).isNotBlank();
-			assertThat(lastName).isNotBlank();
-			assertThat(birthDate).isNotNull();
+			assertThat(firstName)
+					.isNotBlank();
+			assertThat(lastName)
+					.isNotBlank();
+			assertThat(birthDate)
+					.isNotNull();
 		} catch (final Throwable ex) {
 			throw new IllegalArgumentException("Empty parameter values are not supported yet.");
 		}
 
-		return externalPersonDataService.findByName(
-			firstName,
-			lastName
-		).stream().filter(e -> birthDate.equals(e.getPersonalData().getBirthDate())).collect(Collectors.toList());
+		return externalPersonDataService
+				.findByName(
+						firstName,
+						lastName
+				)
+				.stream()
+				.filter(e -> birthDate.equals(e
+						.getPersonalData()
+						.getBirthDate()))
+				.collect(Collectors.toList());
 	}
 
 }

@@ -11,7 +11,7 @@ public interface Example_Dictionaries_Const {
 
 	Path EXAMPLE_DICTIONARIES__FILE_PATH__IN_LANDSCAPE_FORMAT = //
 			ResourceUtils.getAbsoluteResourcePath(
-				"data-sources/Example_Dictionaries_PersonData_in_LandscapeFormat.xlsx"
+					"data-sources/Example_Dictionaries_PersonData_in_LandscapeFormat.xlsx"
 			);
 
 	Locale EXAMPLE_DICTIONARIES__SHEET_DATA_READER__PARAMETER__LOCALE__US = Locale.US;

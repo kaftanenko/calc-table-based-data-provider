@@ -34,23 +34,25 @@ public class Example_TestScenarios_Parser_UnitTest {
 			throws Exception
 	{
 
-		try (final InputStream workbookInputStream = new FileInputStream(
-			workbookFilePath
-		))
-		{
+		try (
+				final InputStream workbookInputStream = new FileInputStream(
+						workbookFilePath
+				)
+		) {
 
 			// ... call service under test
 			final CalcTableWorkbookDataReader workbookDataReader = new CalcTableWorkbookDataReader();
 
 			final List<Example_TestScenarios_SimpleCalculator_Record> result = workbookDataReader.readData(
-				workbookInputStream,
-				sheetName,
-				Example_TestScenarios_SimpleCalculator_Record.class,
-				sheetDataReader
+					workbookInputStream,
+					sheetName,
+					Example_TestScenarios_SimpleCalculator_Record.class,
+					sheetDataReader
 			);
 
 			// ... verify post-conditions
-			assertThat(result).containsExactlyElementsOf(expectedResult);
+			assertThat(result)
+					.containsExactlyElementsOf(expectedResult);
 		}
 	}
 
@@ -62,7 +64,7 @@ public class Example_TestScenarios_Parser_UnitTest {
 		return new Object[][] {
 				{
 						new CalcTableSheetLandscapeStandardDataReader(
-							EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+								EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
 						),
 						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_LANDSCAPE_FORMAT,
 						EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES,
@@ -70,7 +72,7 @@ public class Example_TestScenarios_Parser_UnitTest {
 				},
 				{
 						new CalcTableSheetPortraitStandardDataReader(
-							EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
+								EXAMPLE_TEST_SCENARIOS__SHEET_DATA_READER__PARAMETER__LOCALE__US
 						),
 						EXAMPLE_TEST_SCENARIOS__FILE_PATH__IN_PORTRAIT_FORMAT,
 						EXAMPLE_TEST_SCENARIOS__SHEET_NAME__TEST_CASES,
