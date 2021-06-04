@@ -11,6 +11,20 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
+	<name>Calc Table (based) Data Provider - Example: Test Scenarios</name>
+	<description>
+		Use case example "Test Scenarios" for the "Calc Table (based) Data Provider".
+	</description>
+	<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<properties>
 		<!-- Library Versions -->
 		<lib.fasterxml.jackson.version>2.4.0</lib.fasterxml.jackson.version>

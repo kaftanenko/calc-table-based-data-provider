@@ -9,6 +9,22 @@
 
 	<packaging>pom</packaging>
 
+	<name>Calc Table (based) Data Provider - Examples</name>
+	<description>
+		"Calc Table (based) Data Provider" Framework, allows to read complex data
+		sets from Calc table documents and to provide it in your project's native
+		language representation for further use.
+	</description>
+	<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<modules>
 		<module>core</module>
 		<module>examples</module>
@@ -35,11 +51,23 @@
 	</scm>
 
 	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	<!--
+	<distributionManagement>
 		<repository>
 			<id>local-releases</id>
 			<url>http://localhost:8081/repository/releases/</url>
 		</repository>
 	</distributionManagement>
+	-->
 
 	<properties>
 
@@ -192,6 +220,34 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 </project>

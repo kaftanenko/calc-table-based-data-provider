@@ -11,6 +11,22 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
+	<name>Calc Table (based) Data Provider - Core</name>
+	<description>
+		"Calc Table (based) Data Provider" Framework, allows to read complex data
+		sets from Calc table documents and to provide it in your project's native
+		language representation for further use.
+	</description>
+	<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<dependencies>
 
 		<!-- Apache Commons -->
