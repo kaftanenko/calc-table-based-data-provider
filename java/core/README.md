@@ -16,7 +16,7 @@
 
 ## Overview
 
-The Core sub-project implements basic functionality of the "Calc Table (based) Data Provider" framework and offers some extension possibilities to adjust this functionality on yours individual project requirements.
+The Core sub-project implements basic functionality of the "[Calc Table (based) Data Provider](https://github.com/kaftanenko/calc-table-based-data-provider)" framework and offers some extension possibilities to adjust this functionality on yours individual project requirements.
 
 The basic functionality consist generally in reading of complex data sets containing within a single Calc table sheet. As mentioned in project description, there are two supported formats and correspondingly two specialized Sheet Data Reader implementations:
 
@@ -282,4 +282,4 @@ You are always welcome by the [Discussions](https://github.com/kaftanenko/calc-t
 Thanks a lot in advance for taking a part on the project improvement!
 
 ---
-\[ [To Top](#core-framework) \]
+[ [To Top](#core-framework) ]

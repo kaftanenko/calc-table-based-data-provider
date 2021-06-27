@@ -40,4 +40,4 @@ The original Excel file can be found under: "[src/test/resources/test-data-sourc
 **Test Data Source Document**: [Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./src/test/resources/test-data-sources/)
 
 ---
-\[ [To Top](#example-test-data-sets) \]
+[ [To Top](#example-test-data-sets) ]

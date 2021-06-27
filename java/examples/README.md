@@ -12,4 +12,4 @@ The Examples embrace at the moment the following fields of application:
 Each of the given Examples shows often only one of many other possible application scenarios. It is up to you as a framework end-user to figure out, how the new possibilities can be best applied within your own projects.
 
 ---
-\[ [To Top](#examples) \]
+[ [To Top](#examples) ]

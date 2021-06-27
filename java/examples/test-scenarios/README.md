@@ -64,4 +64,4 @@ The original Excel file can be found under: "[src/test/resources/test-data-sourc
 **Test Scenarios Source Document**: [Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./src/test/resources/test-scenarios)
 
 ---
-\[ [To Top](#example-test-scenarios) \]
+[ [To Top](#example-test-scenarios) ]

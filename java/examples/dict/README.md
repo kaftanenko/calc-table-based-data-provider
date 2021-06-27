@@ -139,4 +139,4 @@ A [FreeMarker](https://freemarker.apache.org) template using for generating such
 **Dictionaries Source Document**: *[Example_Dictionaries_PersonData_in_LandscapeFormat.xlsx](./src/main/resources/data-sources)*
 
 ---
-\[ [To Top](#example-dictionaries) \]
+[ [To Top](#example-dictionaries) ]

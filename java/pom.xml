@@ -8,11 +8,9 @@
 
 	<packaging>pom</packaging>
 
-	<name>Calc Table (based) Data Provider - Examples</name>
+	<name>Calc Table (based) Data Provider</name>
 	<description>
-		"Calc Table (based) Data Provider" Framework, allows to read complex data
-		sets from Calc table documents and to provide it in your project's native
-		language representation for further use.
+		Parent project of the "Calc Table (based) Data Provider" framework (Java-Edition).
 	</description>
 	<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
 
@@ -70,9 +68,8 @@
 
 	<properties>
 
-		<!-- Environment -->
-		<java.version>1.8</java.version>
-		<env.jdk.version>1.8</env.jdk.version>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
 
 		<default.encoding>UTF-8</default.encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,10 +85,6 @@
 		<lib.test.testng.version>7.4.0</lib.test.testng.version>
 
 		<!-- Plug-In Versions -->
-		<plugin.maven.assembly.version>3.3.0</plugin.maven.assembly.version>
-		<plugin.maven.compiler.version>3.8.1</plugin.maven.compiler.version>
-		<plugin.maven.release.version>2.5.3</plugin.maven.release.version>
-		<plugin.maven.resources.version>3.2.0</plugin.maven.resources.version>
 		<plugin.maven.scm.version>1.11.2</plugin.maven.scm.version>
 
 	</properties>
@@ -156,41 +149,7 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>${plugin.maven.assembly.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${plugin.maven.compiler.version}</version>
-					<configuration>
-						<source>${java.version}</source>
-						<target>${java.version}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>${plugin.maven.release.version}</version>
-					<configuration>
-						<tagNameFormat>v@{project.version}</tagNameFormat>
-					</configuration>
-					<dependencies>
-						<dependency>
-							<groupId>org.apache.maven.scm</groupId>
-							<artifactId>maven-scm-api</artifactId>
-							<version>${plugin.maven.scm.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.apache.maven.scm</groupId>
-							<artifactId>maven-scm-provider-gitexe</artifactId>
-							<version>${plugin.maven.scm.version}</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -203,7 +162,6 @@
 									<pluginExecutionFilter>
 										<groupId>org.apache.maven.plugins</groupId>
 										<artifactId>maven-compiler-plugin</artifactId>
-										<versionRange>${plugin.maven.compiler.version}</versionRange>
 										<goals>
 											<goal>compile</goal>
 											<goal>testCompile</goal>

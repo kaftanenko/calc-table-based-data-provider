@@ -16,7 +16,7 @@
 		sets from Calc table documents and to provide it in your project's native
 		language representation for further use.
 	</description>
-	<url>https://github.com/kaftanenko/calc-table-based-data-provider</url>
+	<url>https://github.com/kaftanenko/calc-table-based-data-provider/tree/master/java/core</url>
 
 	<licenses>
 		<license>
@@ -25,6 +25,19 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<developers>
+		<developer>
+			<id>aka</id>
+			<name>Artem Kaftanenko</name>
+			<email>java.developer@gmx.com</email>
+			<organization>Home Office Ltd.</organization>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<dependencies>
 
