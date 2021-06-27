@@ -350,7 +350,7 @@ public class CalcTablePrimitiveValueStandardParser
 	)
 	{
 
-		final CellType cellType = cell.getCellTypeEnum();
+		final CellType cellType = cell.getCellType();
 		switch (cellType) {
 			case NUMERIC:
 				if (DateUtil.isCellDateFormatted(

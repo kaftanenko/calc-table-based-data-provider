@@ -117,7 +117,7 @@ public class CalcTablePoiDataUtils {
 	)
 	{
 
-		final CellType cellTypeEnum = cell.getCellTypeEnum();
+		final CellType cellTypeEnum = cell.getCellType();
 		switch (cellTypeEnum) {
 			case BLANK:
 				return null;

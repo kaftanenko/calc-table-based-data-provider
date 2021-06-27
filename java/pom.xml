@@ -82,7 +82,7 @@
 		<lib.apache.commons-lang3.version>3.12.0</lib.apache.commons-lang3.version>
 		<lib.apache.commons-text.version>1.9</lib.apache.commons-text.version>
 
-		<lib.apache.poi.version>3.17</lib.apache.poi.version>
+		<lib.apache.poi.version>5.0.0</lib.apache.poi.version>
 
 		<lib.test.assertj.version>3.19.0</lib.test.assertj.version>
 		<lib.test.testng.version>7.4.0</lib.test.testng.version>
