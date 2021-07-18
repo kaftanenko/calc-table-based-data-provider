@@ -128,11 +128,11 @@ A [FreeMarker](https://freemarker.apache.org) template using for generating such
 
 ## Technical Details
 
-**Generator Launcher**: *[Example_Dictionaries_PersonData_Enums_Generator_Launcher.java](./src/main/java/org/business/tools/calctable/dataprovider/examples/dictionaries/Example_Dictionaries_PersonData_Enums_Generator_Launcher.java)*
+**Generator Launcher**: *[Example_Dictionaries_PersonData_Enums_Generator_Launcher.java](./src/main/java/org/drakosha/tools/calctable/dataprovider/examples/dictionaries/Example_Dictionaries_PersonData_Enums_Generator_Launcher.java)*
 
-**Enums Generator**: *[Example_Dictionaries_QuellCode_Enums_Generator.java](./src/main/java/org/business/tools/calctable/dataprovider/examples/dictionaries/generator/Example_Dictionaries_QuellCode_Enums_Generator.java)*
+**Enums Generator**: *[Example_Dictionaries_QuellCode_Enums_Generator.java](./src/main/java/org/drakosha/tools/calctable/dataprovider/examples/dictionaries/generator/Example_Dictionaries_QuellCode_Enums_Generator.java)*
 <br />
-**Source Document Parser**: *[Example_Dictionaries_CalcTable_Parser.java](./src/main/java/org/business/tools/calctable/dataprovider/examples/dictionaries/parser/Example_Dictionaries_CalcTable_Parser.java)*
+**Source Document Parser**: *[Example_Dictionaries_CalcTable_Parser.java](./src/main/java/org/drakosha/tools/calctable/dataprovider/examples/dictionaries/parser/Example_Dictionaries_CalcTable_Parser.java)*
 
 **Enums Generator Template**: *[template_enum.ftl ](./src/main/resources/generator-templates/template_enum.ftl)*
 <br />

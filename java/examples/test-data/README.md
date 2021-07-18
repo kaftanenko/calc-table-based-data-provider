@@ -27,15 +27,15 @@ The original Excel file can be found under: "[src/test/resources/test-data-sourc
 
 ## Technical Details
 
-**Service under Test**: [PersonDataService.java](./src/main/java/org/business/tools/calctable/dataprovider/examples/testdatasets/PersonDataService.java)
+**Service under Test**: [PersonDataService.java](./src/main/java/org/drakosha/tools/calctable/dataprovider/examples/testdatasets/PersonDataService.java)
 <br />
-**External Service to mock**: [ExternalPersonDataService.java](./src/main/java/org/business/tools/calctable/dataprovider/examples/testdatasets/external/service/ExternalPersonDataService.java)
+**External Service to mock**: [ExternalPersonDataService.java](./src/main/java/org/drakosha/tools/calctable/dataprovider/examples/testdatasets/external/service/ExternalPersonDataService.java)
 <br />
-**Service Unit Test**: [Example_TestDataSets_PersonDataService_UnitTest.java](./src/test/java/org/business/tools/calctable/dataprovider/examples/testdatasets/Example_TestDataSets_PersonDataService_UnitTest.java)
+**Service Unit Test**: [Example_TestDataSets_PersonDataService_UnitTest.java](./src/test/java/org/drakosha/tools/calctable/dataprovider/examples/testdatasets/Example_TestDataSets_PersonDataService_UnitTest.java)
 
-**Generic Mock**: [AbstractCalcTableDrivenDataRepository.java](./src/test/java/org/business/tools/calctable/dataprovider/examples/testdatasets/repository/AbstractCalcTableDrivenDataRepository.java)
+**Generic Mock**: [AbstractCalcTableDrivenDataRepository.java](./src/test/java/org/drakosha/tools/calctable/dataprovider/examples/testdatasets/repository/AbstractCalcTableDrivenDataRepository.java)
 <br />
-**External Service Mock**: [ExternalPersonDataServiceMock.java](./src/test/java/org/business/tools/calctable/dataprovider/examples/testdatasets/repository/ExternalPersonDataServiceMock.java)
+**External Service Mock**: [ExternalPersonDataServiceMock.java](./src/test/java/org/drakosha/tools/calctable/dataprovider/examples/testdatasets/repository/ExternalPersonDataServiceMock.java)
 
 **Test Data Source Document**: [Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./src/test/resources/test-data-sources/)
 

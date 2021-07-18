@@ -55,11 +55,11 @@ The original Excel file can be found under: "[src/test/resources/test-data-sourc
 
 ## Technical Details
 
-**Service under Test**: [SimpleCalculatorAsServiceUnderTest.java](./src/main/java/org/business/tools/calctable/dataprovider/examples/testscenarios/SimpleCalculatorAsServiceUnderTest.java)
+**Service under Test**: [SimpleCalculatorAsServiceUnderTest.java](./src/main/java/org/drakosha/tools/calctable/dataprovider/examples/testscenarios/SimpleCalculatorAsServiceUnderTest.java)
 <br />
-**Service Unit Test**: [Example_TestScenarios_SimpleCalculator_UnitTest.java](./src/test/java/org/business/tools/calctable/dataprovider/examples/testscenarios/Example_TestScenarios_SimpleCalculator_UnitTest.java)
+**Service Unit Test**: [Example_TestScenarios_SimpleCalculator_UnitTest.java](./src/test/java/org/drakosha/tools/calctable/dataprovider/examples/testscenarios/Example_TestScenarios_SimpleCalculator_UnitTest.java)
 
-**Test Scenarios Data Record**: [Example_TestScenarios_SimpleCalculator_Record.java](./src/test/java/org/business/tools/calctable/dataprovider/examples/testscenarios/Example_TestScenarios_SimpleCalculator_Record.java)
+**Test Scenarios Data Record**: [Example_TestScenarios_SimpleCalculator_Record.java](./src/test/java/org/drakosha/tools/calctable/dataprovider/examples/testscenarios/Example_TestScenarios_SimpleCalculator_Record.java)
 
 **Test Scenarios Source Document**: [Example_TestDataSets_PersonData_in_PortraitFormat.xlsx](./src/test/resources/test-scenarios)
 

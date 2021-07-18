@@ -4,7 +4,8 @@
 **Contents**
 
 * [Overview](#overview)
-* [Configuration](#configuration)
+* [How To Use](#how-to-use)
+* [Configuration Details](#configuration-details)
     * [Header Cell Sampler](#header-cell-sampler)
     * [Primitive Value Parser](#primitive-value-parser)
     * [Structure Name Resolver](#structure-name-resolver)
@@ -16,14 +17,28 @@
 
 ## Overview
 
-The Core sub-project implements basic functionality of the "[Calc Table (based) Data Provider](https://github.com/kaftanenko/calc-table-based-data-provider)" framework and offers some extension possibilities to adjust this functionality on yours individual project requirements.
+The Core sub-project implements basic functionality of the "[Calc Table (based) Data Provider](https://github.com/kaftanenko/calc-table-based-data-provider)" framework (in Java) and offers some extension possibilities to adjust this functionality on yours individual project requirements.
+
+For basic ideas and fields of application look please at projects [Home Page](https://github.com/kaftanenko/calc-table-based-data-provider).
+
+## How To Use
+
+The framework is available as a public Maven artifact. To use it in your Maven project, insert the following lines to your project's POM file (pom.xml):
+
+```xml
+  <dependency>
+    <groupId>org.drakosha.tools.calctable</groupId>
+    <artifactId>calctable-dataprovider-core</artifactId>
+    <version>0.0.3</version>
+  </dependency>
+```
 
 The basic functionality consist generally in reading of complex data sets containing within a single Calc table sheet. As mentioned in project description, there are two supported formats and correspondingly two specialized Sheet Data Reader implementations:
 
-* [CalcTableSheetPortraitDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/portrait/CalcTableSheetPortraitDataReader.java)
-* [CalcTableSheetLandscapeDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/landscape/CalcTableSheetLandscapeDataReader.java)
+* [CalcTableSheetPortraitDataReader](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/portrait/CalcTableSheetPortraitDataReader.java)
+* [CalcTableSheetLandscapeDataReader](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/landscape/CalcTableSheetLandscapeDataReader.java)
 
-The both implement a common interface [CalcTableSheetDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/CalcTableSheetDataReader.java):
+The both implement a common interface [CalcTableSheetDataReader](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/CalcTableSheetDataReader.java):
 
 ```java
 package org.drakosha.tools.calctable.dataprovider.reader;
@@ -48,10 +63,11 @@ The heart of the framework is the **readData(..)** method that expects the only 
 * dataRecordType: class reference defining the type of expected data records
 * messageContainer: container to accumulate exceptions had arisen during the reading process
 
+The framework uses the [Apache POI](https://poi.apache.org) framework to access the Calc Table documents and respectively re-uses some POI's classes (such as Sheet, Workbook etc.) within its own interfaces.
+
 The framework tries to process the whole sheet through to the finish despite potential parsing errors.
 
-The both Sheet Data Readers (for Landscape and Portrait formats) expect a configuration of the type [CalcTableDataReaderConfig](./src/main/java/org/business/tools/calctable/dataprovider/reader/CalcTableDataReaderConfig.java):
-
+The both Sheet Data Readers (for Landscape and Portrait formats) expect a configuration of the type [CalcTableDataReaderConfig](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/CalcTableDataReaderConfig.java):
 
 ```java
 package org.drakosha.tools.calctable.dataprovider.reader;
@@ -78,7 +94,7 @@ The ingredients of this configuration structure means as follow:
 * primitiveValueParser: parser for primitive values contained in the cells within the sheet's data (values) area
 * structureNamesResolver: component allowing to convert texts within the cells of the data structure description area into the target data record attribute names and to recognize the comment cells respectively
 
-The Core sub-project offers standard implementations for each of this parts and offers to use it through the standard configuration class [CalcTableDataStandardReaderConfig](./src/main/java/org/business/tools/calctable/dataprovider/reader/common/CalcTableDataStandardReaderConfig.java):
+The Core sub-project offers standard implementations for each of this parts and offers to use it through the standard configuration class [CalcTableDataStandardReaderConfig](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/common/CalcTableDataStandardReaderConfig.java):
 
 ```java
 package org.drakosha.tools.calctable.dataprovider.reader.common;
@@ -96,7 +112,7 @@ public class CalcTableDataStandardReaderConfig
 
     super(
       CalcTableHeaderCellStandardSampler.INSTANCE__NON_TRANSPARENT_AND_NON_WHITE_BACKGROUND,
-      new CalcTablePrimitiveValueStandardParser(locale)
+      new CalcTablePrimitiveValueStandardParser(locale),
       CalcTableStructureNamesStandardResolver.INSTANCE__TO_CAMEL_CASE__IGNORING_PARENTHESES__AND__HASH_SIGN_PREFIXED_COMMENTS
     );
   }
@@ -107,14 +123,14 @@ It is up to you to deliver your own interpretation of this configuration parts a
 
 In the case, you are satisfied with the standard implementation, the following standard pre-configured Sheet Data Readers can be your friends:
 
-* [CalcTableSheetPortraitStandardDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/portrait/CalcTableSheetPortraitStandardDataReader.java)
-* [CalcTableSheetLandscapeStandardDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/landscape/CalcTableSheetLandscapeStandardDataReader.java)
+* [CalcTableSheetPortraitStandardDataReader](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/portrait/CalcTableSheetPortraitStandardDataReader.java)
+* [CalcTableSheetLandscapeStandardDataReader](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/landscape/CalcTableSheetLandscapeStandardDataReader.java)
 
 And at last for the case, you have to read a single sheet from a Calc table document, you can find helpful the following standard implementation of a workbook reader:
 
-* [CalcTableWorkbookDataReader](./src/main/java/org/business/tools/calctable/dataprovider/reader/CalcTableWorkbookDataReader.java)
+* [CalcTableWorkbookDataReader](./src/main/java/org/drakosha/tools/calctable/dataprovider/reader/CalcTableWorkbookDataReader.java)
 
-## Configuration
+## Configuration (Details)
 
 As mentioned above, the Sheet Data Readers configuration consist of the following parts:
 
@@ -128,7 +144,7 @@ Each of this parts will be described bellow in more details.
 
 This component is an integral part of the Sheet Data Reader configuration and is responsible for recognizing the Calc table cells as belonging to the sheet header area. 
 
-A "Header Cell Sampler" using within the Framework  must implement the [CalcTableHeaderCellSampler](./src/main/java/org/business/tools/calctable/dataprovider/parser/CalcTableHeaderCellSampler.java) interface:
+A "Header Cell Sampler" using within the Framework  must implement the [CalcTableHeaderCellSampler](./src/main/java/org/drakosha/tools/calctable/dataprovider/parser/CalcTableHeaderCellSampler.java) interface:
 
 ```java
 public interface CalcTableHeaderCellSampler
@@ -141,13 +157,13 @@ public interface CalcTableHeaderCellSampler
 }
 ```
 
-There is a standard implementation of this component named [CalcTableHeaderCellStandardSampler](./src/main/java/org/business/tools/calctable/dataprovider/parser/common/CalcTableHeaderCellStandardSampler.java), which recognizes the header cells on their consistent non-transparent and non-white background color.
+There is a standard implementation of this component named [CalcTableHeaderCellStandardSampler](./src/main/java/org/drakosha/tools/calctable/dataprovider/parser/common/CalcTableHeaderCellStandardSampler.java), which recognizes the header cells on their consistent non-transparent and non-white background color.
 
 ### Primitive Value Parser
 
 This component is an integral part of the Sheet Data Reader configuration and is responsible for parsing of data cell contents into the values of corresponding data type. 
 
-A "Primitive Value Parser" using within the Framework must implement the [CalcTablePrimitiveValueParser](./src/main/java/org/business/tools/calctable/dataprovider/parser/CalcTablePrimitiveValueParser.java) interface:
+A "Primitive Value Parser" using within the Framework must implement the [CalcTablePrimitiveValueParser](./src/main/java/org/drakosha/tools/calctable/dataprovider/parser/CalcTablePrimitiveValueParser.java) interface:
 
 ```java
 package org.drakosha.tools.calctable.dataprovider.parser;
@@ -170,7 +186,7 @@ public interface CalcTablePrimitiveValueParser {
 }
 ```
 
-There is a standard implementation of this component named [CalcTablePrimitiveValueStandardParser](./src/main/java/org/business/tools/calctable/dataprovider/parser/common/CalcTablePrimitiveValueStandardParser.java), which supports the following data types:
+There is a standard implementation of this component named [CalcTablePrimitiveValueStandardParser](./src/main/java/org/drakosha/tools/calctable/dataprovider/parser/common/CalcTablePrimitiveValueStandardParser.java), which supports the following data types:
 
 * Java primitive types and their Wrapper equivalents
 * Enum's
@@ -186,7 +202,7 @@ Very important at this point is also a description of the supported text represe
 
 This component is an integral part of the Sheet Data Reader configuration and is responsible for conversion of original texts within the structure description cells into the names of corresponding data object attributes. 
 
-A "Structure Name Resolver" using within the Framework must implement the [CalcTableStructureNamesResolver](./src/main/java/org/business/tools/calctable/dataprovider/parser/CalcTableStructureNamesResolver.java) interface:
+A "Structure Name Resolver" using within the Framework must implement the [CalcTableStructureNamesResolver](./src/main/java/org/drakosha/tools/calctable/dataprovider/parser/CalcTableStructureNamesResolver.java) interface:
 
 ```java
 package org.drakosha.tools.calctable.dataprovider.parser;
@@ -203,7 +219,7 @@ public interface CalcTableStructureNamesResolver {
 }
 ```
 
-There is a standard implementation of this component named [CalcTableStructureNamesStandardResolver](./src/main/java/org/business/tools/calctable/dataprovider/parser/common/CalcTableStructureNamesStandardResolver.java), which solves its tasks as follows:
+There is a standard implementation of this component named [CalcTableStructureNamesStandardResolver](./src/main/java/org/drakosha/tools/calctable/dataprovider/parser/common/CalcTableStructureNamesStandardResolver.java), which solves its tasks as follows:
 
 * isComment(..) recognizes cell text as a comment node in case it is prefixed with the "#" sign.
 * resolvePropertyName(..) converts cell text into the camelCase format ignoring non-alphanumeric signs and text parts in round brackets
